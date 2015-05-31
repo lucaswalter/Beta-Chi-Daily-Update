@@ -6,7 +6,7 @@ using System.Text;
 
 namespace BetaChi.Core.Android
 {
-    class EventItem
+    class ReminderItem
     {
         public string Id { get; set; }
         public string Text { get; set; }
