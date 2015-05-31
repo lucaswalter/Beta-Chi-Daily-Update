@@ -13,5 +13,6 @@ namespace BetaChi.Core.Android
         public string Breakfast { get; set; }
         public string Lunch { get; set; }
         public string Dinner { get; set; }
+        public bool IsFormalDinner { get; set; }
     }
 }

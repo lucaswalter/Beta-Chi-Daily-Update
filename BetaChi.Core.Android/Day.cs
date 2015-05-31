@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-
+// TODO: Possibly Remove Azure Mobile Services From Here And IOS Core
 namespace BetaChi.Core.Android
 {
     public class Day

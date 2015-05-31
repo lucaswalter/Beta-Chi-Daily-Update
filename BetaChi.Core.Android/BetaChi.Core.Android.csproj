@@ -58,6 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Award.cs" />
     <Compile Include="Day.cs" />
     <Compile Include="DriverItem.cs" />
     <Compile Include="IM.cs" />
