@@ -3,16 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace BetaChi.Core.Android
+
+namespace BetaChi.Core.iOS
 {
-    public class Day
+    class IM
     {
         public string Id { get; set; }
         public DateTime CurrentDate { get; set; }
 
-        public MealItem Meals { get; set; }
-
         public ICollection<ReminderItem> Reminders { get; set; }
-        public ICollection<DriverItem> SoberDrivers { get; set; }
+
+        public ICollection<TeamItem> Leaderboard { get; set; }
+
+        // TODO: Possibly Add Brotherhood Points
     }
 }

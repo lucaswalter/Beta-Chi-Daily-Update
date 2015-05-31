@@ -34,8 +34,14 @@
     <CodesignKey>iPhone Developer</CodesignKey>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Award.cs" />
+    <Compile Include="Day.cs" />
+    <Compile Include="DriverItem.cs" />
+    <Compile Include="IM.cs" />
+    <Compile Include="MealItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReminderItem.cs" />
+    <Compile Include="TeamItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
