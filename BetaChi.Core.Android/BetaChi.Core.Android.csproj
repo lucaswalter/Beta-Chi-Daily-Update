@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Day.cs" />
+    <Compile Include="DriverItem.cs" />
     <Compile Include="ReminderItem.cs" />
     <Compile Include="MealItem.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
