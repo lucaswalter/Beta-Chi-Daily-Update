@@ -60,10 +60,12 @@
   <ItemGroup>
     <Compile Include="Day.cs" />
     <Compile Include="DriverItem.cs" />
+    <Compile Include="IM.cs" />
     <Compile Include="ReminderItem.cs" />
     <Compile Include="MealItem.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TeamItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
