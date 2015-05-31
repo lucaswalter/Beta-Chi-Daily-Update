@@ -9,6 +9,8 @@ namespace BetaChi.Core.Android
     class ReminderItem
     {
         public string Id { get; set; }
+        public DateTime Date { get; set; }
+
         public string Text { get; set; }
     }
 }
