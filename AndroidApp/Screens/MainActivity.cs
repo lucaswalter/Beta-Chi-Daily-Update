@@ -45,6 +45,12 @@ namespace AndroidApp.Screens
             // Set View From Main Layout Resource
             SetContentView(Resource.Layout.MainActivity);
 
+            // Create Toolbar
+            var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+            SetActionBar(toolbar);
+
+            ActionBar.Title = "Test Title";
+
             // Initialize Progress Bar
             progressBar = FindViewById<ProgressBar>(Resource.Id.loadingProgressBar);
             progressBar.Visibility = ViewStates.Gone;

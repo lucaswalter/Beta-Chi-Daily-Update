@@ -142,7 +142,10 @@ namespace AndroidApp
 		{
 			
 			// aapt resource value: 0x7f050000
-			public const int Mono_Android_Theme_Splash = 2131034112;
+			public const int BetaChiTheme = 2131034112;
+			
+			// aapt resource value: 0x7f050001
+			public const int Mono_Android_Theme_Splash = 2131034113;
 			
 			static Style()
 			{
