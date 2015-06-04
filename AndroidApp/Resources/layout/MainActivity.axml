@@ -1,82 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:minWidth="25dp"
-    android:minHeight="25dp"
-    android:background="@drawable/Background">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/dateTextView"
-        android:text="DATE"
-        android:gravity="center"
-        android:textSize="25dp"
-        android:layout_marginTop="5dp" />
-    <View
+    android:layout_height="fill_parent">
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/darker_gray"
-        android:layout_marginTop="5dp" />
-    <ProgressBar
-        android:id="@+id/loadingProgressBar"
-        android:layout_width="28dp"
-        android:layout_height="28dp"
-        android:layout_gravity="center" />
-    <ListView
+        android:layout_height="fill_parent"
         android:minWidth="25dp"
         android:minHeight="25dp"
-        android:layout_width="match_parent"
-        android:layout_height="270.4dp"
-        android:id="@+id/reminderListView" />
-    <TextView
-        android:inputType="none"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/mealTextView"
-        android:text="Meals"
-        android:gravity="center"
-        android:textSize="25dp"
-        android:layout_marginTop="5dp" />
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/darker_gray"
-        android:layout_marginTop="5dp" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/breakfastTextView"
-        android:text="Breakfast"
-        android:gravity="center"
-        android:textSize="22dp"
-        android:layout_marginTop="5dp" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/lunchTextView"
-        android:text="Lunch"
-        android:gravity="center"
-        android:textSize="22dp"
-        android:layout_marginTop="5dp" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/dinnerTextView"
-        android:text="Dinner"
-        android:gravity="center"
-        android:textSize="22dp"
-        android:layout_marginTop="5dp" />
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/darker_gray"
-        android:layout_marginTop="5dp" />
-    <Button
-        android:text="Button"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/soberDriverButton"
-        android:layout_marginBottom="1.8dp" />
-</LinearLayout>
+        android:background="@drawable/Background">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/dateTextView"
+            android:text="DATE"
+            android:gravity="center"
+            android:textSize="25dp"
+            android:layout_marginTop="5dp" />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:layout_marginTop="5dp" />
+        <ProgressBar
+            android:id="@+id/loadingProgressBar"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_gravity="center" />
+        <ListView
+            android:minWidth="25dp"
+            android:minHeight="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="270.4dp"
+            android:id="@+id/reminderListView" />
+        <TextView
+            android:inputType="none"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/mealTextView"
+            android:text="Meals"
+            android:gravity="center"
+            android:textSize="25dp"
+            android:layout_marginTop="5dp" />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:layout_marginTop="5dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/breakfastTextView"
+            android:text="Breakfast"
+            android:gravity="center"
+            android:textSize="22dp"
+            android:layout_marginTop="5dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/lunchTextView"
+            android:text="Lunch"
+            android:gravity="center"
+            android:textSize="22dp"
+            android:layout_marginTop="5dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/dinnerTextView"
+            android:text="Dinner"
+            android:gravity="center"
+            android:textSize="22dp"
+            android:layout_marginTop="5dp" />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:layout_marginTop="5dp" />
+        <Button
+            android:text="Button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/soberDriverButton"
+            android:layout_marginBottom="1.8dp" />
+    </LinearLayout>
+</RelativeLayout>
