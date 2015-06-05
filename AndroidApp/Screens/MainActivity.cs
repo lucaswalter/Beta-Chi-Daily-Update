@@ -98,7 +98,7 @@ namespace AndroidApp.Screens
         }
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
-            Toast.MakeText(this, "Top ActionBar pressed: " + item.TitleFormatted, ToastLength.Short).Show();
+            Toast.MakeText(this, "Scribe Menu Pressed: " + item.TitleFormatted, ToastLength.Short).Show();
             return base.OnOptionsItemSelected(item);
         }
 

@@ -84,6 +84,12 @@ namespace AndroidApp
 			// aapt resource value: 0x7f070004
 			public const int mealTextView = 2131165188;
 			
+			// aapt resource value: 0x7f070009
+			public const int menu_IM = 2131165193;
+			
+			// aapt resource value: 0x7f07000a
+			public const int menu_Scribe = 2131165194;
+			
 			// aapt resource value: 0x7f070003
 			public const int reminderListView = 2131165187;
 			
