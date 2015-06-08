@@ -1,7 +1,6 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using AndroidApp.Core;
@@ -9,7 +8,7 @@ using Microsoft.WindowsAzure.MobileServices;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Java.Text;
+using AndroidApp.Fragments;
 
 namespace AndroidApp.Screens
 {
@@ -101,12 +100,13 @@ namespace AndroidApp.Screens
                 CreateAndShowDialog(e, "Connection Error");
             }
 
+            // Sober Driver Button
             soberDriverButton.Click += (object sender, EventArgs e) =>
             {
                 // On Button Click, Attempt To Dial
                 var callDialog = new AlertDialog.Builder(this);
                 callDialog.SetMessage("Call Sober Driver?");
-                callDialog.SetNeutralButton("Call", delegate
+                callDialog.SetPositiveButton("Call", delegate
                 {
                     // Create Intent To Dial Phone
                     var callIntent = new Intent(Intent.ActionCall);
@@ -125,21 +125,47 @@ namespace AndroidApp.Screens
             MenuInflater.Inflate(Resource.Menu.HomeMenu, menu);
             return base.OnCreateOptionsMenu(menu);
         }
+
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
+            // TODO: Remove Debugging Toast
             Toast.MakeText(this, "Menu Pressed: " + item.TitleFormatted, ToastLength.Short).Show();
 
             switch (item.ItemId)
             {
-                //case Resource.Id
+                case Resource.Id.menu_View_IM:
+                    // Launch View IM Activity
+                    return true;
+                case Resource.Id.menu_EditScribeData:
+                    Console.WriteLine("Show Scribe Password Dialog");
+                    CreateAndShowPasswordDialog(Constants.EDIT_SCRIBE_DATA, "TestScribe");
+                    return true;
+                case Resource.Id.menu_EditIMData:
+                    Console.WriteLine("Show IM Password Dialog");
+                    CreateAndShowPasswordDialog(Constants.EDIT_IM_DATA, "TestIM");
+                    return true;
             }
 
             return base.OnOptionsItemSelected(item);
         }
 
+
         // TODO: Implement Retrieval & Sorting Methods
 
-        /** Error Dialog Methods **/
+
+        /** Password Dialog **/
+        void CreateAndShowPasswordDialog(int activity, string password)
+        {
+            // Create Dialog And Transaction
+            var transaction = FragmentManager.BeginTransaction();
+            var passwordDialog = new PasswordDialogFragment();
+
+            passwordDialog.ActivityID = activity;
+            passwordDialog.Password = password;
+            passwordDialog.Show(transaction, "passwordDialog");
+        }
+
+        /** Error Dialog **/
         void CreateAndShowDialog(Exception exception, String title)
         {
             CreateAndShowDialog(exception.Message, title);

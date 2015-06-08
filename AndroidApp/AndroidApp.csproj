@@ -65,6 +65,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants.cs" />
     <Compile Include="Core\Award.cs" />
     <Compile Include="Core\Day.cs" />
     <Compile Include="Core\DriverItem.cs" />
@@ -72,15 +73,18 @@
     <Compile Include="Core\MealItem.cs" />
     <Compile Include="Core\ReminderItem.cs" />
     <Compile Include="Core\TeamItem.cs" />
+    <Compile Include="Fragments\PasswordDialogFragment.cs" />
     <Compile Include="Screens\MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <AndroidResource Include="Resources\layout\MainActivity.axml" />
     <AndroidResource Include="Resources\layout\Toolbar.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\PasswordDialogFragment.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
   </ItemGroup>
