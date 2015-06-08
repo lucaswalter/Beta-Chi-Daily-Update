@@ -1,11 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-  <item
-       android:id="@+id/menu_IM"
+    <item
+       android:id="@+id/menu_View_IM"
        android:showAsAction="ifRoom"
        android:title="IM" />
-  <item
-       android:id="@+id/menu_Scribe"
-       android:showAsAction="ifRoom"
-       android:title="Scribe" />
+    <item
+       android:id="@+id/menu_EditScribeData"
+       android:showAsAction="never"
+       android:title="Edit Scribe Data" />
+    <item
+       android:id="@+id/menu_EditIMData"
+       android:showAsAction="never"
+       android:title="Edit IM Data" />
 </menu>

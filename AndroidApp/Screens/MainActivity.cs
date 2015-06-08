@@ -31,8 +31,10 @@ namespace AndroidApp.Screens
         // Progress Spinner For Tabler Operations
         private ProgressBar progressBar;
 
-        // Layout Members
+        // Date View
         private TextView dateTextView;
+
+        // Sober Driver Button
         private Button soberDriverButton;
 
         const string applicationURL = "https://betachi.azure-mobile.net/";
@@ -49,7 +51,11 @@ namespace AndroidApp.Screens
             var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
             SetActionBar(toolbar);
 
+            // Set Title
             ActionBar.Title = "Test Title";
+
+            // Set Sber Driver Button
+            soberDriverButton = FindViewById<Button>(Resource.Id.soberDriverButton);
 
             // Initialize Progress Bar
             progressBar = FindViewById<ProgressBar>(Resource.Id.loadingProgressBar);
@@ -65,7 +71,7 @@ namespace AndroidApp.Screens
 
             // Set Date Text View
             dateTextView = FindViewById<TextView>(Resource.Id.dateTextView);
-            dateTextView.Text = DateTime.Today.ToShortTimeString();
+            dateTextView.Text = DateTime.Today.ToShortDateString();
 
             // Connect To Azure Mobile Service
             try
@@ -84,11 +90,34 @@ namespace AndroidApp.Screens
 
 
 
+
+                // TODO: Set Sober Driver Button Text
+
+
+
             }
             catch (Exception e)
             {
                 CreateAndShowDialog(e, "Connection Error");
             }
+
+            soberDriverButton.Click += (object sender, EventArgs e) =>
+            {
+                // On Button Click, Attempt To Dial
+                var callDialog = new AlertDialog.Builder(this);
+                callDialog.SetMessage("Call Sober Driver?");
+                callDialog.SetNeutralButton("Call", delegate
+                {
+                    // Create Intent To Dial Phone
+                    var callIntent = new Intent(Intent.ActionCall);
+                    callIntent.SetData(Android.Net.Uri.Parse("tel:8168309808"));
+                    StartActivity(callIntent);
+                });
+
+                // Create Negative Button And Show Dialog
+                callDialog.SetNegativeButton("Cancel", delegate { });
+                callDialog.Show();
+            };
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
@@ -98,12 +127,17 @@ namespace AndroidApp.Screens
         }
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
-            Toast.MakeText(this, "Scribe Menu Pressed: " + item.TitleFormatted, ToastLength.Short).Show();
+            Toast.MakeText(this, "Menu Pressed: " + item.TitleFormatted, ToastLength.Short).Show();
+
+            switch (item.ItemId)
+            {
+                //case Resource.Id
+            }
+
             return base.OnOptionsItemSelected(item);
         }
 
         // TODO: Implement Retrieval & Sorting Methods
-
 
         /** Error Dialog Methods **/
         void CreateAndShowDialog(Exception exception, String title)
