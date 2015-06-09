@@ -26,8 +26,7 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="71.8dp"
-        android:id="@+id/linearLayout1">
+        android:layout_height="71.8dp">
         <Button
             android:text="Breakfast"
             android:layout_weight="1"
