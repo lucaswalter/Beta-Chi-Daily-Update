@@ -12,13 +12,13 @@ using Android.Widget;
 
 namespace AndroidApp.Screens
 {
-    [Activity(Label = "Edit IM Data")]
-    public class EditDataIMActivity : Activity
+    [Activity(Label = "View IM Activity")]
+    public class ViewIMActivity : Activity
     {
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-            SetContentView(Resource.Layout.EditDataIMActivity);
+            SetContentView(Resource.Layout.ViewIMActivity);
         }
     }
 }

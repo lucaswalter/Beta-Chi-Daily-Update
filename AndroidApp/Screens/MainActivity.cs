@@ -134,7 +134,8 @@ namespace AndroidApp.Screens
             switch (item.ItemId)
             {
                 case Resource.Id.menu_View_IM:
-                    // Launch View IM Activity
+                    Intent intent = new Intent(this, typeof(ViewIMActivity));
+                    StartActivity(intent);
                     return true;
                 case Resource.Id.menu_EditScribeData:
                     Console.WriteLine("Show Scribe Password Dialog");

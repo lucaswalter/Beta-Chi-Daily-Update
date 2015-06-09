@@ -69,11 +69,11 @@ namespace AndroidApp
 			// aapt resource value: 0x7f07000d
 			public const int breakfastTextView = 2131165197;
 			
-			// aapt resource value: 0x7f070002
-			public const int buttonAddReminder = 2131165186;
+			// aapt resource value: 0x7f070003
+			public const int buttonAddReminder = 2131165187;
 			
-			// aapt resource value: 0x7f070000
-			public const int buttonDatePicker = 2131165184;
+			// aapt resource value: 0x7f070001
+			public const int buttonDatePicker = 2131165185;
 			
 			// aapt resource value: 0x7f070007
 			public const int buttonSave = 2131165191;
@@ -87,6 +87,9 @@ namespace AndroidApp
 			// aapt resource value: 0x7f070005
 			public const int buttonSetLunch = 2131165189;
 			
+			// aapt resource value: 0x7f070000
+			public const int buttonWIP = 2131165184;
+			
 			// aapt resource value: 0x7f070009
 			public const int dateTextView = 2131165193;
 			
@@ -96,11 +99,8 @@ namespace AndroidApp
 			// aapt resource value: 0x7f070012
 			public const int editText_Password = 2131165202;
 			
-			// aapt resource value: 0x7f070003
-			public const int linearLayout1 = 2131165187;
-			
-			// aapt resource value: 0x7f070001
-			public const int listViewReminders = 2131165185;
+			// aapt resource value: 0x7f070002
+			public const int listViewReminders = 2131165186;
 			
 			// aapt resource value: 0x7f07000a
 			public const int loadingProgressBar = 2131165194;
@@ -159,6 +159,9 @@ namespace AndroidApp
 			
 			// aapt resource value: 0x7f030004
 			public const int Toolbar = 2130903044;
+			
+			// aapt resource value: 0x7f030005
+			public const int ViewIMActivity = 2130903045;
 			
 			static Layout()
 			{
