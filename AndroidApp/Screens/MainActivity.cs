@@ -51,7 +51,7 @@ namespace AndroidApp.Screens
             SetActionBar(toolbar);
 
             // Set Title
-            ActionBar.Title = "Test Title";
+            ActionBar.Title = "Beta-Chi Daily Update";
 
             // Set Sber Driver Button
             soberDriverButton = FindViewById<Button>(Resource.Id.soberDriverButton);
@@ -99,6 +99,8 @@ namespace AndroidApp.Screens
             {
                 CreateAndShowDialog(e, "Connection Error");
             }
+
+            // TODO: Create Custom Fragment For Sober Driver Alert Dialog
 
             // Sober Driver Button
             soberDriverButton.Click += (object sender, EventArgs e) =>

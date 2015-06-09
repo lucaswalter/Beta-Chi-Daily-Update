@@ -14,20 +14,24 @@
         android:gravity="center"
         android:minWidth="25dp"
         android:minHeight="25dp"
-        android:background="@drawable/Background">
+        android:background="#dddddd">
         <TextView
+            android:inputType="none"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/dateTextView"
-            android:text="DATE"
+            android:text="Meals"
             android:gravity="center"
             android:textSize="25dp"
-            android:layout_marginTop="5dp" />
+            android:layout_marginTop="5dp"
+            android:textColor="@android:color/black" />
         <View
             android:layout_width="fill_parent"
             android:layout_height="1dp"
             android:background="@android:color/darker_gray"
-            android:layout_marginTop="5dp" />
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp" />
         <ProgressBar
             android:id="@+id/loadingProgressBar"
             android:layout_width="28dp"
@@ -47,12 +51,15 @@
             android:text="Meals"
             android:gravity="center"
             android:textSize="25dp"
-            android:layout_marginTop="5dp" />
+            android:layout_marginTop="5dp"
+            android:textColor="@android:color/black" />
         <View
             android:layout_width="fill_parent"
             android:layout_height="1dp"
             android:background="@android:color/darker_gray"
-            android:layout_marginTop="5dp" />
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -60,7 +67,8 @@
             android:text="Breakfast"
             android:gravity="center"
             android:textSize="22dp"
-            android:layout_marginTop="5dp" />
+            android:layout_marginTop="5dp"
+            android:textColor="@android:color/black" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -68,7 +76,8 @@
             android:text="Lunch"
             android:gravity="center"
             android:textSize="22dp"
-            android:layout_marginTop="5dp" />
+            android:layout_marginTop="5dp"
+            android:textColor="@android:color/black" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -76,17 +85,23 @@
             android:text="Dinner"
             android:gravity="center"
             android:textSize="22dp"
-            android:layout_marginTop="5dp" />
+            android:layout_marginTop="5dp"
+            android:textColor="@android:color/black" />
         <View
             android:layout_width="fill_parent"
             android:layout_height="1dp"
             android:background="@android:color/darker_gray"
-            android:layout_marginTop="5dp" />
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp" />
         <Button
-            android:text="Button"
+            android:text="Call Sober Driver"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/soberDriverButton"
-            android:layout_marginBottom="1.8dp" />
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="0dp"
+            android:background="#bebebe"
+            android:textSize="25dp" />
     </LinearLayout>
 </RelativeLayout>

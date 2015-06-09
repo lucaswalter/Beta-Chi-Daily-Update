@@ -15,27 +15,35 @@ namespace AndroidApp.Screens
     [Activity(Label = "Edit Scribe Data")]
     public class EditDataScribeActivity : Activity
     {
-        private DateTime date;
+        private DateTime selectedDate;
         private Button datePickerButton;
 
         protected override void OnCreate(Bundle bundle)
         {
+            // Create And Display Layout
             base.OnCreate(bundle);
-
             SetContentView(Resource.Layout.EditDataScribeActivity);
 
+            datePickerButton = FindViewById<Button>(Resource.Id.buttonDatePicker);
+
+            datePickerButton.Click += delegate
+            {
+                ShowDialog(0);
+            };
+
+            selectedDate = DateTime.Today;;
+            datePickerButton.Text = selectedDate.ToShortDateString();
         }
 
         protected override Dialog OnCreateDialog(int id)
         {
-            return new DatePickerDialog(this, HandleDateSet, date.Year, date.Month - 1, date.Day);
+            return new DatePickerDialog(this, HandleDateSet, selectedDate.Year, selectedDate.Month - 1, selectedDate.Day);
         }
 
         void HandleDateSet(object sender, DatePickerDialog.DateSetEventArgs e)
         {
-            date = e.Date;
-            //var button = FindViewById<Button>(Resource.Id);
-            //button.Text = date.ToShortTimeString();
+            selectedDate = e.Date;
+            datePickerButton.Text = selectedDate.ToShortDateString();
         }
     }
 }
