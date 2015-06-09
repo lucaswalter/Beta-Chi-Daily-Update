@@ -74,6 +74,8 @@
     <Compile Include="Core\ReminderItem.cs" />
     <Compile Include="Core\TeamItem.cs" />
     <Compile Include="Fragments\PasswordDialogFragment.cs" />
+    <Compile Include="Screens\EditDataIMActivity.cs" />
+    <Compile Include="Screens\EditDataScribeActivity.cs" />
     <Compile Include="Screens\MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -85,6 +87,12 @@
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\PasswordDialogFragment.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\EditDataScribeActivity.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\EditDataIMActivity.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
   </ItemGroup>
