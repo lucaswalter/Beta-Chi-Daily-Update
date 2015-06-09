@@ -138,11 +138,11 @@ namespace AndroidApp.Screens
                     return true;
                 case Resource.Id.menu_EditScribeData:
                     Console.WriteLine("Show Scribe Password Dialog");
-                    CreateAndShowPasswordDialog(Constants.EDIT_SCRIBE_DATA, "TestScribe");
+                    CreateAndShowPasswordDialog(Constants.EDIT_SCRIBE_DATA, "scribe");
                     return true;
                 case Resource.Id.menu_EditIMData:
                     Console.WriteLine("Show IM Password Dialog");
-                    CreateAndShowPasswordDialog(Constants.EDIT_IM_DATA, "TestIM");
+                    CreateAndShowPasswordDialog(Constants.EDIT_IM_DATA, "im");
                     return true;
             }
 

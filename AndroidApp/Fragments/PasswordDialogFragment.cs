@@ -10,6 +10,7 @@ using Android.Runtime;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
+using AndroidApp.Screens;
 
 namespace AndroidApp.Fragments
 {
@@ -64,10 +65,13 @@ namespace AndroidApp.Fragments
                     {
                         // Launch New Activity
                         Console.WriteLine("Edit Scribe Password Correct");
+                        Intent editScribeActivity = new Intent(Application.Context, typeof(EditDataScribeActivity));
+                        StartActivity(editScribeActivity);
                     }
                     else
                     {
-                        Console.WriteLine("Edit Scribe Password Wrong");
+                        Toast.MakeText(Application.Context, "Edit Scribe Data Password Wrong", ToastLength.Short).Show();
+                        dialog.Dismiss();
                     }
 
                     break;
@@ -78,15 +82,17 @@ namespace AndroidApp.Fragments
                     {
                         // Launch New Activity
                         Console.WriteLine("Edit IM Password Correct");
+                        Intent editIMActivity = new Intent(Application.Context, typeof(EditDataIMActivity));
+                        StartActivity(editIMActivity);
                     }
                     else
                     {
-                        Console.WriteLine("Edit IM Password Wrong");
+                        Toast.MakeText(Application.Context, "Edit IM Data Password Wrong", ToastLength.Short).Show();
+                        dialog.Dismiss();
                     }
 
                     break;
                 }
-
             }
 
         }
