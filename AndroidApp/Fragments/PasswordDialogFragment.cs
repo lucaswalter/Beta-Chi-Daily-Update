@@ -94,7 +94,6 @@ namespace AndroidApp.Fragments
                     break;
                 }
             }
-
         }
 
         private void HandleNegativeButtonClick(object sender, DialogClickEventArgs e)
