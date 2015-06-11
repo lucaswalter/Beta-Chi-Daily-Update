@@ -32,22 +32,19 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:id="@+id/buttonSetBreakfast"
-            android:layout_margin="-2.5"/>
+            android:id="@+id/buttonSetBreakfast" />
         <Button
             android:text="Lunch"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:id="@+id/buttonSetLunch" 
-            android:layout_margin="-2.5"/>
+            android:id="@+id/buttonSetLunch" />
         <Button
             android:text="Dinner"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:id="@+id/buttonSetDinner" 
-            android:layout_margin="-2.5dp"/>
+            android:id="@+id/buttonSetDinner" />
     </LinearLayout>
     <Button
         android:text="Save"
