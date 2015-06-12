@@ -69,7 +69,7 @@ namespace AndroidApp.Screens
             };
 
             // Set Date Text View
-            dateTextView = FindViewById<TextView>(Resource.Id.dateTextView);
+            dateTextView = FindViewById<TextView> (Resource.Id.dateTextView);
             dateTextView.Text = DateTime.Today.ToShortDateString();
 
             // Connect To Azure Mobile Service
@@ -86,21 +86,11 @@ namespace AndroidApp.Screens
                 reminderTable = client.GetTable<ReminderItem>();
                 mealTable = client.GetTable<MealItem>();
                 driverTable = client.GetTable<DriverItem>();
-
-
-
-
-                // TODO: Set Sober Driver Button Text
-
-
-
             }
             catch (Exception e)
             {
                 CreateAndShowDialog(e, "Connection Error");
             }
-
-            // TODO: Create Custom Fragment For Sober Driver Alert Dialog
 
             // Sober Driver Button
             soberDriverButton.Click += (object sender, EventArgs e) =>
