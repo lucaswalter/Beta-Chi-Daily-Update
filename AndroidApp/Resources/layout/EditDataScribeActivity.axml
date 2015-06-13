@@ -11,7 +11,7 @@
         android:text="Choose Date"
         android:layout_width="match_parent"
         android:layout_height="71.0dp"
-        android:layout_marginTop="-1dp" />
+        android:layout_marginTop="-1.5dp" />
     <ListView
         android:minWidth="25px"
         android:minHeight="25px"
