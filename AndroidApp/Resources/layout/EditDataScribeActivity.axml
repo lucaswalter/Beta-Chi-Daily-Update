@@ -6,50 +6,68 @@
     android:layout_height="fill_parent"
     tools:actionBarNavMode="list">
     <Button
+        android:id="@+id/buttonDatePicker"
+        android:textSize="25dp"
         android:text="Choose Date"
         android:layout_width="match_parent"
         android:layout_height="71.0dp"
-        android:id="@+id/buttonDatePicker"
-        android:textSize="25dp" />
+        android:layout_marginTop="-2dp" />
     <ListView
         android:minWidth="25px"
         android:minHeight="25px"
         android:layout_width="match_parent"
-        android:layout_height="330dp"
-        android:id="@+id/listViewReminders" />
+        android:layout_height="335.1dp"
+        android:id="@+id/listViewReminders"
+        android:layout_marginBottom="8.5dp" />
     <Button
         android:text="Add Reminder"
         android:layout_width="match_parent"
         android:layout_height="71.0dp"
         android:id="@+id/buttonAddReminder"
-        android:textSize="25dp" />
+        android:textSize="25dp"
+        android:layout_marginBottom="-5dp" />
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="71.8dp">
+        android:layout_height="71.8dp"
+        android:layout_marginRight="1.5dp"
+        android:layout_marginLeft="1.5dp"
+        android:layout_marginTop="-2.5dp"
+        android:layout_marginBottom="-2.5dp">
         <Button
             android:text="Breakfast"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_marginRight="-1.5dp"
+            android:layout_marginLeft="-1.5dp"
+            android:layout_marginBottom="-2.5dp"
             android:id="@+id/buttonSetBreakfast" />
         <Button
             android:text="Lunch"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_marginRight="-1.5dp"
+            android:layout_marginLeft="-1.5dp"
+            android:layout_marginBottom="-2.5dp"
             android:id="@+id/buttonSetLunch" />
         <Button
             android:text="Dinner"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_marginRight="-1.5dp"
+            android:layout_marginLeft="-1.5dp"
+            android:layout_marginBottom="-2.5dp"
             android:id="@+id/buttonSetDinner" />
     </LinearLayout>
     <Button
+        android:id="@+id/buttonSave"
+        android:textSize="25dp"
         android:text="Save"
         android:layout_width="match_parent"
         android:layout_height="71.0dp"
-        android:id="@+id/buttonSave"
-        android:textSize="25dp" />
+        android:layout_marginTop="-2.5dp"
+        android:layout_marginBottom="-5dp" />
 </LinearLayout>
