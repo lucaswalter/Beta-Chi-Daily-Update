@@ -27,22 +27,29 @@ namespace AndroidApp.Adapters
 
         public override ReminderItem this[int position]
         {
-            get { throw new NotImplementedException(); }
+            get { return reminders[position]; }
         }
 
         public override int Count
         {
-            get { throw new NotImplementedException(); }
+            get { return reminders.Length; }
         }
 
         public override long GetItemId(int position)
         {
-            throw new NotImplementedException();
+            return position;
         }
 
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
-            throw new NotImplementedException();
+            View view = convertView;
+
+            if (view == null)
+                view = context.LayoutInflater.Inflate(Android.Resource.Layout.SimpleListItem1, null);
+
+            view.FindViewById<TextView>(Android.Resource.Id.Text1).Text = reminders[position].Text;
+
+            return view;
         }
     }
 }
