@@ -16,13 +16,31 @@ namespace AndroidApp.Adapters
     public class ReminderAdapter : BaseAdapter<ReminderItem>
     {
 
-        private ReminderItem[] reminders;
+        private List<ReminderItem> reminders;
         private Activity context;
 
-        public ReminderAdapter(Activity context, ReminderItem[] reminders) : base()
+        public ReminderAdapter(Activity context, List<ReminderItem> reminders) : base()
         {
             this.context = context;
             this.reminders = reminders;
+        }
+
+        public void Add(ReminderItem item)
+        {
+            reminders.Add(item);
+            NotifyDataSetChanged();
+        }
+
+        public void Clear()
+        {
+            reminders.Clear();
+            NotifyDataSetChanged();
+        }
+
+        public void Remove(ReminderItem item)
+        {
+            reminders.Remove(item);
+            NotifyDataSetChanged();
         }
 
         public override ReminderItem this[int position]
@@ -32,7 +50,7 @@ namespace AndroidApp.Adapters
 
         public override int Count
         {
-            get { return reminders.Length; }
+            get { return reminders.Count; }
         }
 
         public override long GetItemId(int position)
