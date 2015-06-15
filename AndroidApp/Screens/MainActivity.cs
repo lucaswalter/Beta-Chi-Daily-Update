@@ -25,7 +25,6 @@ namespace AndroidApp.Screens
         private IMobileServiceTable<DriverItem> driverTable;
 
         // Adapter To Sync Reminders With The List
-        // private ReminderAdapter reminderAdapter;
 
         // Progress Spinner For Tabler Operations
         private ProgressBar progressBar;
@@ -120,8 +119,6 @@ namespace AndroidApp.Screens
 
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
-            // TODO: Remove Debugging Toast
-            Toast.MakeText(this, "Menu Pressed: " + item.TitleFormatted, ToastLength.Short).Show();
 
             switch (item.ItemId)
             {
