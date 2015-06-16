@@ -49,7 +49,7 @@ namespace AndroidApp.Screens
             // Set Title
             ActionBar.Title = "Beta-Chi Daily Update";
 
-            // Set Sber Driver Button
+            // Set Sober Driver Button
             soberDriverButton = FindViewById<Button>(Resource.Id.soberDriverButton);
 
             // Initialize Progress Bar
@@ -105,7 +105,6 @@ namespace AndroidApp.Screens
                 reminderListView.Adapter = reminderAdapter;
 
                 // Load The Reminders From The Mobile Service
-                // TODO: Investigate Error Where Button Is UnPressable
                 await RefreshRemindersFromTableAsync();
 
             }

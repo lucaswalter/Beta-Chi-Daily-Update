@@ -11,6 +11,7 @@ using Android.Views;
 using Android.Widget;
 using AndroidApp.Adapters;
 using AndroidApp.Core;
+using AndroidApp.Fragments;
 using Microsoft.WindowsAzure.MobileServices;
 
 namespace AndroidApp.Screens
@@ -31,6 +32,17 @@ namespace AndroidApp.Screens
         private DateTime selectedDate;
         private Button datePickerButton;
 
+        // Reminder Button
+        private Button addReminderButton;
+
+        // Meal Buttons
+        private Button setBreakfastButton;
+        private Button setLunchButton;
+        private Button setDinnerButton;
+
+        // Save Button
+        private Button saveButton;
+
         /** Create Activity **/
         protected override async void OnCreate(Bundle bundle)
         {         
@@ -44,7 +56,12 @@ namespace AndroidApp.Screens
             selectedDate = DateTime.Today;;
             datePickerButton.Text = selectedDate.ToShortDateString();
 
-            // TODO: Other Button Functionality
+            // Add Reminder Button
+            addReminderButton = FindViewById<Button>(Resource.Id.buttonAddReminder);
+            addReminderButton.Click += (object sender, EventArgs e) =>
+            {
+                CreateAndShowAddReminderDialog();
+            };
 
             // Connect To Azure Mobile Service
             try
@@ -90,6 +107,18 @@ namespace AndroidApp.Screens
             {
                 CreateAndShowDialog(e, "Connection Error");
             }
+        }
+
+        /** Add Reminder Dialog **/
+        void CreateAndShowAddReminderDialog()
+        {
+            // Create Dialog And Transaction
+            var transaction = FragmentManager.BeginTransaction();
+            var reminderDialog = new AddReminderDialogFragment();
+
+            reminderDialog.date = selectedDate;
+            reminderDialog.reminderAdapter = reminderAdapter;
+            reminderDialog.Show(transaction, "addReminderDialog");
         }
 
         /** Date Picking Methods **/

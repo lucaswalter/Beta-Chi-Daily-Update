@@ -75,6 +75,7 @@
     <Compile Include="Core\MealItem.cs" />
     <Compile Include="Core\ReminderItem.cs" />
     <Compile Include="Core\TeamItem.cs" />
+    <Compile Include="Fragments\AddReminderDialogFragment.cs" />
     <Compile Include="Fragments\PasswordDialogFragment.cs" />
     <Compile Include="Screens\EditDataIMActivity.cs" />
     <Compile Include="Screens\EditDataScribeActivity.cs" />
@@ -101,6 +102,7 @@
     <AndroidResource Include="Resources\layout\ViewIMActivity.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\AddReminderDialogFragment.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
