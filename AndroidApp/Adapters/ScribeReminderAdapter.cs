@@ -13,13 +13,13 @@ using AndroidApp.Core;
 
 namespace AndroidApp.Adapters
 {
-    public class ReminderAdapter : BaseAdapter<ReminderItem>
+    public class ScribeReminderAdapter : BaseAdapter<ReminderItem>
     {
 
         private Activity context;
         private List<ReminderItem> reminders = new List<ReminderItem>();
-        
-        public ReminderAdapter(Activity context) : base()
+
+        public ScribeReminderAdapter(Activity context) : base()
         {
             this.context = context;
         }
@@ -62,7 +62,7 @@ namespace AndroidApp.Adapters
             View view = convertView;
 
             if (view == null)
-                view = context.LayoutInflater.Inflate(Android.Resource.Layout.SimpleListItem2, null);
+                view = context.LayoutInflater.Inflate(Android.Resource.Layout.SimpleSelectableListItem, null);
 
             view.FindViewById<TextView>(Android.Resource.Id.Text1).Text = reminders[position].Text;
 

@@ -35,9 +35,6 @@ namespace AndroidApp.Screens
         // Sober Driver Button
         private Button soberDriverButton;
 
-        const string applicationURL = "https://betachi.azure-mobile.net/";
-        const string applicationKey = "SbsbuMkNyFvOnFVniZJbkrkjfEuUYr87";
-
         protected override async void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -71,6 +68,25 @@ namespace AndroidApp.Screens
             dateTextView = FindViewById<TextView> (Resource.Id.dateTextView);
             dateTextView.Text = DateTime.Today.ToShortDateString();
 
+            // Sober Driver Button
+            soberDriverButton.Click += (object sender, EventArgs e) =>
+            {
+                // On Button Click, Attempt To Dial
+                var callDialog = new AlertDialog.Builder(this);
+                callDialog.SetMessage("Call Sober Driver?");
+                callDialog.SetPositiveButton("Call", delegate
+                {
+                    // Create Intent To Dial Phone
+                    var callIntent = new Intent(Intent.ActionCall);
+                    callIntent.SetData(Android.Net.Uri.Parse("tel:8168309808")); // TODO: Change Number
+                    StartActivity(callIntent);
+                });
+
+                // Create Negative Button And Show Dialog
+                callDialog.SetNegativeButton("Cancel", delegate { });
+                callDialog.Show();
+            };
+
             // Connect To Azure Mobile Service
             try
             {
@@ -78,7 +94,7 @@ namespace AndroidApp.Screens
                 CurrentPlatform.Init();
 
                 // Create Mobile Service Client Instance
-                client = new MobileServiceClient(applicationURL, applicationKey);
+                client = new MobileServiceClient(Constants.APPLICATION_URL, Constants.APPLICATION_KEY);
 
                 // Retrieve Tables
                 reminderTable = client.GetTable<ReminderItem>();
@@ -96,28 +112,32 @@ namespace AndroidApp.Screens
             catch (Exception e)
             {
                 CreateAndShowDialog(e, "Connection Error");
-            }
-
-            // Sober Driver Button
-            soberDriverButton.Click += (object sender, EventArgs e) =>
-            {
-                // On Button Click, Attempt To Dial
-                var callDialog = new AlertDialog.Builder(this);
-                callDialog.SetMessage("Call Sober Driver?");
-                callDialog.SetPositiveButton("Call", delegate
-                {
-                    // Create Intent To Dial Phone
-                    var callIntent = new Intent(Intent.ActionCall);
-                    callIntent.SetData(Android.Net.Uri.Parse("tel:8168309808"));
-                    StartActivity(callIntent);
-                });
-
-                // Create Negative Button And Show Dialog
-                callDialog.SetNegativeButton("Cancel", delegate { });
-                callDialog.Show();
-            };
+            }   
         }
 
+        /** Azure Mobile Retrieval Methods **/
+        async Task RefreshRemindersFromTableAsync()
+        {
+            try
+            {
+                // Get Today's Reminders
+                var list = await reminderTable.Where(x => x.Date.Day == DateTime.Today.Day).ToListAsync();
+
+                // Clear Reminder Adapter
+                reminderAdapter.Clear();
+
+                // Add Reminders
+                foreach (ReminderItem current in list)
+                    reminderAdapter.Add(current);
+
+            }
+            catch (Exception e)
+            {
+                CreateAndShowDialog(e, "Connection Error");
+            }
+        }
+
+        /** Menu Selection Methods **/
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
             MenuInflater.Inflate(Resource.Menu.HomeMenu, menu);
@@ -173,28 +193,6 @@ namespace AndroidApp.Screens
             builder.SetMessage(message);
             builder.SetTitle(title);
             builder.Create().Show();
-        }
-
-        /** Azure Mobile Retrieval Methods **/
-        async Task RefreshRemindersFromTableAsync()
-        {
-            try
-            {
-                // TODO: Add Date Filtering
-                var list = await reminderTable.Where(x => x.Text != null).ToListAsync();
-
-                // Clear Reminder Adapter
-                reminderAdapter.Clear();
-
-                // Add Reminders
-                foreach (ReminderItem current in list)
-                    reminderAdapter.Add(current);
-                
-            }
-            catch (Exception e)
-            {
-                CreateAndShowDialog(e, "Connection Error");
-            }
         }
 
         /** Progress Handler Class **/
