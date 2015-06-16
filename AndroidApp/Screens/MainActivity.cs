@@ -1,14 +1,16 @@
-﻿using Android.App;
-using Android.Content;
+﻿using System;
 using Android.OS;
+using Android.App;
 using Android.Views;
 using Android.Widget;
-using AndroidApp.Core;
-using Microsoft.WindowsAzure.MobileServices;
-using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Android.Content;
+using Android.Provider;
+using AndroidApp.Adapters;
+using AndroidApp.Core;
 using AndroidApp.Fragments;
+using Microsoft.WindowsAzure.MobileServices;
 
 namespace AndroidApp.Screens
 {
@@ -19,13 +21,10 @@ namespace AndroidApp.Screens
         private MobileServiceClient client;
 
         // Mobile Service Tables Used To Access Data
-        private IMobileServiceTable<Day> dayTable;
         private IMobileServiceTable<ReminderItem> reminderTable;
-        private IMobileServiceTable<MealItem> mealTable;
-        private IMobileServiceTable<DriverItem> driverTable;
 
         // Adapter To Sync Reminders With The List
-        // private ReminderAdapter reminderAdapter;
+        private ReminderAdapter reminderAdapter;
 
         // Progress Spinner For Tabler Operations
         private ProgressBar progressBar;
@@ -39,7 +38,7 @@ namespace AndroidApp.Screens
         const string applicationURL = "https://betachi.azure-mobile.net/";
         const string applicationKey = "SbsbuMkNyFvOnFVniZJbkrkjfEuUYr87";
 
-        protected override void OnCreate(Bundle bundle)
+        protected override async void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
 
@@ -82,10 +81,17 @@ namespace AndroidApp.Screens
                 client = new MobileServiceClient(applicationURL, applicationKey);
 
                 // Retrieve Tables
-                dayTable = client.GetTable<Day>();
                 reminderTable = client.GetTable<ReminderItem>();
-                mealTable = client.GetTable<MealItem>();
-                driverTable = client.GetTable<DriverItem>();
+
+                // Create Adapter To Bind The Reminder Items To The View
+                reminderAdapter = new ReminderAdapter(this);
+                var reminderListView = FindViewById<ListView>(Resource.Id.listViewRemindersMain);
+                reminderListView.Adapter = reminderAdapter;
+
+                // Load The Reminders From The Mobile Service
+                // TODO: Investigate Error Where Button Is UnPressable
+                await RefreshRemindersFromTableAsync();
+
             }
             catch (Exception e)
             {
@@ -142,10 +148,6 @@ namespace AndroidApp.Screens
             return base.OnOptionsItemSelected(item);
         }
 
-
-        // TODO: Implement Retrieval & Sorting Methods
-
-
         /** Password Dialog **/
         void CreateAndShowPasswordDialog(int activity, string password)
         {
@@ -173,6 +175,28 @@ namespace AndroidApp.Screens
             builder.Create().Show();
         }
 
+        /** Azure Mobile Retrieval Methods **/
+        async Task RefreshRemindersFromTableAsync()
+        {
+            try
+            {
+                // TODO: Add Date Filtering
+                var list = await reminderTable.Where(x => x.Text != null).ToListAsync();
+
+                // Clear Reminder Adapter
+                reminderAdapter.Clear();
+
+                // Add Reminders
+                foreach (ReminderItem current in list)
+                    reminderAdapter.Add(current);
+                
+            }
+            catch (Exception e)
+            {
+                CreateAndShowDialog(e, "Connection Error");
+            }
+        }
+
         /** Progress Handler Class **/
         class ProgressHandler : DelegatingHandler
         {
@@ -180,7 +204,7 @@ namespace AndroidApp.Screens
 
             public event Action<bool> BusyStateChange;
 
-            #region Implemented Abstract Members Of HttpMessageHandler
+            #region implemented abstract members of HttpMessageHandler
 
             protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, System.Threading.CancellationToken cancellationToken)
             {

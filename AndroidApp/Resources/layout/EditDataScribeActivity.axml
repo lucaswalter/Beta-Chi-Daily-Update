@@ -17,7 +17,7 @@
         android:minHeight="25px"
         android:layout_width="match_parent"
         android:layout_height="335.1dp"
-        android:id="@+id/listViewReminders"
+        android:id="@+id/listViewRemindersScribe"
         android:layout_marginBottom="8.5dp" />
     <Button
         android:text="Add Reminder"

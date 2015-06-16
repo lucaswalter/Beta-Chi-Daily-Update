@@ -16,13 +16,12 @@ namespace AndroidApp.Adapters
     public class ReminderAdapter : BaseAdapter<ReminderItem>
     {
 
-        private List<ReminderItem> reminders;
         private Activity context;
-
-        public ReminderAdapter(Activity context, List<ReminderItem> reminders) : base()
+        private List<ReminderItem> reminders = new List<ReminderItem>();
+        
+        public ReminderAdapter(Activity context) : base()
         {
             this.context = context;
-            this.reminders = reminders;
         }
 
         public void Add(ReminderItem item)

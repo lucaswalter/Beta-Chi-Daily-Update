@@ -93,8 +93,11 @@ namespace AndroidApp
 			// aapt resource value: 0x7f070012
 			public const int editText_Password = 2131165202;
 			
+			// aapt resource value: 0x7f07000b
+			public const int listViewRemindersMain = 2131165195;
+			
 			// aapt resource value: 0x7f070002
-			public const int listViewReminders = 2131165186;
+			public const int listViewRemindersScribe = 2131165186;
 			
 			// aapt resource value: 0x7f07000a
 			public const int loadingProgressBar = 2131165194;
@@ -113,9 +116,6 @@ namespace AndroidApp
 			
 			// aapt resource value: 0x7f070013
 			public const int menu_View_IM = 2131165203;
-			
-			// aapt resource value: 0x7f07000b
-			public const int reminderListView = 2131165195;
 			
 			// aapt resource value: 0x7f070010
 			public const int soberDriverButton = 2131165200;
