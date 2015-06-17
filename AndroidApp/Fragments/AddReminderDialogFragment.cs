@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -12,16 +12,20 @@ using Android.Views;
 using Android.Widget;
 using AndroidApp.Adapters;
 using AndroidApp.Core;
+using Microsoft.WindowsAzure.MobileServices;
 
 namespace AndroidApp.Fragments
 {
     public class AddReminderDialogFragment : DialogFragment
     {
 
+        // Probably Really Bad Practice
+        public IMobileServiceTable<ReminderItem> reminderTable;
+
         // Create Layout Properties
         private EditText ReminderEditText;
 
-        public ScribeReminderAdapter reminderAdapter;
+        public ReminderAdapter reminderAdapter;
         public DateTime date;
 
 
@@ -56,10 +60,12 @@ namespace AndroidApp.Fragments
             var dialog = (AlertDialog)sender;
 
             ReminderItem reminder = new ReminderItem();
+
             reminder.Date = date;
             reminder.Text = ReminderEditText.Text;
+
+            reminderAdapter.Add(reminder); 
             
-            reminderAdapter.Add(reminder);
             dialog.Dismiss();
         }
 

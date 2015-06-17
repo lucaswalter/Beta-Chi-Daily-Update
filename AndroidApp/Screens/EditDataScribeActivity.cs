@@ -26,7 +26,7 @@ namespace AndroidApp.Screens
         private IMobileServiceTable<ReminderItem> reminderTable;
 
         // Adapter To Sync Reminders With The List
-        private ScribeReminderAdapter reminderAdapter;
+        private ReminderAdapter reminderAdapter;
 
         // Date Selection Variables
         private DateTime selectedDate;
@@ -63,6 +63,21 @@ namespace AndroidApp.Screens
                 CreateAndShowAddReminderDialog();
             };
 
+            // Add Save Button
+            saveButton = FindViewById<Button>(Resource.Id.buttonSave);
+            saveButton.Click += (object sender, EventArgs e) =>
+            {
+                // TODO: Add Progress Bar For Saving Data
+                // TODO: Possible Confirmation Dialog
+
+                // Start With Reminders
+                for (int i = 0; i < reminderAdapter.Count; i++)
+                {
+                    if (reminderAdapter[i].Id == null)
+                        AddReminderItem(reminderAdapter[i]);
+                }
+            };
+
             // Connect To Azure Mobile Service
             try
             {
@@ -76,7 +91,7 @@ namespace AndroidApp.Screens
                 reminderTable = client.GetTable<ReminderItem>();
 
                 // Create Adapter To Bind The Reminder Items To The View
-                reminderAdapter = new ScribeReminderAdapter(this);
+                reminderAdapter = new ReminderAdapter(this);
                 var reminderListView = FindViewById<ListView>(Resource.Id.listViewRemindersScribe);
                 reminderListView.Adapter = reminderAdapter;
 
@@ -114,6 +129,18 @@ namespace AndroidApp.Screens
             }
         }
 
+        public async void AddReminderItem(ReminderItem item)
+        {
+            try
+            {
+                await reminderTable.InsertAsync(item);
+            }
+            catch (Exception e)
+            {
+                CreateAndShowDialog(e, "Unable To Add Reminder");
+            }
+        }
+
         /** Add Reminder Dialog **/
         void CreateAndShowAddReminderDialog()
         {
@@ -121,7 +148,9 @@ namespace AndroidApp.Screens
             var transaction = FragmentManager.BeginTransaction();
             var reminderDialog = new AddReminderDialogFragment();
 
+            // Probably Horrible Practice
             reminderDialog.date = selectedDate;
+            reminderDialog.reminderTable = reminderTable;
             reminderDialog.reminderAdapter = reminderAdapter;
             reminderDialog.Show(transaction, "addReminderDialog");
         }
