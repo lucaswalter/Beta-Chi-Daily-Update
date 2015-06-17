@@ -32,6 +32,9 @@ namespace AndroidApp.Screens
         private DateTime selectedDate;
         private Button datePickerButton;
 
+        // Reminder List View
+        private ListView reminderListView ;
+
         // Reminder Button
         private Button addReminderButton;
 
@@ -55,6 +58,14 @@ namespace AndroidApp.Screens
             datePickerButton.Click += delegate { ShowDialog(0); };
             selectedDate = DateTime.Today;;
             datePickerButton.Text = selectedDate.ToShortDateString();
+
+            // Initialize Reminder Adapter
+            reminderAdapter = new ReminderAdapter(this);
+
+            // Initialize And Bind List View
+            reminderListView = FindViewById<ListView>(Resource.Id.listViewRemindersScribe);
+            reminderListView.Adapter = reminderAdapter;
+            RegisterForContextMenu(reminderListView);
 
             // Add Reminder Button
             addReminderButton = FindViewById<Button>(Resource.Id.buttonAddReminder);
@@ -90,11 +101,6 @@ namespace AndroidApp.Screens
                 // Retrieve Tables
                 reminderTable = client.GetTable<ReminderItem>();
 
-                // Create Adapter To Bind The Reminder Items To The View
-                reminderAdapter = new ReminderAdapter(this);
-                var reminderListView = FindViewById<ListView>(Resource.Id.listViewRemindersScribe);
-                reminderListView.Adapter = reminderAdapter;
-
                 // Load The Reminders From The Mobile Service
                 await RefreshRemindersFromTableAsync(DateTime.Today);
 
@@ -103,6 +109,39 @@ namespace AndroidApp.Screens
             {
                 CreateAndShowDialog(e, "Connection Error");
             }
+        }
+
+        public override void OnCreateContextMenu(IContextMenu menu, View v, IContextMenuContextMenuInfo menuInfo)
+        {
+            // If Created From Reminder List View
+            if (v.Id == Resource.Id.listViewRemindersScribe)
+            {
+                menu.SetHeaderTitle("Reminder Option");
+                var menuItems = Resources.GetStringArray(Resource.Array.ReminderContextMenu);
+
+                for (int i = 0; i < menuItems.Length; i++)
+                    menu.Add(Menu.None, i, i, menuItems[i]);
+            }
+        }
+
+        public override bool OnContextItemSelected(IMenuItem item)
+        {
+            var info = (AdapterView.AdapterContextMenuInfo) item.MenuInfo;
+            var menuItems = Resources.GetStringArray(Resource.Array.ReminderContextMenu);
+            var menuItemIndex = item.ItemId;
+            var menuItemName = menuItems[menuItemIndex];
+            
+            switch (menuItemName)
+            {
+                // TODO: Implement Fragment To Edit Reminder
+                case "Edit":
+                    return true;
+                case "Delete":
+                    RemoveReminderItem(reminderAdapter[info.Position]);
+                    return true;
+            }
+
+            return base.OnContextItemSelected(item);
         }
 
         /** Azure Mobile Service Methods **/
