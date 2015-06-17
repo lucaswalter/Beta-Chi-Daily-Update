@@ -91,6 +91,11 @@ namespace AndroidApp.Screens
         }
 
         /** Azure Mobile Service Methods **/
+        async void OnRefreshRemindersFromTable(DateTime date)
+        {
+            await RefreshRemindersFromTableAsync(date);
+        }
+    
         async Task RefreshRemindersFromTableAsync(DateTime date)
         {
             try
@@ -127,10 +132,13 @@ namespace AndroidApp.Screens
             return new DatePickerDialog(this, HandleDateSet, selectedDate.Year, selectedDate.Month - 1, selectedDate.Day);
         }
 
+        // TODO: Handle Returning To Same Date
         void HandleDateSet(object sender, DatePickerDialog.DateSetEventArgs e)
         {
+            reminderAdapter.Clear();
             selectedDate = e.Date;
             datePickerButton.Text = selectedDate.ToShortDateString();
+            OnRefreshRemindersFromTable(e.Date);
         }
 
         /** Error Dialog **/
