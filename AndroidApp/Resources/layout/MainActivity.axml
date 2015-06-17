@@ -38,11 +38,11 @@
             android:layout_height="28dp"
             android:layout_gravity="center" />
         <ListView
+            android:id="@+id/listViewRemindersMain"
             android:minWidth="25dp"
             android:minHeight="25dp"
             android:layout_width="match_parent"
-            android:layout_height="270.4dp"
-            android:id="@+id/reminderListView" />
+            android:layout_height="270.4dp" />
         <TextView
             android:inputType="none"
             android:layout_width="match_parent"

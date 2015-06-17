@@ -65,6 +65,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adapters\ReminderAdapter.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Core\Award.cs" />
     <Compile Include="Core\Day.cs" />
@@ -73,7 +74,9 @@
     <Compile Include="Core\MealItem.cs" />
     <Compile Include="Core\ReminderItem.cs" />
     <Compile Include="Core\TeamItem.cs" />
+    <Compile Include="Fragments\AddReminderDialogFragment.cs" />
     <Compile Include="Fragments\PasswordDialogFragment.cs" />
+    <Compile Include="Fragments\UpdateReminderDialogFragment.cs" />
     <Compile Include="Screens\EditDataIMActivity.cs" />
     <Compile Include="Screens\EditDataScribeActivity.cs" />
     <Compile Include="Screens\MainActivity.cs" />
@@ -100,6 +103,7 @@
     <AndroidResource Include="Resources\layout\ViewIMActivity.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\AddReminderDialogFragment.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
