@@ -116,7 +116,7 @@ namespace AndroidApp.Screens
             // If Created From Reminder List View
             if (v.Id == Resource.Id.listViewRemindersScribe)
             {
-                menu.SetHeaderTitle("Reminder Option");
+                var info = (AdapterView.AdapterContextMenuInfo) menuInfo;
                 var menuItems = Resources.GetStringArray(Resource.Array.ReminderContextMenu);
 
                 for (int i = 0; i < menuItems.Length; i++)
@@ -183,7 +183,7 @@ namespace AndroidApp.Screens
         {
             try
             {
-                reminderTable.DeleteAsync(item);
+                await reminderTable.DeleteAsync(item);
             }
             catch (Exception e)
             {

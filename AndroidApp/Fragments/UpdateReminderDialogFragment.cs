@@ -15,7 +15,7 @@ using AndroidApp.Core;
 
 namespace AndroidApp.Fragments
 {
-    public class UpdateReminderDialogFragment : Fragment
+    public class UpdateReminderDialogFragment : DialogFragment
     {
         // Create Layout Properties
         private EditText ReminderEditText;
