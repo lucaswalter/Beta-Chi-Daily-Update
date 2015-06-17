@@ -133,7 +133,6 @@ namespace AndroidApp.Screens
             
             switch (menuItemName)
             {
-                // TODO: Implement Fragment To Edit Reminder
                 case "Edit":
                     return true;
                 case "Delete":
@@ -192,6 +191,20 @@ namespace AndroidApp.Screens
             }
 
             reminderAdapter.Remove(item);
+        }
+
+        // TODO: Incomplete & Needs To Tell If Data Is Different
+        // TODO: Need To Incoporate Adapter Smoothly
+        public async void UpdateReminderItem(ReminderItem item)
+        {
+            try
+            {
+                await reminderTable.UpdateAsync(item);
+            }
+            catch (Exception e)
+            {
+                CreateAndShowDialog(e, "Unable To Update Reminder");
+            }
         }
 
         /** Add Reminder Dialog **/

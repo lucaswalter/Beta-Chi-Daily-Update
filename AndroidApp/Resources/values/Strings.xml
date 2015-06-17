@@ -3,7 +3,7 @@
     <string name="ApplicationName">Beta-Chi Daily Update</string>
 
     <string-array name="ReminderContextMenu">
-      <item>Edit</item>
+      <!-- TODO: Add Edit Here -->
       <item>Delete</item>
     </string-array>
 </resources>

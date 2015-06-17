@@ -76,6 +76,7 @@
     <Compile Include="Core\TeamItem.cs" />
     <Compile Include="Fragments\AddReminderDialogFragment.cs" />
     <Compile Include="Fragments\PasswordDialogFragment.cs" />
+    <Compile Include="Fragments\UpdateReminderDialogFragment.cs" />
     <Compile Include="Screens\EditDataIMActivity.cs" />
     <Compile Include="Screens\EditDataScribeActivity.cs" />
     <Compile Include="Screens\MainActivity.cs" />
