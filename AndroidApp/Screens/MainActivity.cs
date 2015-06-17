@@ -1,30 +1,30 @@
-﻿using Android.App;
-using Android.Content;
+﻿using System;
 using Android.OS;
+using Android.App;
 using Android.Views;
 using Android.Widget;
-using AndroidApp.Core;
-using Microsoft.WindowsAzure.MobileServices;
-using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Android.Content;
+using Android.Provider;
+using AndroidApp.Adapters;
+using AndroidApp.Core;
 using AndroidApp.Fragments;
+using Microsoft.WindowsAzure.MobileServices;
 
 namespace AndroidApp.Screens
 {
-    [Activity(Label = "Beta-Chi Daily Update", MainLauncher = true, Icon = "@drawable/icon")]
+    [Activity(Label = "Beta-Chi Daily Update", Icon = "@drawable/icon")]
     public class MainActivity : Activity
     {
         // Mobile Service Client Reference
         private MobileServiceClient client;
 
         // Mobile Service Tables Used To Access Data
-        private IMobileServiceTable<Day> dayTable;
         private IMobileServiceTable<ReminderItem> reminderTable;
-        private IMobileServiceTable<MealItem> mealTable;
-        private IMobileServiceTable<DriverItem> driverTable;
 
         // Adapter To Sync Reminders With The List
+        private ReminderAdapter reminderAdapter;
 
         // Progress Spinner For Tabler Operations
         private ProgressBar progressBar;
@@ -35,10 +35,7 @@ namespace AndroidApp.Screens
         // Sober Driver Button
         private Button soberDriverButton;
 
-        const string applicationURL = "https://betachi.azure-mobile.net/";
-        const string applicationKey = "SbsbuMkNyFvOnFVniZJbkrkjfEuUYr87";
-
-        protected override void OnCreate(Bundle bundle)
+        protected override async void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
 
@@ -52,7 +49,7 @@ namespace AndroidApp.Screens
             // Set Title
             ActionBar.Title = "Beta-Chi Daily Update";
 
-            // Set Sber Driver Button
+            // Set Sober Driver Button
             soberDriverButton = FindViewById<Button>(Resource.Id.soberDriverButton);
 
             // Initialize Progress Bar
@@ -71,26 +68,6 @@ namespace AndroidApp.Screens
             dateTextView = FindViewById<TextView> (Resource.Id.dateTextView);
             dateTextView.Text = DateTime.Today.ToShortDateString();
 
-            // Connect To Azure Mobile Service
-            try
-            {
-                // Initialize
-                CurrentPlatform.Init();
-
-                // Create Mobile Service Client Instance
-                client = new MobileServiceClient(applicationURL, applicationKey);
-
-                // Retrieve Tables
-                dayTable = client.GetTable<Day>();
-                reminderTable = client.GetTable<ReminderItem>();
-                mealTable = client.GetTable<MealItem>();
-                driverTable = client.GetTable<DriverItem>();
-            }
-            catch (Exception e)
-            {
-                CreateAndShowDialog(e, "Connection Error");
-            }
-
             // Sober Driver Button
             soberDriverButton.Click += (object sender, EventArgs e) =>
             {
@@ -101,7 +78,7 @@ namespace AndroidApp.Screens
                 {
                     // Create Intent To Dial Phone
                     var callIntent = new Intent(Intent.ActionCall);
-                    callIntent.SetData(Android.Net.Uri.Parse("tel:8168309808"));
+                    callIntent.SetData(Android.Net.Uri.Parse("tel:8168309808")); // TODO: Change Number
                     StartActivity(callIntent);
                 });
 
@@ -109,8 +86,57 @@ namespace AndroidApp.Screens
                 callDialog.SetNegativeButton("Cancel", delegate { });
                 callDialog.Show();
             };
+
+            // Connect To Azure Mobile Service
+            try
+            {
+                // Initialize
+                CurrentPlatform.Init();
+
+                // Create Mobile Service Client Instance
+                client = new MobileServiceClient(Constants.APPLICATION_URL, Constants.APPLICATION_KEY);
+
+                // Retrieve Tables
+                reminderTable = client.GetTable<ReminderItem>();
+
+                // Create Adapter To Bind The Reminder Items To The View
+                reminderAdapter = new ReminderAdapter(this);
+                var reminderListView = FindViewById<ListView>(Resource.Id.listViewRemindersMain);
+                reminderListView.Adapter = reminderAdapter;
+
+                // Load The Reminders From The Mobile Service
+                await RefreshRemindersFromTableAsync();
+
+            }
+            catch (Exception e)
+            {
+                CreateAndShowDialog(e, "Connection Error");
+            }   
         }
 
+        /** Azure Mobile Retrieval Methods **/
+        async Task RefreshRemindersFromTableAsync()
+        {
+            try
+            {
+                // Get Today's Reminders
+                var list = await reminderTable.Where(x => x.Date.Day == DateTime.Today.Day).ToListAsync();
+
+                // Clear Reminder Adapter
+                reminderAdapter.Clear();
+
+                // Add Reminders
+                foreach (ReminderItem current in list)
+                    reminderAdapter.Add(current);
+
+            }
+            catch (Exception e)
+            {
+                CreateAndShowDialog(e, "Connection Error");
+            }
+        }
+
+        /** Menu Selection Methods **/
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
             MenuInflater.Inflate(Resource.Menu.HomeMenu, menu);
@@ -119,6 +145,8 @@ namespace AndroidApp.Screens
 
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
+            // TODO: Remove Debugging Toast
+            Toast.MakeText(this, "Menu Pressed: " + item.TitleFormatted, ToastLength.Short).Show();
 
             switch (item.ItemId)
             {
@@ -138,10 +166,6 @@ namespace AndroidApp.Screens
 
             return base.OnOptionsItemSelected(item);
         }
-
-
-        // TODO: Implement Retrieval & Sorting Methods
-
 
         /** Password Dialog **/
         void CreateAndShowPasswordDialog(int activity, string password)
@@ -177,7 +201,7 @@ namespace AndroidApp.Screens
 
             public event Action<bool> BusyStateChange;
 
-            #region Implemented Abstract Members Of HttpMessageHandler
+            #region implemented abstract members of HttpMessageHandler
 
             protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, System.Threading.CancellationToken cancellationToken)
             {
