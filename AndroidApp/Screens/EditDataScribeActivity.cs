@@ -137,8 +137,22 @@ namespace AndroidApp.Screens
             }
             catch (Exception e)
             {
-                CreateAndShowDialog(e, "Unable To Add Reminder");
+                CreateAndShowDialog(e, "Unable To Insert Reminder");
             }
+        }
+
+        public async void RemoveReminderItem(ReminderItem item)
+        {
+            try
+            {
+                reminderTable.DeleteAsync(item);
+            }
+            catch (Exception e)
+            {
+                CreateAndShowDialog(e, "Unable To Remove Reminder");
+            }
+
+            reminderAdapter.Remove(item);
         }
 
         /** Add Reminder Dialog **/

@@ -66,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Adapters\ReminderAdapter.cs" />
+    <Compile Include="Adapters\ScribeReminderAdapter.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Core\Award.cs" />
     <Compile Include="Core\Day.cs" />
