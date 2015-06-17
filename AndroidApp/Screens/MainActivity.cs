@@ -12,7 +12,7 @@ using AndroidApp.Fragments;
 
 namespace AndroidApp.Screens
 {
-    [Activity(Label = "Beta-Chi Daily Update", MainLauncher = true, Icon = "@drawable/icon")]
+    [Activity(Label = "Beta-Chi Daily Update", Icon = "@drawable/icon")]
     public class MainActivity : Activity
     {
         // Mobile Service Client Reference

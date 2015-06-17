@@ -79,6 +79,7 @@
     <Compile Include="Screens\MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Screens\SplashScreenActivity.cs" />
     <Compile Include="Screens\ViewIMActivity.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -110,8 +111,11 @@
     <Content Include="Properties\AndroidManifest.xml">
       <SubType>Designer</SubType>
     </Content>
-    <AndroidResource Include="Resources\values\Styles.xml" />
+    <AndroidResource Include="Resources\values\Styles.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\menu\HomeMenu.xml" />
+    <AndroidResource Include="Resources\drawable\splash.png" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="azure-mobile-services">
