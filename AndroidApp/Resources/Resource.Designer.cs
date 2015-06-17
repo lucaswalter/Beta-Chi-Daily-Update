@@ -64,10 +64,7 @@ namespace AndroidApp
 			public const int Icon = 2130837504;
 			
 			// aapt resource value: 0x7f020001
-			public const int monoandroidsplash = 2130837505;
-			
-			// aapt resource value: 0x7f020002
-			public const int splash = 2130837506;
+			public const int splash = 2130837505;
 			
 			static Drawable()
 			{
@@ -232,9 +229,6 @@ namespace AndroidApp
 			
 			// aapt resource value: 0x7f060000
 			public const int BetaChiTheme = 2131099648;
-			
-			// aapt resource value: 0x7f060002
-			public const int Mono_Android_Theme_Splash = 2131099650;
 			
 			// aapt resource value: 0x7f060001
 			public const int Theme_Splash = 2131099649;
