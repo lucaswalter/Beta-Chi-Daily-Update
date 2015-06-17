@@ -12,15 +12,12 @@ using Android.Views;
 using Android.Widget;
 using AndroidApp.Adapters;
 using AndroidApp.Core;
-using Microsoft.WindowsAzure.MobileServices;
+
 
 namespace AndroidApp.Fragments
 {
     public class AddReminderDialogFragment : DialogFragment
     {
-
-        // Probably Really Bad Practice
-        public IMobileServiceTable<ReminderItem> reminderTable;
 
         // Create Layout Properties
         private EditText ReminderEditText;
