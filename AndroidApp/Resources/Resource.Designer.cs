@@ -47,6 +47,9 @@ namespace AndroidApp
 			// aapt resource value: 0x7f020000
 			public const int Icon = 2130837504;
 			
+			// aapt resource value: 0x7f020001
+			public const int splash = 2130837505;
+			
 			static Drawable()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
@@ -204,6 +207,9 @@ namespace AndroidApp
 			
 			// aapt resource value: 0x7f050000
 			public const int BetaChiTheme = 2131034112;
+			
+			// aapt resource value: 0x7f050001
+			public const int Theme_Splash = 2131034113;
 			
 			static Style()
 			{
