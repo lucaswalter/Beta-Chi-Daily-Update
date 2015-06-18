@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="AndroidApp.AndroidApp" android:versionCode="1" android:versionName="1.0" android:installLocation="auto">
-	<application android:label="Beta-Chi Daily Update" android:icon="@drawable/Icon" android:theme="@style/BetaChiTheme"></application>
+	<application android:label="Beta-Chi Daily Update" android:icon="@drawable/Icon" android:theme="@style/Theme.BetaChi"></application>
 	<uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.CALL_PHONE" />
 	<uses-sdk android:minSdkVersion="17" />

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="ApplicationName">Beta-Chi Daily Update</string>
-
+  
     <string-array name="ReminderContextMenu">
       <!-- TODO: Add Edit Here -->
       <item>Delete</item>

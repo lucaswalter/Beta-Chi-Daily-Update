@@ -1,25 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <resources>
-  <style name="BetaChiTheme" parent="@android:style/Theme.Material.Light.DarkActionBar">
+  <style name="Theme.BetaChi" parent="@android:style/Theme.Material.Light.DarkActionBar">
     <item name="android:windowNoTitle">true</item>
-    <!--We will be using the toolbar so no need to show ActionBar-->
     <item name="android:windowActionBar">false</item>
-    <!-- Set theme colors from http://www.google.com/design/spec/style/color.html#color-color-palette-->
-    <!-- colorPrimary is used for the default action bar background -->
-    <item name="android:colorPrimary">#2196F3</item>
-    <!-- colorPrimaryDark is used for the status bar -->
-    <item name="android:colorPrimaryDark">#1976D2</item>
-    <!-- colorAccent is used as the default value for colorControlActivated
-         which is used to tint widgets -->
-    <item name="android:colorAccent">#FF4081</item>
-    <!-- You can also set colorControlNormal, colorControlActivated
-         colorControlHighlight and colorSwitchThumbNormal. -->
+    <item name="android:colorPrimary">#90C790</item>
+    <item name="android:colorPrimaryDark">#388238</item>
+    <item name="android:colorAccent">#388238</item>
+  </style>
+  
+  <style name="Theme.BetaChiActionBar" parent="@android:style/Theme.Material.Light.DarkActionBar">
+    <item name="android:windowNoTitle">false</item>
+    <item name="android:windowActionBar">true</item>
+    <item name="android:colorPrimary">#90C790</item>
+    <item name="android:colorPrimaryDark">#388238</item>
+    <item name="android:colorAccent">#388238</item>
   </style>
 
-  <!-- Splash Screen -->
   <style name="Theme.Splash" parent="android:Theme">
     <item name="android:windowBackground">@drawable/splash</item>
     <item name="android:windowNoTitle">true</item>
-  </style>
-  
+  </style> 
 </resources>

@@ -88,9 +88,6 @@
   <ItemGroup>
     <None Include="Assets\AboutAssets.txt" />
     <AndroidResource Include="Resources\layout\MainActivity.axml" />
-    <AndroidResource Include="Resources\layout\Toolbar.axml">
-      <SubType>AndroidResource</SubType>
-    </AndroidResource>
     <AndroidResource Include="Resources\layout\PasswordDialogFragment.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
