@@ -14,7 +14,7 @@ using Microsoft.WindowsAzure.MobileServices;
 
 namespace AndroidApp.Screens
 {
-    [Activity(Label = "Beta-Chi Daily Update", Icon = "@drawable/icon")]
+    [Activity(Label = "Beta-Chi Daily Update", Icon = "@drawable/icon", Theme = "@style/Theme.BetaChiActionBar")]
     public class MainActivity : Activity
     {
         // Mobile Service Client Reference
@@ -41,10 +41,6 @@ namespace AndroidApp.Screens
 
             // Set View From Main Layout Resource
             SetContentView(Resource.Layout.MainActivity);
-
-            // Create Toolbar
-            var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
-            SetActionBar(toolbar);
 
             // Set Title
             ActionBar.Title = "Beta-Chi Daily Update";
