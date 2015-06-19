@@ -67,8 +67,13 @@
   <ItemGroup>
     <Compile Include="Adapters\ReminderAdapter.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="Core\Award.cs" />
+    <Compile Include="Core\Day.cs" />
+    <Compile Include="Core\DriverItem.cs" />
+    <Compile Include="Core\IM.cs" />
     <Compile Include="Core\MealItem.cs" />
     <Compile Include="Core\ReminderItem.cs" />
+    <Compile Include="Core\TeamItem.cs" />
     <Compile Include="Fragments\AddReminderDialogFragment.cs" />
     <Compile Include="Fragments\PasswordDialogFragment.cs" />
     <Compile Include="Fragments\UpdateReminderDialogFragment.cs" />
