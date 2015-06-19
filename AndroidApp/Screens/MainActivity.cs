@@ -114,6 +114,11 @@ namespace AndroidApp.Screens
         }
 
         /** Azure Mobile Retrieval Methods **/
+        async void OnRefreshItemsSelected()
+        {
+            await RefreshRemindersFromTableAsync();
+        }
+
         async Task RefreshRemindersFromTableAsync()
         {
             try
@@ -149,6 +154,9 @@ namespace AndroidApp.Screens
 
             switch (item.ItemId)
             {
+                case Resource.Id.menu_RefreshReminders:
+                    OnRefreshItemsSelected();
+                    return true;
                 case Resource.Id.menu_View_IM:
                     Intent intent = new Intent(this, typeof(ViewIMActivity));
                     StartActivity(intent);
