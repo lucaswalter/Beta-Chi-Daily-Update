@@ -6,11 +6,11 @@ using System.Text;
 
 namespace AndroidApp.Core
 {
-    public class ReminderItem
+    public class TeamItem
     {
         public string Id { get; set; }
-        public DateTime Date { get; set; }
 
-        public string Text { get; set; }
+        public string Name { get; set; }
+        public int Points { get; set; }
     }
 }

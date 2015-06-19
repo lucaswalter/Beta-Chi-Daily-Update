@@ -6,11 +6,10 @@ using System.Text;
 
 namespace AndroidApp.Core
 {
-    public class ReminderItem
+    public class Award
     {
         public string Id { get; set; }
-        public DateTime Date { get; set; }
-
-        public string Text { get; set; }
+        
+        // TODO: Design Award & Voting System
     }
 }
