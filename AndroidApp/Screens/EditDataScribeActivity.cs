@@ -16,7 +16,7 @@ using Microsoft.WindowsAzure.MobileServices;
 
 namespace AndroidApp.Screens
 {
-    [Activity(Label = "Edit Scribe Data")]
+    [Activity(Label = "Edit Scribe Data", Theme = "@style/Theme.BetaChi")]
     public class EditDataScribeActivity : Activity
     {
         // Mobile Service Client Reference
