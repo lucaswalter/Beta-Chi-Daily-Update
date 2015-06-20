@@ -26,6 +26,9 @@ namespace AndroidApp.Screens
         // Adapter To Sync Reminders With The List
         private ReminderAdapter reminderAdapter;
 
+        // Create Reminder List View
+        private ListView reminderListView;
+
         // Progress Spinner For Tabler Operations
         private ProgressBar progressBar;
 
@@ -51,6 +54,11 @@ namespace AndroidApp.Screens
             // Initialize Progress Bar
             progressBar = FindViewById<ProgressBar>(Resource.Id.loadingProgressBar);
             progressBar.Visibility = ViewStates.Gone;
+
+            // Create Adapter To Bind The Reminder Items To The View
+            reminderAdapter = new ReminderAdapter(this);
+            reminderListView = FindViewById<ListView>(Resource.Id.listViewRemindersMain);
+            reminderListView.Adapter = reminderAdapter;
 
             // Create Progress Filter To Handle Busy State
             var progressHandler = new ProgressHandler();
@@ -95,11 +103,6 @@ namespace AndroidApp.Screens
                 // Retrieve Tables
                 reminderTable = client.GetTable<ReminderItem>();
 
-                // Create Adapter To Bind The Reminder Items To The View
-                reminderAdapter = new ReminderAdapter(this);
-                var reminderListView = FindViewById<ListView>(Resource.Id.listViewRemindersMain);
-                reminderListView.Adapter = reminderAdapter;
-
                 // Load The Reminders From The Mobile Service
                 await RefreshRemindersFromTableAsync();
 
@@ -111,6 +114,11 @@ namespace AndroidApp.Screens
         }
 
         /** Azure Mobile Retrieval Methods **/
+        async void OnRefreshItemsSelected()
+        {
+            await RefreshRemindersFromTableAsync();
+        }
+
         async Task RefreshRemindersFromTableAsync()
         {
             try
@@ -146,6 +154,9 @@ namespace AndroidApp.Screens
 
             switch (item.ItemId)
             {
+                case Resource.Id.menu_RefreshReminders:
+                    OnRefreshItemsSelected();
+                    return true;
                 case Resource.Id.menu_View_IM:
                     Intent intent = new Intent(this, typeof(ViewIMActivity));
                     StartActivity(intent);
