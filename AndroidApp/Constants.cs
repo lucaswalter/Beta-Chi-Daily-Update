@@ -17,5 +17,10 @@ namespace AndroidApp
         // Activity ID Constants
         public const int EDIT_IM_DATA = 1;
         public const int EDIT_SCRIBE_DATA = 2;
+
+        // Meal ID Constants
+        public const int BREAKFAST = 1;
+        public const int LUNCH = 2;
+        public const int DINNER = 3;
     }
 }
