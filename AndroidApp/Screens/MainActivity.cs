@@ -14,7 +14,7 @@ using Microsoft.WindowsAzure.MobileServices;
 
 namespace AndroidApp.Screens
 {
-    [Activity(Label = "Beta-Chi Daily Update", Icon = "@drawable/icon", Theme = "@style/Theme.BetaChiActionBar")]
+    [Activity(Theme = "@style/Theme.BetaChiActionBar")]
     public class MainActivity : Activity
     {
         // Mobile Service Client Reference
@@ -46,7 +46,7 @@ namespace AndroidApp.Screens
             SetContentView(Resource.Layout.MainActivity);
 
             // Set Title
-            ActionBar.Title = "Beta-Chi Daily Update";
+            ActionBar.Title = "Daily Update";
 
             // Set Sober Driver Button
             soberDriverButton = FindViewById<Button>(Resource.Id.soberDriverButton);
