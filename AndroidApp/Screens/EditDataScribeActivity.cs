@@ -24,6 +24,7 @@ namespace AndroidApp.Screens
 
         // Mobile Service Tables Used To Access Data
         private IMobileServiceTable<ReminderItem> reminderTable;
+        private IMobileServiceTable<MealItem> mealTable; 
 
         // Adapter To Sync Reminders With The List
         private ReminderAdapter reminderAdapter;
@@ -42,6 +43,8 @@ namespace AndroidApp.Screens
         private Button setBreakfastButton;
         private Button setLunchButton;
         private Button setDinnerButton;
+
+        private MealItem mealItem;
 
         // Save Button
         private Button saveButton;
@@ -81,12 +84,14 @@ namespace AndroidApp.Screens
                 // TODO: Add Progress Bar For Saving Data
                 // TODO: Possible Confirmation Dialog
 
-                // Start With Reminders
+                // Save Reminders
                 for (int i = 0; i < reminderAdapter.Count; i++)
                 {
                     if (reminderAdapter[i].Id == null)
                         AddReminderItem(reminderAdapter[i]);
                 }
+
+                // Save Meal Item
             };
 
             // Connect To Azure Mobile Service
@@ -100,9 +105,13 @@ namespace AndroidApp.Screens
 
                 // Retrieve Tables
                 reminderTable = client.GetTable<ReminderItem>();
+                mealTable = client.GetTable<MealItem>();
 
                 // Load The Reminders From The Mobile Service
                 await RefreshRemindersFromTableAsync(DateTime.Today);
+
+                // Load Meals From The Mobil Service
+                await RefreshMealsFromTableAsync(DateTime.Today);
 
             }
             catch (Exception e)
@@ -167,6 +176,41 @@ namespace AndroidApp.Screens
             }
         }
 
+        async Task RefreshMealsFromTableAsync(DateTime date)
+        {
+            try
+            {
+                // Retrieve MealItem For The Day
+                var list = await mealTable.Where(x => x.Date.Day == date.Day).ToListAsync();
+                var meal = list.FirstOrDefault();
+
+                if (meal != null)
+                {
+                    // Set Meal Item
+                    mealItem = meal;
+                }
+                else
+                {
+                    var newMealItem = new MealItem();
+                    
+                    newMealItem.Breakfast = Constants.NO_MEAL_SET;
+                    newMealItem.Lunch = Constants.NO_MEAL_SET;
+                    newMealItem.Dinner = Constants.NO_MEAL_SET;
+                    newMealItem.Date = DateTime.Today;
+                    newMealItem.IsFormalDinner = false;
+
+                    AddMealItem(newMealItem);
+
+                    // Set Meal Item
+                    mealItem = newMealItem;
+                }
+            }
+            catch (Exception e)
+            {
+                CreateAndShowDialog(e, "Connection Error");
+            }
+        }
+
         public async void AddReminderItem(ReminderItem item)
         {
             try
@@ -191,6 +235,30 @@ namespace AndroidApp.Screens
             }
 
             reminderAdapter.Remove(item);
+        }
+
+        public async void AddMealItem(MealItem item)
+        {
+            try
+            {
+                await mealTable.InsertAsync(item);
+            }
+            catch (Exception e)
+            {
+                CreateAndShowDialog(e, "Unable To Add Meals");
+            }
+        }
+
+        public async void UpdateMealItem(MealItem item)
+        {
+            try
+            {
+                await mealTable.UpdateAsync(item);
+            }
+            catch (Exception e)
+            {
+                CreateAndShowDialog(e, "Unable To Update Meals");
+            }
         }
 
         // TODO: Incomplete & Needs To Tell If Data Is Different
