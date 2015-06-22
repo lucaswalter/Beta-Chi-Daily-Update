@@ -92,6 +92,8 @@ namespace AndroidApp.Screens
                 }
 
                 // Save Meal Item
+                UpdateMealItem(mealItem);
+
             };
 
             // Connect To Azure Mobile Service
@@ -286,7 +288,21 @@ namespace AndroidApp.Screens
             reminderDialog.date = selectedDate;
             reminderDialog.reminderTable = reminderTable;
             reminderDialog.reminderAdapter = reminderAdapter;
+
             reminderDialog.Show(transaction, "addReminderDialog");
+        }
+
+        /** Set Meal Dialog **/
+        // TODO: Make This Called From New Button
+        void CreateAndShowSetMealDialog()
+        {
+            var transaction = FragmentManager.BeginTransaction();
+            var setMealsDialog = new SetMealsDialogFragment();
+
+            // Horrible Practice
+            setMealsDialog.MealItem = mealItem;
+
+            setMealsDialog.Show(transaction, "setMealsDialog");
         }
 
         /** Date Picking Methods **/

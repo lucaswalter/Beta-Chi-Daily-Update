@@ -109,6 +109,15 @@ namespace AndroidApp
 			// aapt resource value: 0x7f08000f
 			public const int dinnerTextView = 2131230735;
 			
+			// aapt resource value: 0x7f080013
+			public const int editTextBreakfast = 2131230739;
+			
+			// aapt resource value: 0x7f080015
+			public const int editTextDinner = 2131230741;
+			
+			// aapt resource value: 0x7f080014
+			public const int editTextLunch = 2131230740;
+			
 			// aapt resource value: 0x7f080000
 			public const int editTextReminder = 2131230720;
 			
@@ -130,17 +139,17 @@ namespace AndroidApp
 			// aapt resource value: 0x7f08000c
 			public const int mealTextView = 2131230732;
 			
+			// aapt resource value: 0x7f080019
+			public const int menu_EditIMData = 2131230745;
+			
+			// aapt resource value: 0x7f080018
+			public const int menu_EditScribeData = 2131230744;
+			
 			// aapt resource value: 0x7f080016
-			public const int menu_EditIMData = 2131230742;
+			public const int menu_RefreshReminders = 2131230742;
 			
-			// aapt resource value: 0x7f080015
-			public const int menu_EditScribeData = 2131230741;
-			
-			// aapt resource value: 0x7f080013
-			public const int menu_RefreshReminders = 2131230739;
-			
-			// aapt resource value: 0x7f080014
-			public const int menu_View_IM = 2131230740;
+			// aapt resource value: 0x7f080017
+			public const int menu_View_IM = 2131230743;
 			
 			// aapt resource value: 0x7f080010
 			public const int soberDriverButton = 2131230736;
@@ -177,7 +186,10 @@ namespace AndroidApp
 			public const int PasswordDialogFragment = 2130903044;
 			
 			// aapt resource value: 0x7f030005
-			public const int ViewIMActivity = 2130903045;
+			public const int SetMealsDialogFragment = 2130903045;
+			
+			// aapt resource value: 0x7f030006
+			public const int ViewIMActivity = 2130903046;
 			
 			static Layout()
 			{
