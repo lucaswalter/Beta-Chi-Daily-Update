@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Android.OS;
 using Android.App;
 using Android.Views;
@@ -22,6 +23,7 @@ namespace AndroidApp.Screens
 
         // Mobile Service Tables Used To Access Data
         private IMobileServiceTable<ReminderItem> reminderTable;
+        private IMobileServiceTable<MealItem> mealTable;
 
         // Adapter To Sync Reminders With The List
         private ReminderAdapter reminderAdapter;
@@ -34,6 +36,14 @@ namespace AndroidApp.Screens
 
         // Date View
         private TextView dateTextView;
+
+        // Meal Item
+        private MealItem mealItem;
+
+        // Meal Text Views
+        private TextView breakfastTextView;
+        private TextView lunchTextView;
+        private TextView dinnetTextView;
 
         // Sober Driver Button
         private Button soberDriverButton;
@@ -102,9 +112,11 @@ namespace AndroidApp.Screens
 
                 // Retrieve Tables
                 reminderTable = client.GetTable<ReminderItem>();
+                mealTable = client.GetTable<MealItem>();
 
-                // Load The Reminders From The Mobile Service
+                // Load Data From The Mobile Service
                 await RefreshRemindersFromTableAsync();
+                await RefreshMealsFromTableAsync(DateTime.Today);
 
             }
             catch (Exception e)
@@ -117,6 +129,7 @@ namespace AndroidApp.Screens
         async void OnRefreshItemsSelected()
         {
             await RefreshRemindersFromTableAsync();
+            await RefreshMealsFromTableAsync(DateTime.Today);
         }
 
         async Task RefreshRemindersFromTableAsync()
@@ -132,6 +145,29 @@ namespace AndroidApp.Screens
                 // Add Reminders
                 foreach (ReminderItem current in list)
                     reminderAdapter.Add(current);
+
+            }
+            catch (Exception e)
+            {
+                CreateAndShowDialog(e, "Connection Error");
+            }
+        }
+
+        async Task RefreshMealsFromTableAsync(DateTime date)
+        {
+            try
+            {
+                // Retrieve MealItem For The Day
+                var list = await mealTable.Where(x => x.Date.Day == date.Day).ToListAsync();
+                var meals = list.FirstOrDefault();
+
+                if (meals != null)
+                    mealItem = meals;
+
+                // Update UI With Meal Text
+                breakfastTextView.Text = mealItem.Breakfast;
+                lunchTextView.Text = mealItem.Lunch;
+                dinnetTextView.Text = mealItem.Dinner;
 
             }
             catch (Exception e)

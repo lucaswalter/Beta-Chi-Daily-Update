@@ -190,12 +190,12 @@ namespace AndroidApp.Screens
             {
                 // Retrieve MealItem For The Day
                 var list = await mealTable.Where(x => x.Date.Day == date.Day).ToListAsync();
-                var meal = list.FirstOrDefault();
+                var meals = list.FirstOrDefault();
 
-                if (meal != null)
+                if (meals != null)
                 {
                     // Set Meal Item
-                    mealItem = meal;
+                    mealItem = meals;
                 }
                 else
                 {
