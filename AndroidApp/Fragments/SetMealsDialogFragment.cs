@@ -41,9 +41,9 @@ namespace AndroidApp.Fragments
             var dialogView = inflator.Inflate(Resource.Layout.SetMealsDialogFragment, null);
 
             // Initialize Properties
-            breakfastEditText = View.FindViewById<EditText>(Resource.Id.editTextBreakfast);
-            lunchEditText = View.FindViewById<EditText>(Resource.Id.editTextLunch);
-            dinnerEditText = View.FindViewById<EditText>(Resource.Id.editTextDinner);
+            breakfastEditText = dialogView.FindViewById<EditText>(Resource.Id.editTextBreakfast);
+            lunchEditText = dialogView.FindViewById<EditText>(Resource.Id.editTextLunch);
+            dinnerEditText = dialogView.FindViewById<EditText>(Resource.Id.editTextDinner);
 
             // Set Text To Current Meal Values
             breakfastEditText.Text = MealItem.Breakfast;

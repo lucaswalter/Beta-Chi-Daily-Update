@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 using Android.App;
@@ -39,10 +40,8 @@ namespace AndroidApp.Screens
         // Reminder Button
         private Button addReminderButton;
 
-        // Meal Buttons
-        private Button setBreakfastButton;
-        private Button setLunchButton;
-        private Button setDinnerButton;
+        // Meal Button
+        private Button setMealButton;
 
         private MealItem mealItem;
 
@@ -69,6 +68,13 @@ namespace AndroidApp.Screens
             reminderListView = FindViewById<ListView>(Resource.Id.listViewRemindersScribe);
             reminderListView.Adapter = reminderAdapter;
             RegisterForContextMenu(reminderListView);
+
+            // Set Meals Button
+            setMealButton = FindViewById<Button>(Resource.Id.buttonSetMeals);
+            setMealButton.Click += (object sender, EventArgs e) =>
+            {
+                CreateAndShowSetMealsDialog();
+            };
 
             // Add Reminder Button
             addReminderButton = FindViewById<Button>(Resource.Id.buttonAddReminder);
@@ -294,8 +300,7 @@ namespace AndroidApp.Screens
         }
 
         /** Set Meal Dialog **/
-        // TODO: Make This Called From New Button
-        void CreateAndShowSetMealDialog()
+        void CreateAndShowSetMealsDialog()
         {
             var transaction = FragmentManager.BeginTransaction();
             var setMealsDialog = new SetMealsDialogFragment();
