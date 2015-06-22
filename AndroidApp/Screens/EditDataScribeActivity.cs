@@ -199,6 +199,7 @@ namespace AndroidApp.Screens
                     newMealItem.Lunch = Constants.NO_MEAL_SET;
                     newMealItem.Dinner = Constants.NO_MEAL_SET;
                     newMealItem.Date = DateTime.Today;
+
                     newMealItem.IsFormalDinner = false;
 
                     AddMealItem(newMealItem);
@@ -239,6 +240,20 @@ namespace AndroidApp.Screens
             reminderAdapter.Remove(item);
         }
 
+        // TODO: Incomplete & Needs To Tell If Data Is Different
+        // TODO: Need To Incoporate Adapter Smoothly
+        public async void UpdateReminderItem(ReminderItem item)
+        {
+            try
+            {
+                await reminderTable.UpdateAsync(item);
+            }
+            catch (Exception e)
+            {
+                CreateAndShowDialog(e, "Unable To Update Reminder");
+            }
+        }
+
         public async void AddMealItem(MealItem item)
         {
             try
@@ -260,20 +275,6 @@ namespace AndroidApp.Screens
             catch (Exception e)
             {
                 CreateAndShowDialog(e, "Unable To Update Meals");
-            }
-        }
-
-        // TODO: Incomplete & Needs To Tell If Data Is Different
-        // TODO: Need To Incoporate Adapter Smoothly
-        public async void UpdateReminderItem(ReminderItem item)
-        {
-            try
-            {
-                await reminderTable.UpdateAsync(item);
-            }
-            catch (Exception e)
-            {
-                CreateAndShowDialog(e, "Unable To Update Reminder");
             }
         }
 
