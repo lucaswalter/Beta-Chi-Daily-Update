@@ -53,7 +53,7 @@ namespace AndroidApp.Fragments
             // Set Positive & Negative Buttons
             builder.SetView(dialogView);
             builder.SetPositiveButton("Set Meals", HandlePositiveButtonClick);
-            builder.SetNeutralButton("Clear Meals", HandleNeutralButtonClick);
+            // builder.SetNeutralButton("Clear Meals", HandleNeutralButtonClick);
             builder.SetNegativeButton("Cancel", HandleNegativeButtonClick);
 
             // Build And Return Dialog
@@ -75,17 +75,17 @@ namespace AndroidApp.Fragments
             dialog.Dismiss();
         }
 
+        // TODO: Currently Does Not Work
+        // TODO: Need To Override Custom OnClickListener To Keep Dialog Open
         private void HandleNeutralButtonClick(object sender, DialogClickEventArgs e)
         {
-            var dialog = (AlertDialog)sender;
+            var dialog = (AlertDialog) sender;
 
-            MealItem.Breakfast = Constants.NO_MEAL_SET;
-            MealItem.Lunch = Constants.NO_MEAL_SET;
-            MealItem.Dinner = Constants.NO_MEAL_SET;
+            breakfastEditText.Text = String.Empty;
+            lunchEditText.Text = String.Empty;
+            dinnerEditText.Text = String.Empty;
 
-            MealItem.IsFormalDinner = false;
-
-            dialog.Dismiss();
+            dialog.Wait();
         }
 
         private void HandleNegativeButtonClick(object sender, DialogClickEventArgs e)

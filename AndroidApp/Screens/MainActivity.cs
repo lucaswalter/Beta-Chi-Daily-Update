@@ -43,7 +43,7 @@ namespace AndroidApp.Screens
         // Meal Text Views
         private TextView breakfastTextView;
         private TextView lunchTextView;
-        private TextView dinnetTextView;
+        private TextView dinnerTextView;
 
         // Sober Driver Button
         private Button soberDriverButton;
@@ -58,8 +58,9 @@ namespace AndroidApp.Screens
             // Set Title
             ActionBar.Title = "Beta-Chi Daily Update";
 
-            // Set Sober Driver Button
-            soberDriverButton = FindViewById<Button>(Resource.Id.soberDriverButton);
+            // Set Date Text View
+            dateTextView = FindViewById<TextView>(Resource.Id.dateTextView);
+            dateTextView.Text = DateTime.Today.ToShortDateString();
 
             // Initialize Progress Bar
             progressBar = FindViewById<ProgressBar>(Resource.Id.loadingProgressBar);
@@ -78,9 +79,13 @@ namespace AndroidApp.Screens
                     progressBar.Visibility = busy ? ViewStates.Visible : ViewStates.Gone;
             };
 
-            // Set Date Text View
-            dateTextView = FindViewById<TextView> (Resource.Id.dateTextView);
-            dateTextView.Text = DateTime.Today.ToShortDateString();
+            // Set Meal Text Views
+            breakfastTextView = FindViewById<TextView>(Resource.Id.breakfastTextView);
+            lunchTextView = FindViewById<TextView>(Resource.Id.lunchTextView);
+            dinnerTextView = FindViewById<TextView>(Resource.Id.dinnerTextView);
+
+            // Set Sober Driver Button
+            soberDriverButton = FindViewById<Button>(Resource.Id.soberDriverButton);
 
             // Sober Driver Button
             soberDriverButton.Click += (object sender, EventArgs e) =>
@@ -162,13 +167,15 @@ namespace AndroidApp.Screens
                 var meals = list.FirstOrDefault();
 
                 if (meals != null)
+                {
+
                     mealItem = meals;
 
-                // Update UI With Meal Text
-                breakfastTextView.Text = mealItem.Breakfast;
-                lunchTextView.Text = mealItem.Lunch;
-                dinnetTextView.Text = mealItem.Dinner;
-
+                    // Update UI With Meal Text
+                    breakfastTextView.Text = mealItem.Breakfast;
+                    lunchTextView.Text = mealItem.Lunch;
+                    dinnerTextView.Text = mealItem.Dinner;
+                }
             }
             catch (Exception e)
             {
