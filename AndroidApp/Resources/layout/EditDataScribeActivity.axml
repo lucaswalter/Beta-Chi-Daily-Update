@@ -13,61 +13,43 @@
         android:layout_height="71.0dp"
         android:layout_marginTop="-1.5dp" />
     <ListView
+        android:id="@+id/listViewRemindersScribe"
         android:minWidth="25px"
         android:minHeight="25px"
         android:layout_width="match_parent"
         android:layout_height="335.1dp"
-        android:id="@+id/listViewRemindersScribe"
         android:layout_marginBottom="8.5dp" />
-    <Button
-        android:text="Add Reminder"
-        android:layout_width="match_parent"
-        android:layout_height="71.0dp"
-        android:id="@+id/buttonAddReminder"
-        android:textSize="25dp"
-        android:layout_marginBottom="-5dp" />
     <LinearLayout
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="71.8dp"
-        android:layout_marginRight="1.5dp"
-        android:layout_marginLeft="1.5dp"
-        android:layout_marginTop="-2.5dp"
-        android:layout_marginBottom="-2.5dp">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="-13dp">
         <Button
-            android:text="Breakfast"
+            android:id="@+id/buttonAddReminder"
+            android:text="Add Reminder"
+            android:textSize="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginRight="-1.5dp"
-            android:layout_marginLeft="-1.5dp"
-            android:layout_marginBottom="-2.5dp"
-            android:id="@+id/buttonSetBreakfast" />
+            android:layout_marginTop="-2.5dp"
+            android:layout_marginBottom="-2.5dp" />
         <Button
-            android:text="Lunch"
+            android:id="@+id/buttonSetMeals"
+            android:text="Set Meals"
+            android:textSize="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginRight="-1.5dp"
-            android:layout_marginLeft="-1.5dp"
-            android:layout_marginBottom="-2.5dp"
-            android:id="@+id/buttonSetLunch" />
+            android:layout_marginTop="-2.5dp"
+            android:layout_marginBottom="-2.5dp" />
         <Button
-            android:text="Dinner"
+            android:id="@+id/buttonSave"
+            android:text="Save"
+            android:textSize="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginRight="-1.5dp"
-            android:layout_marginLeft="-1.5dp"
-            android:layout_marginBottom="-2.5dp"
-            android:id="@+id/buttonSetDinner" />
+            android:layout_marginTop="-2.5dp"
+            android:layout_marginBottom="0.0dp" />
     </LinearLayout>
-    <Button
-        android:id="@+id/buttonSave"
-        android:textSize="25dp"
-        android:text="Save"
-        android:layout_width="match_parent"
-        android:layout_height="71.0dp"
-        android:layout_marginTop="-2.5dp"
-        android:layout_marginBottom="-4dp" />
 </LinearLayout>

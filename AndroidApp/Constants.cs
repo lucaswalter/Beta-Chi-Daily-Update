@@ -11,6 +11,9 @@ namespace AndroidApp
         public const string APPLICATION_URL = "https://betachi.azure-mobile.net/";
         public const string APPLICATION_KEY = "SbsbuMkNyFvOnFVniZJbkrkjfEuUYr87";
 
+        // Meal Display Constants
+        public const string NO_MEAL_SET = "No Meal Set";
+
         // Activity ID Constants
         public const int EDIT_IM_DATA = 1;
         public const int EDIT_SCRIBE_DATA = 2;

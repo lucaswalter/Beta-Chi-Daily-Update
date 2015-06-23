@@ -79,8 +79,8 @@ namespace AndroidApp
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f08000d
-			public const int breakfastTextView = 2131230733;
+			// aapt resource value: 0x7f08000b
+			public const int breakfastTextView = 2131230731;
 			
 			// aapt resource value: 0x7f080004
 			public const int buttonAddReminder = 2131230724;
@@ -88,65 +88,68 @@ namespace AndroidApp
 			// aapt resource value: 0x7f080002
 			public const int buttonDatePicker = 2131230722;
 			
-			// aapt resource value: 0x7f080008
-			public const int buttonSave = 2131230728;
+			// aapt resource value: 0x7f080006
+			public const int buttonSave = 2131230726;
 			
 			// aapt resource value: 0x7f080005
-			public const int buttonSetBreakfast = 2131230725;
-			
-			// aapt resource value: 0x7f080007
-			public const int buttonSetDinner = 2131230727;
-			
-			// aapt resource value: 0x7f080006
-			public const int buttonSetLunch = 2131230726;
+			public const int buttonSetMeals = 2131230725;
 			
 			// aapt resource value: 0x7f080001
 			public const int buttonWIP = 2131230721;
 			
-			// aapt resource value: 0x7f080009
-			public const int dateTextView = 2131230729;
+			// aapt resource value: 0x7f080007
+			public const int dateTextView = 2131230727;
 			
-			// aapt resource value: 0x7f08000f
-			public const int dinnerTextView = 2131230735;
+			// aapt resource value: 0x7f08000d
+			public const int dinnerTextView = 2131230733;
+			
+			// aapt resource value: 0x7f080011
+			public const int editTextBreakfast = 2131230737;
+			
+			// aapt resource value: 0x7f080013
+			public const int editTextDinner = 2131230739;
+			
+			// aapt resource value: 0x7f080012
+			public const int editTextLunch = 2131230738;
 			
 			// aapt resource value: 0x7f080000
 			public const int editTextReminder = 2131230720;
 			
-			// aapt resource value: 0x7f080012
-			public const int editText_Password = 2131230738;
+			// aapt resource value: 0x7f080010
+			public const int editText_Password = 2131230736;
 			
-			// aapt resource value: 0x7f08000b
-			public const int listViewRemindersMain = 2131230731;
+			// aapt resource value: 0x7f080009
+			public const int listViewRemindersMain = 2131230729;
 			
 			// aapt resource value: 0x7f080003
 			public const int listViewRemindersScribe = 2131230723;
 			
-			// aapt resource value: 0x7f08000a
-			public const int loadingProgressBar = 2131230730;
-			
-			// aapt resource value: 0x7f08000e
-			public const int lunchTextView = 2131230734;
+			// aapt resource value: 0x7f080008
+			public const int loadingProgressBar = 2131230728;
 			
 			// aapt resource value: 0x7f08000c
-			public const int mealTextView = 2131230732;
+			public const int lunchTextView = 2131230732;
+			
+			// aapt resource value: 0x7f08000a
+			public const int mealTextView = 2131230730;
+			
+			// aapt resource value: 0x7f080017
+			public const int menu_EditIMData = 2131230743;
 			
 			// aapt resource value: 0x7f080016
-			public const int menu_EditIMData = 2131230742;
-			
-			// aapt resource value: 0x7f080015
-			public const int menu_EditScribeData = 2131230741;
-			
-			// aapt resource value: 0x7f080013
-			public const int menu_RefreshReminders = 2131230739;
+			public const int menu_EditScribeData = 2131230742;
 			
 			// aapt resource value: 0x7f080014
-			public const int menu_View_IM = 2131230740;
+			public const int menu_RefreshReminders = 2131230740;
 			
-			// aapt resource value: 0x7f080010
-			public const int soberDriverButton = 2131230736;
+			// aapt resource value: 0x7f080015
+			public const int menu_View_IM = 2131230741;
 			
-			// aapt resource value: 0x7f080011
-			public const int textView_Password = 2131230737;
+			// aapt resource value: 0x7f08000e
+			public const int soberDriverButton = 2131230734;
+			
+			// aapt resource value: 0x7f08000f
+			public const int textView_Password = 2131230735;
 			
 			static Id()
 			{
@@ -177,7 +180,10 @@ namespace AndroidApp
 			public const int PasswordDialogFragment = 2130903044;
 			
 			// aapt resource value: 0x7f030005
-			public const int ViewIMActivity = 2130903045;
+			public const int SetMealsDialogFragment = 2130903045;
+			
+			// aapt resource value: 0x7f030006
+			public const int ViewIMActivity = 2130903046;
 			
 			static Layout()
 			{
