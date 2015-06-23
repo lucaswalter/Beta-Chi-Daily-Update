@@ -64,6 +64,7 @@ namespace AndroidApp.Fragments
 
             reminder.Date = date;
             reminder.Text = ReminderEditText.Text;
+            reminder.ShowOnHomeScreen = true;
 
             reminderAdapter.Add(reminder); 
             

@@ -13,5 +13,7 @@ namespace AndroidApp.Core
         public DateTime Date { get; set; }
 
         public string Text { get; set; }
+
+        public bool ShowOnHomeScreen { get; set; }
     }
 }
