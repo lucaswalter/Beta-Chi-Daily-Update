@@ -82,27 +82,6 @@ namespace AndroidApp.Screens
             {
                 CreateAndShowAddReminderDialog();
             };
-            
-            // Set Breakfast
-            setBreakfastButton = FindViewById<Button>(Resource.Id.buttonSetBreakfast);
-            setBreakfastButton.Click += (object sender, EventArgs e) =>
-            {
-                CreateAndShowEditMealDialog(Constants.BREAKFAST);
-            };
-
-            // Set Lunch
-            setLunchButton = FindViewById<Button>(Resource.Id.buttonSetLunch);
-            setLunchButton.Click += (object sender, EventArgs e) =>
-            {
-                CreateAndShowEditMealDialog(Constants.LUNCH);
-            };
-
-            // Set Dinner 
-            setDinnerButton = FindViewById<Button>(Resource.Id.buttonSetDinner);
-            setDinnerButton.Click += (object sender, EventArgs e) =>
-            {
-                CreateAndShowEditMealDialog(Constants.DINNER);
-            };
 
             // Add Save Button
             saveButton = FindViewById<Button>(Resource.Id.buttonSave);
@@ -302,19 +281,6 @@ namespace AndroidApp.Screens
             catch (Exception e)
             {
                 CreateAndShowDialog(e, "Unable To Update Meals");
-            }
-        }
-
-        /** Set Meals Dialog **/
-        void CreateAndShowEditMealDialog(int meal)
-        {
-            switch (meal)
-            {
-                case Constants.BREAKFAST:
-
-                case Constants.LUNCH:
-
-                case Constants.DINNER:
             }
         }
 
