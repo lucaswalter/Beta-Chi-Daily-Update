@@ -76,7 +76,7 @@
     <Compile Include="Fragments\PasswordDialogFragment.cs" />
     <Compile Include="Fragments\SetMealsDialogFragment.cs" />
     <Compile Include="Fragments\UpdateReminderDialogFragment.cs" />
-    <Compile Include="Fragments\AddIMReminderTabFragment.cs" />
+    <Compile Include="Fragments\AddIMRemindersTabFragment.cs" />
     <Compile Include="Screens\EditDataIMActivity.cs" />
     <Compile Include="Screens\EditDataScribeActivity.cs" />
     <Compile Include="Screens\MainActivity.cs" />
@@ -87,6 +87,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\AboutAssets.txt" />
+    <AndroidResource Include="Resources\layout\EditIMStandingsTabFragment.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\layout\MainActivity.axml" />
     <AndroidResource Include="Resources\layout\PasswordDialogFragment.axml">
       <SubType>AndroidResource</SubType>
@@ -102,12 +105,7 @@
     </AndroidResource>
     <AndroidResource Include="Resources\layout\AddReminderDialogFragment.axml" />
     <AndroidResource Include="Resources\layout\SetMealsDialogFragment.axml" />
-    <AndroidResource Include="Resources\layout\AddIMReminderTabFragment.axml">
-      <SubType>AndroidResource</SubType>
-    </AndroidResource>
-    <AndroidResource Include="Resources\layout\EditIMStandingsTabFragment.axml">
-      <SubType>AndroidResource</SubType>
-    </AndroidResource>
+    <AndroidResource Include="Resources\layout\AddIMRemindersTabFragment.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />

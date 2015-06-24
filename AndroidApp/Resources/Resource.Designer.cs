@@ -180,7 +180,7 @@ namespace AndroidApp
 		{
 			
 			// aapt resource value: 0x7f030000
-			public const int AddIMReminderTabFragment = 2130903040;
+			public const int AddIMRemindersTabFragment = 2130903040;
 			
 			// aapt resource value: 0x7f030001
 			public const int AddReminderDialogFragment = 2130903041;

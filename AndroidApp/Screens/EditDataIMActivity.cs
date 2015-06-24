@@ -29,7 +29,7 @@ namespace AndroidApp.Screens
             tab.SetText("Set IM Reminders");
             tab.TabSelected += (sender, args) =>
             {
-                args.FragmentTransaction.Replace(Resource.Id.fragmentContainer, new AddIMReminderTabFragment());
+                args.FragmentTransaction.Replace(Resource.Id.fragmentContainer, new AddIMRemindersTabFragment());
             };
 
             ActionBar.AddTab(tab);

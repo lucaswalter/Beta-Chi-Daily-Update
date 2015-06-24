@@ -13,14 +13,14 @@ using Android.Widget;
 
 namespace AndroidApp.Resources.layout
 {
-    public class AddIMReminderTabFragment : Fragment
+    public class AddIMRemindersTabFragment : Fragment
     {
         public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             
             // Create Fragment View
-            var view = inflater.Inflate(Resource.Layout.AddIMReminderTabFragment, container, false);
+            var view = inflater.Inflate(Resource.Layout.AddIMRemindersTabFragment, container, false);
 
             // TODO: Set Everything
 
