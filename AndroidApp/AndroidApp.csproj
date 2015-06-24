@@ -65,6 +65,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adapters\IMReminderAdapter.cs" />
     <Compile Include="Adapters\TeamAdapter.cs" />
     <Compile Include="Adapters\ReminderAdapter.cs" />
     <Compile Include="Constants.cs" />

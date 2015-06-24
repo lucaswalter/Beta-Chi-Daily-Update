@@ -14,15 +14,15 @@
         android:minHeight="25px"
         android:layout_width="match_parent"
         android:layout_height="319.1dp"
-        android:id="@+id/listView1" />
+        android:id="@+id/listViewAddIMReminders" />
     <Button
         android:text="Button"
         android:layout_width="match_parent"
         android:layout_height="77.3dp"
-        android:id="@+id/button1" />
+        android:id="@+id/buttonAddIMReminder" />
     <Button
         android:text="Button"
         android:layout_width="match_parent"
         android:layout_height="77.3dp"
-        android:id="@+id/button2" />
+        android:id="@+id/buttonIMSave" />
 </LinearLayout>

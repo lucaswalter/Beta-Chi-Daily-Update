@@ -9,13 +9,16 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using AndroidApp.Core;
 using AndroidApp.Resources.layout;
+using Microsoft.WindowsAzure.MobileServices;
 
 namespace AndroidApp.Screens
 {
     [Activity(Theme = "@style/Theme.BetaChiActionBar")]
     public class EditDataIMActivity : Activity
     {
+
         protected override void OnCreate(Bundle bundle)
         {
             // Initial Activity Setup
