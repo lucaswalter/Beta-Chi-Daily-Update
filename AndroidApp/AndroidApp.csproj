@@ -69,6 +69,7 @@
     <Compile Include="Constants.cs" />
     <Compile Include="Core\MealItem.cs" />
     <Compile Include="Core\ReminderItem.cs" />
+    <Compile Include="Core\TeamItem.cs" />
     <Compile Include="Fragments\EditIMStandingsTabFragment.cs" />
     <Compile Include="Fragments\AddReminderDialogFragment.cs" />
     <Compile Include="Fragments\PasswordDialogFragment.cs" />
