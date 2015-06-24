@@ -12,13 +12,36 @@ using Android.Widget;
 
 namespace AndroidApp.Screens
 {
-    [Activity(Label = "View IM Activity")]
+    [Activity(Theme = "@style/Theme.BetaChiActionBar")]
     public class ViewIMActivity : Activity
     {
         protected override void OnCreate(Bundle bundle)
         {
+            // Initial Activity Setup
             base.OnCreate(bundle);
-            SetContentView(Resource.Layout.ViewIMActivity);
+            ActionBar.NavigationMode = ActionBarNavigationMode.Tabs;
+            ActionBar.Title = String.Empty;
+            SetContentView(Resource.Layout.EditDataIMActivity);
+
+            // Create IM Reminder Tab
+            ActionBar.Tab tab = ActionBar.NewTab();
+            tab.SetText("IM Reminders");
+            tab.TabSelected += (sender, args) =>
+            {
+                // TODO
+            };
+
+            ActionBar.AddTab(tab);
+
+            // Create IM Leaderboard Tab
+            tab = ActionBar.NewTab();
+            tab.SetText("IM Standings");
+            tab.TabSelected += (sender, args) =>
+            {
+                // TODO
+            };
+
+            ActionBar.AddTab(tab);
         }
     }
 }
