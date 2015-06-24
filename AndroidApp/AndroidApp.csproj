@@ -69,10 +69,12 @@
     <Compile Include="Constants.cs" />
     <Compile Include="Core\MealItem.cs" />
     <Compile Include="Core\ReminderItem.cs" />
+    <Compile Include="Fragments\EditIMStandingsTabFragment.cs" />
     <Compile Include="Fragments\AddReminderDialogFragment.cs" />
     <Compile Include="Fragments\PasswordDialogFragment.cs" />
     <Compile Include="Fragments\SetMealsDialogFragment.cs" />
     <Compile Include="Fragments\UpdateReminderDialogFragment.cs" />
+    <Compile Include="Fragments\AddIMReminderTabFragment.cs" />
     <Compile Include="Screens\EditDataIMActivity.cs" />
     <Compile Include="Screens\EditDataScribeActivity.cs" />
     <Compile Include="Screens\MainActivity.cs" />
@@ -98,6 +100,12 @@
     </AndroidResource>
     <AndroidResource Include="Resources\layout\AddReminderDialogFragment.axml" />
     <AndroidResource Include="Resources\layout\SetMealsDialogFragment.axml" />
+    <AndroidResource Include="Resources\layout\AddIMReminderTabFragment.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\EditIMStandingsTabFragment.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />

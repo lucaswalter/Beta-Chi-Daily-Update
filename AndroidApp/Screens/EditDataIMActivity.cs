@@ -9,6 +9,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using AndroidApp.Resources.layout;
 
 namespace AndroidApp.Screens
 {
@@ -28,7 +29,7 @@ namespace AndroidApp.Screens
             tab.SetText("Set IM Reminders");
             tab.TabSelected += (sender, args) =>
             {
-                // TODO
+                args.FragmentTransaction.Replace(Resource.Id.fragmentContainer, new AddIMReminderTabFragment());
             };
 
             ActionBar.AddTab(tab);
@@ -38,7 +39,7 @@ namespace AndroidApp.Screens
             tab.SetText("Set IM Standings");
             tab.TabSelected += (sender, args) =>
             {
-                // TODO
+                args.FragmentTransaction.Replace(Resource.Id.fragmentContainer, new EditIMStandingsTabFragment());
             };
 
             ActionBar.AddTab(tab);
