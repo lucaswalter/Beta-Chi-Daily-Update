@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
-
+using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -72,7 +73,7 @@ namespace AndroidApp.Resources.layout
                 reminderTable = client.GetTable<ReminderItem>();
 
                 // Load Data From The Mobile Service
-                // TODO: ProcessAsync()
+                RefreshReminders();
 
             }
             catch (Exception e)
@@ -81,6 +82,34 @@ namespace AndroidApp.Resources.layout
             }   
 
             return view;
+        }
+
+        /** Azure Mobile Service Connection Methods **/
+        async void RefreshReminders()
+        {
+            await RefreshRemindersFromTableAsync();
+        }
+
+        async Task RefreshRemindersFromTableAsync()
+        {
+            try
+            {
+                // Get Today's Reminders
+                var list = await reminderTable.Where(x => x.Date.Day == DateTime.Today.Day 
+                    && x.ShowOnHomeScreen == false).ToListAsync();
+
+                // Clear Reminder Adapter
+                reminderAdapter.Clear();
+
+                // Add Reminders
+                foreach (ReminderItem current in list)
+                    reminderAdapter.Add(current);
+
+            }
+            catch (Exception e)
+            {
+                CreateAndShowDialog(e, "Connection Error");
+            }
         }
 
         /** Error Dialog **/
