@@ -8,10 +8,10 @@
         android:minHeight="25px"
         android:layout_width="match_parent"
         android:layout_height="474.1dp"
-        android:id="@+id/listView1" />
+        android:id="@+id/listViewEditIMStandings" />
     <Button
         android:text="Button"
         android:layout_width="match_parent"
         android:layout_height="77.3dp"
-        android:id="@+id/button1" />
+        android:id="@+id/buttonAddTeam" />
 </LinearLayout>
