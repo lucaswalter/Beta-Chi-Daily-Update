@@ -10,6 +10,5 @@ namespace AndroidApp.Core
 
         public string Text { get; set; }
 
-        public bool ShowOnHomeScreen { get; set; }
     }
 }

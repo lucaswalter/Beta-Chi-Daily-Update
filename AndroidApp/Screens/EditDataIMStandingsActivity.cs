@@ -12,12 +12,13 @@ using Android.Widget;
 
 namespace AndroidApp.Screens
 {
-    [Activity(Label = "EditDataIMStandingsActivity")]
+    [Activity()]
     public class EditDataIMStandingsActivity : Activity
     {
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
+            SetContentView(Resource.Layout.EditDataIMStandingsActivity);
 
             // Create your application here
         }

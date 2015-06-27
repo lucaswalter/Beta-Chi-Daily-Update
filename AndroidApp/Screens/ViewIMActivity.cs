@@ -22,7 +22,7 @@ namespace AndroidApp.Screens
             base.OnCreate(bundle);
             ActionBar.NavigationMode = ActionBarNavigationMode.Tabs;
             ActionBar.Title = String.Empty;
-            SetContentView(Resource.Layout.EditDataIMActivity);
+            SetContentView(Resource.Layout.ViewIMActivity);
 
             // Create IM Reminder Tab
             ActionBar.Tab tab = ActionBar.NewTab();

@@ -118,14 +118,17 @@ namespace AndroidApp
 			// aapt resource value: 0x7f080011
 			public const int editText_Password = 2131230737;
 			
-			// aapt resource value: 0x7f080016
-			public const int listView1 = 2131230742;
+			// aapt resource value: 0x7f080015
+			public const int fragmentContainer = 2131230741;
+			
+			// aapt resource value: 0x7f080017
+			public const int listView1 = 2131230743;
 			
 			// aapt resource value: 0x7f080001
 			public const int listViewEditIMStandings = 2131230721;
 			
-			// aapt resource value: 0x7f080015
-			public const int listViewIMReminders = 2131230741;
+			// aapt resource value: 0x7f080016
+			public const int listViewIMReminders = 2131230742;
 			
 			// aapt resource value: 0x7f08000a
 			public const int listViewRemindersMain = 2131230730;
@@ -142,17 +145,17 @@ namespace AndroidApp
 			// aapt resource value: 0x7f08000b
 			public const int mealTextView = 2131230731;
 			
+			// aapt resource value: 0x7f08001b
+			public const int menu_EditIMData = 2131230747;
+			
 			// aapt resource value: 0x7f08001a
-			public const int menu_EditIMData = 2131230746;
-			
-			// aapt resource value: 0x7f080019
-			public const int menu_EditScribeData = 2131230745;
-			
-			// aapt resource value: 0x7f080017
-			public const int menu_RefreshReminders = 2131230743;
+			public const int menu_EditScribeData = 2131230746;
 			
 			// aapt resource value: 0x7f080018
-			public const int menu_View_IM = 2131230744;
+			public const int menu_RefreshReminders = 2131230744;
+			
+			// aapt resource value: 0x7f080019
+			public const int menu_View_IM = 2131230745;
 			
 			// aapt resource value: 0x7f08000f
 			public const int soberDriverButton = 2131230735;

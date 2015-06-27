@@ -17,7 +17,7 @@ using Microsoft.WindowsAzure.MobileServices;
 
 namespace AndroidApp.Screens
 {
-    [Activity(Theme = "@style/Theme.BetaChi")]
+    [Activity(Theme = "@style/Theme.BetaChiActionBar")]
     public class EditDataScribeActivity : Activity
     {
         // Mobile Service Client Reference
@@ -43,6 +43,7 @@ namespace AndroidApp.Screens
         // Meal Button
         private Button setMealButton;
 
+        // Meal Property
         private MealItem mealItem;
 
         // Save Button

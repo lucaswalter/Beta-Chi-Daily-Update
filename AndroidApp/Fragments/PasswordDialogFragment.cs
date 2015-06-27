@@ -82,7 +82,7 @@ namespace AndroidApp.Fragments
                     {
                         // Launch New Activity
                         Console.WriteLine("Edit IM Password Correct");
-                        Intent editIMActivity = new Intent(Application.Context, typeof(EditDataIMActivity));
+                        Intent editIMActivity = new Intent(Application.Context, typeof(EditDataIMStandingsActivity));
                         StartActivity(editIMActivity);
                     }
                     else
