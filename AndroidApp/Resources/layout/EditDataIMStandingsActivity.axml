@@ -7,7 +7,7 @@
         android:minWidth="25px"
         android:minHeight="25px"
         android:layout_width="match_parent"
-        android:layout_height="497.2dp"
+        android:layout_height="465.1dp"
         android:id="@+id/listViewEditIMStandings" />
     <Button
         android:text="Button"
