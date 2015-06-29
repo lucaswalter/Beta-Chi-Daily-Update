@@ -7,11 +7,16 @@
         android:minWidth="25px"
         android:minHeight="25px"
         android:layout_width="match_parent"
-        android:layout_height="465.1dp"
+        android:layout_height="380.2dp"
         android:id="@+id/listViewEditIMStandings" />
     <Button
-        android:text="Button"
+        android:text="Add Team"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="85dp"
         android:id="@+id/buttonAddTeam" />
+    <Button
+        android:text="Save"
+        android:layout_width="match_parent"
+        android:layout_height="85dp"
+        android:id="@+id/buttonSaveTeamChanges" />
 </LinearLayout>

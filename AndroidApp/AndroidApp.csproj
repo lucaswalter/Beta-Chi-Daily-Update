@@ -73,6 +73,7 @@
     <Compile Include="Core\ReminderItem.cs" />
     <Compile Include="Core\TeamItem.cs" />
     <Compile Include="Fragments\AddReminderDialogFragment.cs" />
+    <Compile Include="Fragments\AddTeamDialogFragment.cs" />
     <Compile Include="Fragments\PasswordDialogFragment.cs" />
     <Compile Include="Fragments\SetMealsDialogFragment.cs" />
     <Compile Include="Fragments\UpdateReminderDialogFragment.cs" />
@@ -105,6 +106,9 @@
     <AndroidResource Include="Resources\layout\ViewIMStandingsTabFragment.axml" />
     <AndroidResource Include="Resources\layout\ViewIMRemindersTabFragment.axml" />
     <AndroidResource Include="Resources\layout\EditDataIMStandingsActivity.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\AddTeamDialogFragment.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
   </ItemGroup>

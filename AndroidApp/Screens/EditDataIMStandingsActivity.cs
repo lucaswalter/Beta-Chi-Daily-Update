@@ -5,6 +5,7 @@ using Android.OS;
 using Android.Widget;
 using AndroidApp.Adapters;
 using AndroidApp.Core;
+using AndroidApp.Fragments;
 using Microsoft.WindowsAzure.MobileServices;
 
 namespace AndroidApp.Screens
@@ -28,6 +29,9 @@ namespace AndroidApp.Screens
         // Add Team Button
         private Button addTeamButton;
 
+        // Save Changes Button
+        private Button saveButton;
+
         protected override async void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -37,6 +41,20 @@ namespace AndroidApp.Screens
             teamAdapter = new TeamAdapter(this);
             teamListView = FindViewById<ListView>(Resource.Id.listViewEditIMStandings);
             teamListView.Adapter = teamAdapter;
+
+            // Add Team Button
+            addTeamButton = FindViewById<Button>(Resource.Id.buttonAddTeam);
+            addTeamButton.Click += (object sender, EventArgs e) =>
+            {
+                CreateAndShowAddTeamDialog();
+            };
+
+            // Save Changes Button
+            saveButton = FindViewById<Button>(Resource.Id.buttonSaveTeamChanges);
+            saveButton.Click += (object sender, EventArgs e) =>
+            {
+                // TODO: Implement
+            };
 
             // Connect To Azure Mobile Service
             try
@@ -80,6 +98,18 @@ namespace AndroidApp.Screens
             {
                 CreateAndShowDialog(e, "Connection Error");
             }
+        }
+
+        /** Add Team Dialog **/
+        void CreateAndShowAddTeamDialog()
+        {
+            var transaction = FragmentManager.BeginTransaction();
+            var addTeamDialog = new AddTeamDialogFragment();
+
+            // Horrible Practice
+            addTeamDialog.TeamAdapter = teamAdapter;
+
+            addTeamDialog.Show(transaction, "addTeamDialog");
         }
 
         /** Error Dialog **/
