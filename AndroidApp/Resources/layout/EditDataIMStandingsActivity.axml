@@ -3,14 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    tools:actionBarNavMode="list">
+    android:layout_height="fill_parent">
     <ListView
         android:id="@+id/listViewEditIMStandings"
         android:minWidth="25px"
         android:minHeight="25px"
         android:layout_width="match_parent"
-        android:layout_height="411.2dp"
+        android:layout_height="469.6dp"
         android:layout_marginBottom="8.5dp" />
     <LinearLayout
         android:orientation="vertical"
@@ -19,7 +18,7 @@
         android:layout_marginBottom="-13dp">
         <Button
             android:id="@+id/buttonAddTeam"
-            android:text="Add Reminder"
+            android:text="Add Team"
             android:textSize="25dp"
             android:layout_width="match_parent"
             android:layout_height="0dp"
