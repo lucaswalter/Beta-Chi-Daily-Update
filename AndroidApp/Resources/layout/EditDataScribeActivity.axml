@@ -23,7 +23,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="-13dp">
+        android:layout_marginBottom="5dp">
         <Button
             android:id="@+id/buttonAddReminder"
             android:text="Add Reminder"
@@ -49,7 +49,6 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:layout_marginTop="-2.5dp"
-            android:layout_marginBottom="0.0dp" />
+            android:layout_marginTop="-2.5dp" />
     </LinearLayout>
 </LinearLayout>
