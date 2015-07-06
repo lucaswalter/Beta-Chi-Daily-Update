@@ -1,19 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Util;
-using Android.Views;
 using Android.Widget;
 using AndroidApp.Adapters;
 using AndroidApp.Core;
-using Microsoft.WindowsAzure.MobileServices;
-
 
 namespace AndroidApp.Fragments
 {
@@ -23,7 +13,6 @@ namespace AndroidApp.Fragments
         private NumberPicker teamPointsNumberPicker;
 
         // Horrible Practice
-        public TeamAdapter TeamAdapter;
         public TeamItem Team;
 
         public override Dialog OnCreateDialog(Bundle savedInstanceState)
