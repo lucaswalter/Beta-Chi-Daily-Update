@@ -53,7 +53,14 @@ namespace AndroidApp.Screens
             saveButton = FindViewById<Button>(Resource.Id.buttonSaveTeamChanges);
             saveButton.Click += (object sender, EventArgs e) =>
             {
-                // TODO: Implement
+                for (int i = 0; i < teamAdapter.Count; i++)
+                {
+                    if (teamAdapter[i].Points == -1)
+                    {
+                        teamAdapter[i].Points = 0;
+                        AddTeamItem(teamAdapter[i]);
+                    }                     
+                }
             };
 
             // Connect To Azure Mobile Service
@@ -97,6 +104,18 @@ namespace AndroidApp.Screens
             catch (Exception e)
             {
                 CreateAndShowDialog(e, "Connection Error");
+            }
+        }
+
+        public async void AddTeamItem(TeamItem item)
+        {
+            try
+            {
+                await teamTable.InsertAsync(item);
+            }
+            catch (Exception e)
+            {
+                CreateAndShowDialog(e, "Unable To Insert Team");
             }
         }
 

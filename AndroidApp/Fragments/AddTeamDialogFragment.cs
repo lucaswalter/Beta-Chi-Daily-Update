@@ -56,8 +56,9 @@ namespace AndroidApp.Fragments
             var dialog = (AlertDialog)sender;
 
             TeamItem team = new TeamItem();
-
             team.TeamName = teamNameEditText.Text;
+            team.Points = -1;
+            TeamAdapter.Add(team);
 
             dialog.Dismiss();
         }

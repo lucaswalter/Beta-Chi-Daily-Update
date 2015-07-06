@@ -64,7 +64,6 @@ namespace AndroidApp.Fragments
 
             reminder.Date = date;
             reminder.Text = ReminderEditText.Text;
-
             reminderAdapter.Add(reminder); 
             
             dialog.Dismiss();
