@@ -6,4 +6,9 @@
       <!-- TODO: Add Edit Here -->
       <item>Delete</item>
     </string-array>
+    
+    <string-array name="TeamContextMenu">
+        <item>Points</item>
+        <item>Delete</item>
+    </string-array>
 </resources>

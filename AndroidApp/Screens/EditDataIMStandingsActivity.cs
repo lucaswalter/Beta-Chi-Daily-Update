@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using Android.App;
 using Android.OS;
+using Android.Views;
 using Android.Widget;
 using AndroidApp.Adapters;
 using AndroidApp.Core;
@@ -41,6 +42,7 @@ namespace AndroidApp.Screens
             teamAdapter = new TeamAdapter(this);
             teamListView = FindViewById<ListView>(Resource.Id.listViewEditIMStandings);
             teamListView.Adapter = teamAdapter;
+            RegisterForContextMenu(teamListView);
 
             // Add Team Button
             addTeamButton = FindViewById<Button>(Resource.Id.buttonAddTeam);
@@ -85,6 +87,39 @@ namespace AndroidApp.Screens
             }   
         }
 
+        public override void OnCreateContextMenu(IContextMenu menu, View v, IContextMenuContextMenuInfo menuInfo)
+        {
+            // If Created From Team List View
+            if (v.Id == Resource.Id.listViewEditIMStandings)
+            {
+                var info = (AdapterView.AdapterContextMenuInfo)menuInfo;
+                var menuItems = Resources.GetStringArray(Resource.Array.TeamContextMenu);
+
+                for (int i = 0; i < menuItems.Length; i++)
+                    menu.Add(Menu.None, i, i, menuItems[i]);
+            }
+        }
+
+        public override bool OnContextItemSelected(IMenuItem item)
+        {
+            var info = (AdapterView.AdapterContextMenuInfo)item.MenuInfo;
+            var menuItems = Resources.GetStringArray(Resource.Array.TeamContextMenu);
+            var menuItemIndex = item.ItemId;
+            var menuItemName = menuItems[menuItemIndex];
+
+            switch (menuItemName)
+            {
+                case "Points":
+                    // TODO: Implement Edit Points Fragment
+                    return true;
+                case "Delete":
+                    RemoveTeamItem(teamAdapter[info.Position]);
+                    return true;
+            }
+
+            return base.OnContextItemSelected(item);
+        }
+
         // Retrieve Standing Data
         async Task RefreshTeamsFromTableAsync()
         {
@@ -117,6 +152,20 @@ namespace AndroidApp.Screens
             {
                 CreateAndShowDialog(e, "Unable To Insert Team");
             }
+        }
+
+        public async void RemoveTeamItem(TeamItem item)
+        {
+            try
+            {
+                await teamTable.DeleteAsync(item);
+            }
+            catch (Exception e)
+            {
+                CreateAndShowDialog(e, "Unable To Remove Team");
+            }
+
+            teamAdapter.Remove(item);
         }
 
         /** Add Team Dialog **/
