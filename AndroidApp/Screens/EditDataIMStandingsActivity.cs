@@ -60,9 +60,11 @@ namespace AndroidApp.Screens
                     if (teamAdapter[i].Points == -1)
                     {
                         teamAdapter[i].Points = 0;
-                        AddTeamItem(teamAdapter[i]);
+                        AddTeamItem(teamAdapter[i]);                      
                     }                     
                 }
+
+                RefreshTeams();
             };
 
             // Connect To Azure Mobile Service
@@ -143,6 +145,11 @@ namespace AndroidApp.Screens
             }
         }
 
+        async void RefreshTeams()
+        {
+            await RefreshTeamsFromTableAsync();
+        }
+
         public async void AddTeamItem(TeamItem item)
         {
             try
@@ -189,7 +196,6 @@ namespace AndroidApp.Screens
 
             // Horrible Practice
             addTeamDialog.TeamAdapter = teamAdapter;
-
             addTeamDialog.Show(transaction, "addTeamDialog");
         }
 
@@ -202,7 +208,6 @@ namespace AndroidApp.Screens
 
             // Horrible Practice
             editTeamPointsDialog.Team = team;
-
             editTeamPointsDialog.Show(transaction, "editTeamPointsDialog");
         }
 
