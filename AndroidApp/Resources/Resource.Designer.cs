@@ -82,8 +82,8 @@ namespace AndroidApp
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f08000e
-			public const int breakfastTextView = 2131230734;
+			// aapt resource value: 0x7f08000f
+			public const int breakfastTextView = 2131230735;
 			
 			// aapt resource value: 0x7f080007
 			public const int buttonAddReminder = 2131230727;
@@ -103,74 +103,77 @@ namespace AndroidApp
 			// aapt resource value: 0x7f080008
 			public const int buttonSetMeals = 2131230728;
 			
-			// aapt resource value: 0x7f08000a
-			public const int dateTextView = 2131230730;
+			// aapt resource value: 0x7f08000b
+			public const int dateTextView = 2131230731;
 			
-			// aapt resource value: 0x7f080010
-			public const int dinnerTextView = 2131230736;
+			// aapt resource value: 0x7f080011
+			public const int dinnerTextView = 2131230737;
 			
 			// aapt resource value: 0x7f080001
 			public const int editTextAddTeam = 2131230721;
 			
-			// aapt resource value: 0x7f080014
-			public const int editTextBreakfast = 2131230740;
+			// aapt resource value: 0x7f080015
+			public const int editTextBreakfast = 2131230741;
+			
+			// aapt resource value: 0x7f080017
+			public const int editTextDinner = 2131230743;
 			
 			// aapt resource value: 0x7f080016
-			public const int editTextDinner = 2131230742;
-			
-			// aapt resource value: 0x7f080015
-			public const int editTextLunch = 2131230741;
+			public const int editTextLunch = 2131230742;
 			
 			// aapt resource value: 0x7f080000
 			public const int editTextReminder = 2131230720;
 			
-			// aapt resource value: 0x7f080013
-			public const int editText_Password = 2131230739;
+			// aapt resource value: 0x7f080014
+			public const int editText_Password = 2131230740;
 			
-			// aapt resource value: 0x7f080017
-			public const int fragmentContainer = 2131230743;
+			// aapt resource value: 0x7f080018
+			public const int fragmentContainer = 2131230744;
 			
 			// aapt resource value: 0x7f080002
 			public const int listViewEditIMStandings = 2131230722;
 			
-			// aapt resource value: 0x7f080018
-			public const int listViewIMReminders = 2131230744;
-			
 			// aapt resource value: 0x7f080019
-			public const int listViewIMStandings = 2131230745;
+			public const int listViewIMReminders = 2131230745;
 			
-			// aapt resource value: 0x7f08000c
-			public const int listViewRemindersMain = 2131230732;
+			// aapt resource value: 0x7f08001a
+			public const int listViewIMStandings = 2131230746;
+			
+			// aapt resource value: 0x7f08000d
+			public const int listViewRemindersMain = 2131230733;
 			
 			// aapt resource value: 0x7f080006
 			public const int listViewRemindersScribe = 2131230726;
 			
-			// aapt resource value: 0x7f08000b
-			public const int loadingProgressBar = 2131230731;
+			// aapt resource value: 0x7f08000c
+			public const int loadingProgressBar = 2131230732;
 			
-			// aapt resource value: 0x7f08000f
-			public const int lunchTextView = 2131230735;
+			// aapt resource value: 0x7f080010
+			public const int lunchTextView = 2131230736;
 			
-			// aapt resource value: 0x7f08000d
-			public const int mealTextView = 2131230733;
+			// aapt resource value: 0x7f08000e
+			public const int mealTextView = 2131230734;
+			
+			// aapt resource value: 0x7f08001e
+			public const int menu_EditIMData = 2131230750;
 			
 			// aapt resource value: 0x7f08001d
-			public const int menu_EditIMData = 2131230749;
-			
-			// aapt resource value: 0x7f08001c
-			public const int menu_EditScribeData = 2131230748;
-			
-			// aapt resource value: 0x7f08001a
-			public const int menu_RefreshReminders = 2131230746;
+			public const int menu_EditScribeData = 2131230749;
 			
 			// aapt resource value: 0x7f08001b
-			public const int menu_View_IM = 2131230747;
+			public const int menu_RefreshReminders = 2131230747;
 			
-			// aapt resource value: 0x7f080011
-			public const int soberDriverButton = 2131230737;
+			// aapt resource value: 0x7f08001c
+			public const int menu_View_IM = 2131230748;
+			
+			// aapt resource value: 0x7f08000a
+			public const int numberPickerTeamPoints = 2131230730;
 			
 			// aapt resource value: 0x7f080012
-			public const int textView_Password = 2131230738;
+			public const int soberDriverButton = 2131230738;
+			
+			// aapt resource value: 0x7f080013
+			public const int textView_Password = 2131230739;
 			
 			static Id()
 			{
@@ -198,22 +201,25 @@ namespace AndroidApp
 			public const int EditDataScribeActivity = 2130903043;
 			
 			// aapt resource value: 0x7f030004
-			public const int MainActivity = 2130903044;
+			public const int EditTeamPointsDialogFragment = 2130903044;
 			
 			// aapt resource value: 0x7f030005
-			public const int PasswordDialogFragment = 2130903045;
+			public const int MainActivity = 2130903045;
 			
 			// aapt resource value: 0x7f030006
-			public const int SetMealsDialogFragment = 2130903046;
+			public const int PasswordDialogFragment = 2130903046;
 			
 			// aapt resource value: 0x7f030007
-			public const int ViewIMActivity = 2130903047;
+			public const int SetMealsDialogFragment = 2130903047;
 			
 			// aapt resource value: 0x7f030008
-			public const int ViewIMRemindersTabFragment = 2130903048;
+			public const int ViewIMActivity = 2130903048;
 			
 			// aapt resource value: 0x7f030009
-			public const int ViewIMStandingsTabFragment = 2130903049;
+			public const int ViewIMRemindersTabFragment = 2130903049;
+			
+			// aapt resource value: 0x7f03000a
+			public const int ViewIMStandingsTabFragment = 2130903050;
 			
 			static Layout()
 			{

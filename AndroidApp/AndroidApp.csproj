@@ -74,6 +74,7 @@
     <Compile Include="Core\TeamItem.cs" />
     <Compile Include="Fragments\AddReminderDialogFragment.cs" />
     <Compile Include="Fragments\AddTeamDialogFragment.cs" />
+    <Compile Include="Fragments\EditTeamPointsDialogFragment.cs" />
     <Compile Include="Fragments\PasswordDialogFragment.cs" />
     <Compile Include="Fragments\SetMealsDialogFragment.cs" />
     <Compile Include="Fragments\UpdateReminderDialogFragment.cs" />
@@ -109,6 +110,9 @@
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\AddTeamDialogFragment.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\EditTeamPointsDialogFragment.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
   </ItemGroup>

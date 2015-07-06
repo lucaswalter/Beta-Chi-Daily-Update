@@ -110,7 +110,8 @@ namespace AndroidApp.Screens
             switch (menuItemName)
             {
                 case "Points":
-                    // TODO: Implement Edit Points Fragment
+                    CreateAndShowEditTeamPointsDialog(teamAdapter[info.Position]);
+                    UpdateTeamItem(teamAdapter[info.Position]);
                     return true;
                 case "Delete":
                     RemoveTeamItem(teamAdapter[info.Position]);
@@ -154,6 +155,18 @@ namespace AndroidApp.Screens
             }
         }
 
+        public async void UpdateTeamItem(TeamItem item)
+        {
+            try
+            {
+                await teamTable.UpdateAsync(item);
+            }
+            catch (Exception e)
+            {
+                CreateAndShowDialog(e, "Unable To Update Team");
+            }
+        }
+
         public async void RemoveTeamItem(TeamItem item)
         {
             try
@@ -178,6 +191,19 @@ namespace AndroidApp.Screens
             addTeamDialog.TeamAdapter = teamAdapter;
 
             addTeamDialog.Show(transaction, "addTeamDialog");
+        }
+
+        /** Edit Team Points Dialog **/
+
+        void CreateAndShowEditTeamPointsDialog(TeamItem team)
+        {
+            var transaction = FragmentManager.BeginTransaction();
+            var editTeamPointsDialog = new EditTeamPointsDialogFragment();
+
+            // Horrible Practice
+            editTeamPointsDialog.Team = team;
+
+            editTeamPointsDialog.Show(transaction, "editTeamPointsDialog");
         }
 
         /** Error Dialog **/
