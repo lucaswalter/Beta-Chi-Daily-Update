@@ -62,10 +62,11 @@ namespace AndroidApp.Adapters
             View view = convertView;
 
             if (view == null)
-                view = context.LayoutInflater.Inflate(Android.Resource.Layout.SimpleListItem2, null);
+                view = context.LayoutInflater.Inflate(Android.Resource.Layout.TwoLineListItem, null);
 
             // TODO: Create Custom View To Display Name And Points
             view.FindViewById<TextView>(Android.Resource.Id.Text1).Text = teams[position].TeamName;
+            view.FindViewById<TextView>(Android.Resource.Id.Text2).Text = teams[position].Points + " Points";
 
             return view;
         }
