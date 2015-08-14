@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <ListView
+        android:id="@+id/listViewEditIMStandings"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="469.6dp"
+        android:layout_marginBottom="8.5dp" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="-13dp">
+        <Button
+            android:id="@+id/buttonAddTeam"
+            android:text="Add Team"
+            android:textSize="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginTop="-2.5dp"
+            android:layout_marginBottom="-2.5dp" />
+        <Button
+            android:id="@+id/buttonSaveTeamChanges"
+            android:text="Save"
+            android:textSize="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginTop="-2.5dp"
+            android:layout_marginBottom="0.0dp" />
+    </LinearLayout>
+</LinearLayout>

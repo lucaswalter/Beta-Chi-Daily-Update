@@ -13,43 +13,43 @@ using AndroidApp.Core;
 
 namespace AndroidApp.Adapters
 {
-    public class ReminderAdapter : BaseAdapter<ReminderItem>
+    public class TeamAdapter : BaseAdapter<TeamItem>
     {
 
         private Activity context;
-        private List<ReminderItem> reminders = new List<ReminderItem>();
+        private List<TeamItem> teams = new List<TeamItem>();
         
-        public ReminderAdapter(Activity context)
+        public TeamAdapter(Activity context) : base()
         {
             this.context = context;
         }
 
-        public void Add(ReminderItem item)
+        public void Add(TeamItem item)
         {
-            reminders.Add(item);
+            teams.Add(item);
             NotifyDataSetChanged();
         }
 
         public void Clear()
         {
-            reminders.Clear();
+            teams.Clear();
             NotifyDataSetChanged();
         }
 
-        public void Remove(ReminderItem item)
+        public void Remove(TeamItem item)
         {
-            reminders.Remove(item);
+            teams.Remove(item);
             NotifyDataSetChanged();
         }
 
-        public override ReminderItem this[int position]
+        public override TeamItem this[int position]
         {
-            get { return reminders[position]; }
+            get { return teams[position]; }
         }
 
         public override int Count
         {
-            get { return reminders.Count; }
+            get { return teams.Count; }
         }
 
         public override long GetItemId(int position)
@@ -62,9 +62,11 @@ namespace AndroidApp.Adapters
             View view = convertView;
 
             if (view == null)
-                view = context.LayoutInflater.Inflate(Android.Resource.Layout.SimpleListItem2, null);
+                view = context.LayoutInflater.Inflate(Android.Resource.Layout.TwoLineListItem, null);
 
-            view.FindViewById<TextView>(Android.Resource.Id.Text1).Text = reminders[position].Text;
+            // TODO: Create Custom View To Display Name And Points
+            view.FindViewById<TextView>(Android.Resource.Id.Text1).Text = teams[position].TeamName;
+            view.FindViewById<TextView>(Android.Resource.Id.Text2).Text = teams[position].Points + " Points";
 
             return view;
         }

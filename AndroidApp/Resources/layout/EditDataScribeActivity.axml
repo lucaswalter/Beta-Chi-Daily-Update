@@ -17,13 +17,13 @@
         android:minWidth="25px"
         android:minHeight="25px"
         android:layout_width="match_parent"
-        android:layout_height="335.1dp"
+        android:layout_height="410.3dp"
         android:layout_marginBottom="8.5dp" />
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="-13dp">
+        android:layout_height="149.9dp"
+        android:layout_marginBottom="5dp">
         <Button
             android:id="@+id/buttonAddReminder"
             android:text="Add Reminder"
@@ -31,8 +31,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:layout_marginTop="-2.5dp"
-            android:layout_marginBottom="-2.5dp" />
+            android:layout_marginTop="-5dp"
+            android:layout_marginBottom="-5dp" />
         <Button
             android:id="@+id/buttonSetMeals"
             android:text="Set Meals"
@@ -40,8 +40,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:layout_marginTop="-2.5dp"
-            android:layout_marginBottom="-2.5dp" />
+            android:layout_marginTop="-5dp"
+            android:layout_marginBottom="-5dp" />
         <Button
             android:id="@+id/buttonSave"
             android:text="Save"
@@ -49,7 +49,6 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:layout_marginTop="-2.5dp"
-            android:layout_marginBottom="0.0dp" />
+            android:layout_marginTop="-5dp" />
     </LinearLayout>
 </LinearLayout>

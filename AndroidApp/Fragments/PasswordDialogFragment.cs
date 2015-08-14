@@ -64,7 +64,6 @@ namespace AndroidApp.Fragments
                     if (PasswordEditText.Text.Equals(Password))
                     {
                         // Launch New Activity
-                        Console.WriteLine("Edit Scribe Password Correct");
                         Intent editScribeActivity = new Intent(Application.Context, typeof(EditDataScribeActivity));
                         StartActivity(editScribeActivity);
                     }
@@ -81,8 +80,7 @@ namespace AndroidApp.Fragments
                     if (PasswordEditText.Text.Equals(Password))
                     {
                         // Launch New Activity
-                        Console.WriteLine("Edit IM Password Correct");
-                        Intent editIMActivity = new Intent(Application.Context, typeof(EditDataIMActivity));
+                        Intent editIMActivity = new Intent(Application.Context, typeof(EditDataIMStandingsActivity));
                         StartActivity(editIMActivity);
                     }
                     else

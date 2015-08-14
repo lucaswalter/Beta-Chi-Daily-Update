@@ -65,15 +65,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adapters\IMReminderAdapter.cs" />
+    <Compile Include="Adapters\TeamAdapter.cs" />
     <Compile Include="Adapters\ReminderAdapter.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Core\MealItem.cs" />
     <Compile Include="Core\ReminderItem.cs" />
+    <Compile Include="Core\TeamItem.cs" />
     <Compile Include="Fragments\AddReminderDialogFragment.cs" />
+    <Compile Include="Fragments\AddTeamDialogFragment.cs" />
+    <Compile Include="Fragments\EditTeamPointsDialogFragment.cs" />
     <Compile Include="Fragments\PasswordDialogFragment.cs" />
     <Compile Include="Fragments\SetMealsDialogFragment.cs" />
     <Compile Include="Fragments\UpdateReminderDialogFragment.cs" />
-    <Compile Include="Screens\EditDataIMActivity.cs" />
+    <Compile Include="Fragments\ViewIMRemindersTabFragment.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Fragments\ViewIMStandingsTabFragment.cs" />
+    <Compile Include="Screens\EditDataIMStandingsActivity.cs" />
     <Compile Include="Screens\EditDataScribeActivity.cs" />
     <Compile Include="Screens\MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
@@ -90,14 +99,22 @@
     <AndroidResource Include="Resources\layout\EditDataScribeActivity.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\EditDataIMActivity.axml">
-      <SubType>AndroidResource</SubType>
-    </AndroidResource>
     <AndroidResource Include="Resources\layout\ViewIMActivity.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\AddReminderDialogFragment.axml" />
     <AndroidResource Include="Resources\layout\SetMealsDialogFragment.axml" />
+    <AndroidResource Include="Resources\layout\ViewIMStandingsTabFragment.axml" />
+    <AndroidResource Include="Resources\layout\ViewIMRemindersTabFragment.axml" />
+    <AndroidResource Include="Resources\layout\EditDataIMStandingsActivity.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\AddTeamDialogFragment.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\EditTeamPointsDialogFragment.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
