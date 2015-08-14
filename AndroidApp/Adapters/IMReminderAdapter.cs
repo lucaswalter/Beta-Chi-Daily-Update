@@ -13,13 +13,13 @@ using AndroidApp.Core;
 
 namespace AndroidApp.Adapters
 {
-    public class ReminderAdapter : BaseAdapter<ReminderItem>
+    public class IMReminderAdapter : BaseAdapter<ReminderItem>
     {
 
         private Activity context;
         private List<ReminderItem> reminders = new List<ReminderItem>();
-        
-        public ReminderAdapter(Activity context)
+
+        public IMReminderAdapter(Activity context)
         {
             this.context = context;
         }

@@ -1,34 +1,19 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Util;
-using Android.Views;
 using Android.Widget;
 using AndroidApp.Adapters;
 using AndroidApp.Core;
-using Microsoft.WindowsAzure.MobileServices;
-
 
 namespace AndroidApp.Fragments
 {
-    public class AddReminderDialogFragment : DialogFragment
+    public class EditTeamPointsDialogFragment : DialogFragment
     {
-
-        // Probably Really Bad Practice
-        public IMobileServiceTable<ReminderItem> reminderTable;
-
         // Create Layout Properties
-        private EditText ReminderEditText;
+        private NumberPicker teamPointsNumberPicker;
 
-        public ReminderAdapter reminderAdapter;
-        public DateTime date;
-
+        // Horrible Practice
+        public TeamItem Team;
 
         public override Dialog OnCreateDialog(Bundle savedInstanceState)
         {
@@ -41,14 +26,14 @@ namespace AndroidApp.Fragments
             var inflator = Activity.LayoutInflater;
 
             // Inflate Layout For Password Dialog
-            var dialogView = inflator.Inflate(Resource.Layout.AddReminderDialogFragment, null);
+            var dialogView = inflator.Inflate(Resource.Layout.EditTeamPointsDialogFragment, null);
 
             // Initialize Properties
-            ReminderEditText = dialogView.FindViewById<EditText>(Resource.Id.editTextReminder);
+            teamPointsNumberPicker = dialogView.FindViewById<NumberPicker>(Resource.Id.numberPickerTeamPoints);
 
             // Set Positive & Negative Buttons
             builder.SetView(dialogView);
-            builder.SetPositiveButton("Add Reminder", HandlePositiveButtonClick);
+            builder.SetPositiveButton("Confirm", HandlePositiveButtonClick);
             builder.SetNegativeButton("Cancel", HandleNegativeButtonClick);
 
             // Build And Return Dialog
@@ -60,12 +45,8 @@ namespace AndroidApp.Fragments
         {
             var dialog = (AlertDialog)sender;
 
-            ReminderItem reminder = new ReminderItem();
+            Team.Points = teamPointsNumberPicker.Value;
 
-            reminder.Date = date;
-            reminder.Text = ReminderEditText.Text;
-            reminderAdapter.Add(reminder); 
-            
             dialog.Dismiss();
         }
 

@@ -17,18 +17,13 @@ using Microsoft.WindowsAzure.MobileServices;
 
 namespace AndroidApp.Fragments
 {
-    public class AddReminderDialogFragment : DialogFragment
+    public class AddTeamDialogFragment : DialogFragment
     {
-
-        // Probably Really Bad Practice
-        public IMobileServiceTable<ReminderItem> reminderTable;
-
         // Create Layout Properties
-        private EditText ReminderEditText;
+        private EditText teamNameEditText;
 
-        public ReminderAdapter reminderAdapter;
-        public DateTime date;
-
+        // Horrible Practice
+        public TeamAdapter TeamAdapter;
 
         public override Dialog OnCreateDialog(Bundle savedInstanceState)
         {
@@ -41,14 +36,14 @@ namespace AndroidApp.Fragments
             var inflator = Activity.LayoutInflater;
 
             // Inflate Layout For Password Dialog
-            var dialogView = inflator.Inflate(Resource.Layout.AddReminderDialogFragment, null);
+            var dialogView = inflator.Inflate(Resource.Layout.AddTeamDialogFragment, null);
 
             // Initialize Properties
-            ReminderEditText = dialogView.FindViewById<EditText>(Resource.Id.editTextReminder);
+            teamNameEditText = dialogView.FindViewById<EditText>(Resource.Id.editTextAddTeam);
 
             // Set Positive & Negative Buttons
             builder.SetView(dialogView);
-            builder.SetPositiveButton("Add Reminder", HandlePositiveButtonClick);
+            builder.SetPositiveButton("Add Team", HandlePositiveButtonClick);
             builder.SetNegativeButton("Cancel", HandleNegativeButtonClick);
 
             // Build And Return Dialog
@@ -60,12 +55,11 @@ namespace AndroidApp.Fragments
         {
             var dialog = (AlertDialog)sender;
 
-            ReminderItem reminder = new ReminderItem();
+            TeamItem team = new TeamItem();
+            team.TeamName = teamNameEditText.Text;
+            team.Points = -1;
+            TeamAdapter.Add(team);
 
-            reminder.Date = date;
-            reminder.Text = ReminderEditText.Text;
-            reminderAdapter.Add(reminder); 
-            
             dialog.Dismiss();
         }
 

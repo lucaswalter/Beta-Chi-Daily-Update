@@ -43,6 +43,7 @@ namespace AndroidApp.Screens
         // Meal Button
         private Button setMealButton;
 
+        // Meal Property
         private MealItem mealItem;
 
         // Save Button
