@@ -4,6 +4,7 @@ using Android.OS;
 using Android.Widget;
 using AndroidApp.Adapters;
 using AndroidApp.Core;
+using Parse;
 
 namespace AndroidApp.Fragments
 {
@@ -13,7 +14,7 @@ namespace AndroidApp.Fragments
         private NumberPicker teamPointsNumberPicker;
 
         // Horrible Practice
-        public TeamItem Team;
+        public ParseObject Team;
 
         public override Dialog OnCreateDialog(Bundle savedInstanceState)
         {
@@ -45,7 +46,7 @@ namespace AndroidApp.Fragments
         {
             var dialog = (AlertDialog)sender;
 
-            Team.Points = teamPointsNumberPicker.Value;
+            Team["Points"] = teamPointsNumberPicker.Value;
 
             dialog.Dismiss();
         }

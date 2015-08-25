@@ -10,21 +10,22 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using AndroidApp.Core;
+using Parse;
 
 namespace AndroidApp.Adapters
 {
-    public class TeamAdapter : BaseAdapter<TeamItem>
+    public class TeamAdapter : BaseAdapter<ParseObject>
     {
 
         private Activity context;
-        private List<TeamItem> teams = new List<TeamItem>();
+        private List<ParseObject> teams = new List<ParseObject>();
         
         public TeamAdapter(Activity context) : base()
         {
             this.context = context;
         }
 
-        public void Add(TeamItem item)
+        public void Add(ParseObject item)
         {
             teams.Add(item);
             NotifyDataSetChanged();
@@ -36,13 +37,13 @@ namespace AndroidApp.Adapters
             NotifyDataSetChanged();
         }
 
-        public void Remove(TeamItem item)
+        public void Remove(ParseObject item)
         {
             teams.Remove(item);
             NotifyDataSetChanged();
         }
 
-        public override TeamItem this[int position]
+        public override ParseObject this[int position]
         {
             get { return teams[position]; }
         }
@@ -65,8 +66,8 @@ namespace AndroidApp.Adapters
                 view = context.LayoutInflater.Inflate(Android.Resource.Layout.TwoLineListItem, null);
 
             // TODO: Create Custom View To Display Name And Points
-            view.FindViewById<TextView>(Android.Resource.Id.Text1).Text = teams[position].TeamName;
-            view.FindViewById<TextView>(Android.Resource.Id.Text2).Text = teams[position].Points + " Points";
+            view.FindViewById<TextView>(Android.Resource.Id.Text1).Text = teams[position].Get<string>("TeamName");
+            view.FindViewById<TextView>(Android.Resource.Id.Text2).Text = teams[position].Get<int>("Points") + " Points";
 
             return view;
         }

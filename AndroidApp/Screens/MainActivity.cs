@@ -7,23 +7,20 @@ using Android.Widget;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Android.Content;
-using Android.Provider;
 using AndroidApp.Adapters;
 using AndroidApp.Core;
 using AndroidApp.Fragments;
-using Microsoft.WindowsAzure.MobileServices;
+using Parse;
 
 namespace AndroidApp.Screens
 {
     [Activity(Theme = "@style/Theme.BetaChiActionBar")]
     public class MainActivity : Activity
     {
-        // Mobile Service Client Reference
-        private MobileServiceClient client;
-
-        // Mobile Service Tables Used To Access Data
-        private IMobileServiceTable<ReminderItem> reminderTable;
-        private IMobileServiceTable<MealItem> mealTable;
+        // Parse Queries To Retrieve Entire Table
+        // TODO: Possibly Optimize Or Use Job To Cleanup Data
+        private ParseQuery<ParseObject> reminderTable;
+        private ParseQuery<ParseObject> mealTable;
 
         // Adapter To Sync Reminders With The List
         private ReminderAdapter reminderAdapter;
@@ -38,7 +35,7 @@ namespace AndroidApp.Screens
         private TextView dateTextView;
 
         // Meal Item
-        private MealItem mealItem;
+        private ParseObject mealItem;
 
         // Meal Text Views
         private TextView breakfastTextView;
@@ -106,18 +103,13 @@ namespace AndroidApp.Screens
                 callDialog.Show();
             };
 
-            // Connect To Azure Mobile Service
+            // Retrieve Data From Parse Database
             try
             {
-                // Initialize
-                CurrentPlatform.Init();
-
-                // Create Mobile Service Client Instance
-                client = new MobileServiceClient(Constants.APPLICATION_URL, Constants.APPLICATION_KEY);
-
                 // Retrieve Tables
-                reminderTable = client.GetTable<ReminderItem>();
-                mealTable = client.GetTable<MealItem>();
+                reminderTable = ParseObject.GetQuery("Reminder");
+                mealTable = ParseObject.GetQuery("Meal");
+             
 
                 // Load Data From The Mobile Service
                 await RefreshRemindersFromTableAsync();
@@ -142,15 +134,19 @@ namespace AndroidApp.Screens
             try
             {
                 // Get Today's Reminders
-                var list = await reminderTable.Where(x => x.Date.Day == DateTime.Today.Day).ToListAsync();
-
+                var query = reminderTable;//.WhereEqualTo("Date", DateTime.Today);
+                var list = await query.FindAsync();
+              
                 // Clear Reminder Adapter
                 reminderAdapter.Clear();
 
                 // Add Reminders
-                foreach (ReminderItem current in list)
-                    reminderAdapter.Add(current);
-
+                foreach (var current in list)
+                {
+                    var date = current.Get<DateTime>("Date");
+                    if (date == DateTime.Today)
+                        reminderAdapter.Add(current);
+                }
             }
             catch (Exception e)
             {
@@ -162,19 +158,19 @@ namespace AndroidApp.Screens
         {
             try
             {
-                // Retrieve MealItem For The Day
-                var list = await mealTable.Where(x => x.Date.Day == date.Day).ToListAsync();
+                // Retrieves Today's Meals
+                var query = mealTable.WhereEqualTo("Date", DateTime.Today.Day);
+                var list = await query.FindAsync();
                 var meals = list.FirstOrDefault();
 
                 if (meals != null)
                 {
-
                     mealItem = meals;
 
                     // Update UI With Meal Text
-                    breakfastTextView.Text = mealItem.Breakfast;
-                    lunchTextView.Text = mealItem.Lunch;
-                    dinnerTextView.Text = mealItem.Dinner;
+                    breakfastTextView.Text = mealItem.Get<string>("Breakfast");
+                    lunchTextView.Text = mealItem.Get<string>("Lunch");
+                    dinnerTextView.Text = mealItem.Get<string>("Dinner");
                 }
             }
             catch (Exception e)

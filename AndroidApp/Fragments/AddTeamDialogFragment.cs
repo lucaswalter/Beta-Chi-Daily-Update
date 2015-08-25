@@ -13,6 +13,7 @@ using Android.Widget;
 using AndroidApp.Adapters;
 using AndroidApp.Core;
 using Microsoft.WindowsAzure.MobileServices;
+using Parse;
 
 
 namespace AndroidApp.Fragments
@@ -55,9 +56,10 @@ namespace AndroidApp.Fragments
         {
             var dialog = (AlertDialog)sender;
 
-            TeamItem team = new TeamItem();
-            team.TeamName = teamNameEditText.Text;
-            team.Points = -1;
+            ParseObject team = new ParseObject("Team");
+
+            team["TeamName"] = teamNameEditText.Text;
+            team["Points"] = -1;
             TeamAdapter.Add(team);
 
             dialog.Dismiss();
