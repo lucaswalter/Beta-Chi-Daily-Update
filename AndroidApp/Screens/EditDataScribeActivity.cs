@@ -187,19 +187,20 @@ namespace AndroidApp.Screens
             try
             {
                 // Retrieves Today's Meals
-                var query = mealTable.WhereEqualTo("Date", DateTime.Today.Day);
+                var query = mealTable;
                 var list = await query.FindAsync();
-                var meals = list.FirstOrDefault();
 
-                if (meals != null)
+                foreach (var current in list)
                 {
-                    // Set Meal Item
-                    mealItem = meals;
+                    var currentDate = current.Get<DateTime>("Date");
+                    if (date == currentDate)
+                        mealItem = current;
                 }
-                else
+
+                if (mealItem == null)
                 {
                     var newMealItem = new ParseObject("Meal");
-                    
+
                     newMealItem["Breakfast"] = Constants.NO_MEAL_SET;
                     newMealItem["Lunch"] = Constants.NO_MEAL_SET;
                     newMealItem["Dinner"] = Constants.NO_MEAL_SET;

@@ -159,18 +159,20 @@ namespace AndroidApp.Screens
             try
             {
                 // Retrieves Today's Meals
-                var query = mealTable.WhereEqualTo("Date", DateTime.Today.Day);
+                var query = mealTable;
                 var list = await query.FindAsync();
-                var meals = list.FirstOrDefault();
 
-                if (meals != null)
+                foreach (var current in list)
                 {
-                    mealItem = meals;
+                    var currentDate = current.Get<DateTime>("Date");
 
-                    // Update UI With Meal Text
-                    breakfastTextView.Text = mealItem.Get<string>("Breakfast");
-                    lunchTextView.Text = mealItem.Get<string>("Lunch");
-                    dinnerTextView.Text = mealItem.Get<string>("Dinner");
+                    if (date == currentDate)
+                    {
+                        mealItem = current;
+                        breakfastTextView.Text = mealItem.Get<string>("Breakfast");
+                        lunchTextView.Text = mealItem.Get<string>("Lunch");
+                        dinnerTextView.Text = mealItem.Get<string>("Dinner");
+                    }                      
                 }
             }
             catch (Exception e)

@@ -47,9 +47,9 @@ namespace AndroidApp.Fragments
             dinnerEditText = dialogView.FindViewById<EditText>(Resource.Id.editTextDinner);
 
             // Set Text To Current Meal Values
-            breakfastEditText.Text = MealItem.Get<string>("Breakfast");
-            lunchEditText.Text = MealItem.Get<string>("Lunch");
-            dinnerEditText.Text = MealItem.Get<string>("Dinner");
+            breakfastEditText.Hint = MealItem.Get<string>("Breakfast");
+            lunchEditText.Hint = MealItem.Get<string>("Lunch");
+            dinnerEditText.Hint = MealItem.Get<string>("Dinner");
 
             // Set Positive & Negative Buttons
             builder.SetView(dialogView);
@@ -66,9 +66,14 @@ namespace AndroidApp.Fragments
         {
             var dialog = (AlertDialog)sender;
 
-            MealItem["Breakfast"] = breakfastEditText.Text;
-            MealItem["Lunch"] = lunchEditText.Text;
-            MealItem["Dinner"] = dinnerEditText.Text;
+            if (breakfastEditText.Text != String.Empty)
+                MealItem["Breakfast"] = breakfastEditText.Text;
+
+            if (lunchEditText.Text != String.Empty)
+                MealItem["Lunch"] = lunchEditText.Text;
+
+            if (dinnerEditText.Text != String.Empty)
+                MealItem["Dinner"] = dinnerEditText.Text;
 
             // TODO: Implement IsFormalDinner With Checkbox
             MealItem["IsFormalDinner"] = false;
