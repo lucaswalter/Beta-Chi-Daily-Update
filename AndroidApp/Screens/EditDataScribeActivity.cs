@@ -93,8 +93,8 @@ namespace AndroidApp.Screens
                 // Save Reminders
                 for (int i = 0; i < reminderAdapter.Count; i++)
                 {
-                    if (reminderAdapter[i]["Id"] == null)
-                        AddReminderItem(reminderAdapter[i]);
+                    var reminder = reminderAdapter[i];
+                    AddReminderItem(reminder);
                 }
 
                 // Save Meal Item
@@ -102,19 +102,18 @@ namespace AndroidApp.Screens
 
             };
 
-            // Connect To Azure Mobile Service
+            // Connect To Parse Backend
             try
             {
                 // Retrieve Tables
                 reminderTable = ParseObject.GetQuery("Reminder");
                 mealTable = ParseObject.GetQuery("Meal");
 
-                // Load The Reminders From The Mobile Service
+                // Load The Reminders From Parse
                 await RefreshRemindersFromTableAsync(DateTime.Today);
 
-                // Load Meals From The Mobil Service
+                // Load Meals From Parse
                 await RefreshMealsFromTableAsync(DateTime.Today);
-
             }
             catch (Exception e)
             {
@@ -164,14 +163,18 @@ namespace AndroidApp.Screens
         {
             try
             {
-                var query = reminderTable.WhereEqualTo("Date", DateTime.Today.Day);
+                var query = reminderTable;
                 var list = await query.FindAsync();
 
                 reminderAdapter.Clear();
 
-                foreach (ParseObject current in list)
-                    reminderAdapter.Add(current);
-
+                // Add Reminders
+                foreach (var current in list)
+                {
+                    var currentDate = current.Get<DateTime>("Date");
+                    if (currentDate == date)
+                        reminderAdapter.Add(current);
+                }
             }
             catch (Exception e)
             {

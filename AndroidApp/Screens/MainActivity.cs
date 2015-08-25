@@ -134,7 +134,7 @@ namespace AndroidApp.Screens
             try
             {
                 // Get Today's Reminders
-                var query = reminderTable;//.WhereEqualTo("Date", DateTime.Today);
+                var query = reminderTable;
                 var list = await query.FindAsync();
               
                 // Clear Reminder Adapter
