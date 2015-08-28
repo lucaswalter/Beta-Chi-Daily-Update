@@ -31,6 +31,8 @@ namespace AndroidApp.Fragments
 
             // Initialize Properties
             teamPointsNumberPicker = dialogView.FindViewById<NumberPicker>(Resource.Id.numberPickerTeamPoints);
+            teamPointsNumberPicker.MinValue = 0;
+            teamPointsNumberPicker.MaxValue = 500;
 
             // Set Positive & Negative Buttons
             builder.SetView(dialogView);

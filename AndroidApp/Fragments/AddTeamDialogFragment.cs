@@ -59,9 +59,9 @@ namespace AndroidApp.Fragments
             ParseObject team = new ParseObject("Team");
 
             team["TeamName"] = teamNameEditText.Text;
-            team["Points"] = -1;
-            TeamAdapter.Add(team);
+            team["Points"] = 0;
 
+            TeamAdapter.Add(team);
             dialog.Dismiss();
         }
 

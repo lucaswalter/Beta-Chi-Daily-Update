@@ -54,21 +54,15 @@ namespace AndroidApp.Screens
             {
                 for (int i = 0; i < teamAdapter.Count; i++)
                 {
-
-                    if (teamAdapter[i].Get<int>("Points") == -1)
-                    {
-                        teamAdapter[i]["Points"] = 0;
-                        AddTeamItem(teamAdapter[i]);                      
-                    }                     
+                    AddTeamItem(teamAdapter[i]);
                 }
 
                 RefreshTeams();
             };
 
-            // Connect To Azure Mobile Service
+            // Connect Parse Backend
             try
             {
-
                 // Retrieve Tables
                 teamTable = ParseObject.GetQuery("Team");
 
@@ -122,7 +116,7 @@ namespace AndroidApp.Screens
             try
             {
                 // Get Today's Reminders
-                var query = teamTable.WhereEqualTo("Date", DateTime.Today.Day);
+                var query = teamTable;
                 var list = await query.FindAsync();
 
                 // Clear Reminder Adapter
@@ -201,6 +195,7 @@ namespace AndroidApp.Screens
             var editTeamPointsDialog = new EditTeamPointsDialogFragment();
 
             // Horrible Practice
+            // TODO: Switch To Team Adapter
             editTeamPointsDialog.Team = team;
             editTeamPointsDialog.Show(transaction, "editTeamPointsDialog");
         }
