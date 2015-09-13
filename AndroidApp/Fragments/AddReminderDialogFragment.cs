@@ -12,7 +12,6 @@ using Android.Views;
 using Android.Widget;
 using AndroidApp.Adapters;
 using AndroidApp.Core;
-using Microsoft.WindowsAzure.MobileServices;
 using Parse;
 
 

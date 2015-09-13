@@ -7,7 +7,6 @@ using Android.Widget;
 using AndroidApp.Adapters;
 using AndroidApp.Core;
 using AndroidApp.Fragments;
-using Microsoft.WindowsAzure.MobileServices;
 using Parse;
 
 namespace AndroidApp.Screens
