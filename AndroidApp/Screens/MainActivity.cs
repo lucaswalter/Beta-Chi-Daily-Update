@@ -21,6 +21,7 @@ namespace AndroidApp.Screens
         // TODO: Possibly Optimize Or Use Job To Cleanup Data
         private ParseQuery<ParseObject> reminderTable;
         private ParseQuery<ParseObject> mealTable;
+        private ParseQuery<ParseObject> passwordTable; 
 
         // Adapter To Sync Reminders With The List
         private ReminderAdapter reminderAdapter;
@@ -36,6 +37,10 @@ namespace AndroidApp.Screens
 
         // Meal Item
         private ParseObject mealItem;
+
+        // Passwords
+        private ParseObject passwordIM;
+        private ParseObject passwordScribe;
 
         // Meal Text Views
         private TextView breakfastTextView;
@@ -110,11 +115,10 @@ namespace AndroidApp.Screens
                 reminderTable = ParseObject.GetQuery("Reminder");
                 mealTable = ParseObject.GetQuery("Meal");
              
-
                 // Load Data From The Mobile Service
                 await RefreshRemindersFromTableAsync();
                 await RefreshMealsFromTableAsync(DateTime.Today);
-
+                await GetPasswords();
             }
             catch (Exception e)
             {
@@ -127,6 +131,7 @@ namespace AndroidApp.Screens
         {
             await RefreshRemindersFromTableAsync();
             await RefreshMealsFromTableAsync(DateTime.Today);
+            await GetPasswords();
         }
 
         async Task RefreshRemindersFromTableAsync()
@@ -190,9 +195,6 @@ namespace AndroidApp.Screens
 
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
-            // TODO: Remove Debugging Toast
-            Toast.MakeText(this, "Menu Pressed: " + item.TitleFormatted, ToastLength.Short).Show();
-
             switch (item.ItemId)
             {
                 case Resource.Id.menu_RefreshReminders:
@@ -204,15 +206,24 @@ namespace AndroidApp.Screens
                     return true;
                 case Resource.Id.menu_EditScribeData:
                     Console.WriteLine("Show Scribe Password Dialog");
-                    CreateAndShowPasswordDialog(Constants.EDIT_SCRIBE_DATA, "scribe");
+                    CreateAndShowPasswordDialog(Constants.EDIT_SCRIBE_DATA, passwordScribe.Get<string>("Password"));
                     return true;
                 case Resource.Id.menu_EditIMData:
                     Console.WriteLine("Show IM Password Dialog");
-                    CreateAndShowPasswordDialog(Constants.EDIT_IM_DATA, "im");
+                    CreateAndShowPasswordDialog(Constants.EDIT_IM_DATA, passwordIM.Get<string>("Password"));
                     return true;
             }
 
             return base.OnOptionsItemSelected(item);
+        }
+
+        async Task GetPasswords()
+        {
+            // Get Scribe & IM Passwords
+            passwordTable = ParseObject.GetQuery("Passwords");
+
+            passwordScribe = await passwordTable.GetAsync("V76ZU0tKFY");
+            passwordIM = await passwordTable.GetAsync("Mo5inlpENL");
         }
 
         /** Password Dialog **/
