@@ -103,6 +103,9 @@ namespace AndroidApp
 			// aapt resource value: 0x7f080008
 			public const int buttonSetMeals = 2131230728;
 			
+			// aapt resource value: 0x7f08001a
+			public const int buttonWIP = 2131230746;
+			
 			// aapt resource value: 0x7f08000b
 			public const int dateTextView = 2131230731;
 			
@@ -135,9 +138,6 @@ namespace AndroidApp
 			
 			// aapt resource value: 0x7f080019
 			public const int listViewIMReminders = 2131230745;
-			
-			// aapt resource value: 0x7f08001a
-			public const int listViewIMStandings = 2131230746;
 			
 			// aapt resource value: 0x7f08000d
 			public const int listViewRemindersMain = 2131230733;
