@@ -1,4 +1,5 @@
 using Android.App;
+using Android.Content;
 using Android.OS;
 using Java.Lang;
 
@@ -11,7 +12,16 @@ namespace AndroidApp.Screens
         {
             base.OnCreate(bundle);
 
-            StartActivity(typeof (MainActivity));
+            // Retrieve Setting For Authenticated Users
+            //retreive 
+            var prefs = Application.Context.GetSharedPreferences("BetaChi", FileCreationMode.Private);
+            var userAuth = prefs.GetBoolean("UserAuth", false);
+
+            // Lauch Correct Activity
+            if (userAuth)
+                StartActivity(typeof (MainActivity));
+            else
+                StartActivity(typeof (AuthenticationActivity));
         }
     }
 }
