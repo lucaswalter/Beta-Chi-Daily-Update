@@ -5,7 +5,7 @@ using Parse;
 
 namespace ParseAndroidStarterProject
 {
-    [Application]
+    [Application(Debuggable = false)]
     public class App : Application
     {
         public App(IntPtr javaReference, JniHandleOwnership transfer) : base(javaReference, transfer)
