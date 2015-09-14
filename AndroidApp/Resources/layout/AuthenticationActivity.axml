@@ -17,6 +17,6 @@
     <Button
         android:text="Continue"
         android:layout_width="match_parent"
-        android:layout_height="70.5dp"
+        android:layout_height="85.0dp"
         android:id="@+id/buttonVerify" />
 </LinearLayout>

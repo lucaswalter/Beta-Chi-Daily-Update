@@ -8,12 +8,14 @@ using Android.App;
 using Android.Content;
 using Android.Graphics;
 using Android.OS;
+using Android.Provider;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using AndroidApp.Adapters;
 using AndroidApp.Core;
 using AndroidApp.Fragments;
+using Java.Lang;
 using Parse;
 
 namespace AndroidApp.Screens
@@ -21,9 +23,6 @@ namespace AndroidApp.Screens
     [Activity(Theme = "@style/Theme.BetaChiActionBar")]
     public class AuthenticationActivity : Activity
     {
-        // Parse Table For All Users
-        private ParseQuery<ParseObject> userTable;
-
         // Email Edit Text
         private EditText editTextEmail;
 
@@ -43,6 +42,41 @@ namespace AndroidApp.Screens
             editTextEmail.Hint = "Enter Your School Email Address";
 
             buttonVerify = FindViewById<Button>(Resource.Id.buttonVerify);
+            buttonVerify.Click += (object sender, EventArgs e) =>
+            {
+                // Attempt To Authenticate The User By Email
+                VerifyUser();
+            };
+        }
+
+        public async void VerifyUser()
+        {
+            // Retrieve Valid Users
+            var query = ParseObject.GetQuery("Members").Limit(1000);
+
+            var users = await query.FindAsync();
+
+            var bIsValid = false;
+
+            // Check If Current User Is Authenticated
+            foreach (ParseObject current in users)
+            {
+                var email = current.Get<string>("Email");
+
+                if (email.ToLower().Trim() == editTextEmail.Text.ToLower().Trim())
+                {
+                    bIsValid = true;
+                    Authenticate();
+                }              
+            }
+
+            if (!bIsValid)
+                Toast.MakeText(this, "Insufficient Permissions", ToastLength.Long).Show();
+        }
+
+        public void Authenticate()
+        {
+            StartActivity(typeof(MainActivity));
         }
     }
 }

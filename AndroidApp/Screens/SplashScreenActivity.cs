@@ -9,8 +9,10 @@ namespace AndroidApp.Screens
     {
         protected override void OnCreate(Bundle bundle)
         {
-            base.OnCreate(bundle);
+            base.OnCreate(bundle);       
 
+
+            // TODO: Check Setting
             StartActivity(typeof (AuthenticationActivity));
         }
     }
