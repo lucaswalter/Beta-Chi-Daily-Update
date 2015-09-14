@@ -99,7 +99,7 @@ namespace AndroidApp.Screens
                 {
                     // Create Intent To Dial Phone
                     var callIntent = new Intent(Intent.ActionCall);
-                    callIntent.SetData(Android.Net.Uri.Parse("tel:8168309808")); // TODO: Change Number
+                    callIntent.SetData(Android.Net.Uri.Parse("tel:5732028274")); 
                     StartActivity(callIntent);
                 });
 
