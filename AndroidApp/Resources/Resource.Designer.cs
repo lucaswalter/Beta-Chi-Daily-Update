@@ -103,11 +103,14 @@ namespace AndroidApp
 			// aapt resource value: 0x7f080008
 			public const int buttonSetMeals = 2131230728;
 			
-			// aapt resource value: 0x7f08001a
-			public const int buttonWIP = 2131230746;
+			// aapt resource value: 0x7f08001b
+			public const int buttonWIP = 2131230747;
 			
 			// aapt resource value: 0x7f08000b
 			public const int dateTextView = 2131230731;
+			
+			// aapt resource value: 0x7f080019
+			public const int dateTextViewIMTab = 2131230745;
 			
 			// aapt resource value: 0x7f080011
 			public const int dinnerTextView = 2131230737;
@@ -136,8 +139,8 @@ namespace AndroidApp
 			// aapt resource value: 0x7f080002
 			public const int listViewEditIMStandings = 2131230722;
 			
-			// aapt resource value: 0x7f080019
-			public const int listViewIMReminders = 2131230745;
+			// aapt resource value: 0x7f08001a
+			public const int listViewIMReminders = 2131230746;
 			
 			// aapt resource value: 0x7f08000d
 			public const int listViewRemindersMain = 2131230733;
@@ -154,17 +157,17 @@ namespace AndroidApp
 			// aapt resource value: 0x7f08000e
 			public const int mealTextView = 2131230734;
 			
+			// aapt resource value: 0x7f08001f
+			public const int menu_EditIMData = 2131230751;
+			
 			// aapt resource value: 0x7f08001e
-			public const int menu_EditIMData = 2131230750;
-			
-			// aapt resource value: 0x7f08001d
-			public const int menu_EditScribeData = 2131230749;
-			
-			// aapt resource value: 0x7f08001b
-			public const int menu_RefreshReminders = 2131230747;
+			public const int menu_EditScribeData = 2131230750;
 			
 			// aapt resource value: 0x7f08001c
-			public const int menu_View_IM = 2131230748;
+			public const int menu_RefreshReminders = 2131230748;
+			
+			// aapt resource value: 0x7f08001d
+			public const int menu_View_IM = 2131230749;
 			
 			// aapt resource value: 0x7f08000a
 			public const int numberPickerTeamPoints = 2131230730;

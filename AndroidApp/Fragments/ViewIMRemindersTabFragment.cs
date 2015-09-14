@@ -14,15 +14,23 @@ namespace AndroidApp.Resources.layout
         // IM Reminder Table
         private ParseQuery<ParseObject> reminderTable;
 
+        // Date View
+        private TextView dateTextView;
+
+        // IM Reminder List
         private ListView reminderListView;
         private IMReminderAdapter reminderAdapter;
 
         public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            
+
             // Create Fragment View
             var view = inflater.Inflate(Resource.Layout.ViewIMRemindersTabFragment, container, false);
+
+            // Set Date Text View
+            dateTextView = view.FindViewById<TextView>(Resource.Id.dateTextViewIMTab);
+            dateTextView.Text = DateTime.Today.ToShortDateString();
 
             // Create Adapter To Bind The Reminder Items To The View
             reminderAdapter = new IMReminderAdapter(this.Activity);
@@ -45,12 +53,6 @@ namespace AndroidApp.Resources.layout
 
             return view;
         }
-
-        /*public async override void OnResume()
-        {
-            await RefreshRemindersFromTableAsync();
-            base.OnResume();
-        }*/
 
         /** Retrieve IM Reminders **/
         async public void RefreshReminders()
