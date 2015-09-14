@@ -76,6 +76,13 @@ namespace AndroidApp.Screens
 
         public void Authenticate()
         {
+            // Create User Setting
+            var prefs = Application.Context.GetSharedPreferences("BetaChi", FileCreationMode.Private);
+            var prefEditor = prefs.Edit();
+            prefEditor.PutBoolean("UserAuth", true);
+            prefEditor.Commit();
+
+            // Launch Main Activity
             StartActivity(typeof(MainActivity));
         }
     }
