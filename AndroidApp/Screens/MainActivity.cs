@@ -7,23 +7,21 @@ using Android.Widget;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Android.Content;
-using Android.Provider;
 using AndroidApp.Adapters;
 using AndroidApp.Core;
 using AndroidApp.Fragments;
-using Microsoft.WindowsAzure.MobileServices;
+using Parse;
 
 namespace AndroidApp.Screens
 {
     [Activity(Theme = "@style/Theme.BetaChiActionBar")]
     public class MainActivity : Activity
     {
-        // Mobile Service Client Reference
-        private MobileServiceClient client;
-
-        // Mobile Service Tables Used To Access Data
-        private IMobileServiceTable<ReminderItem> reminderTable;
-        private IMobileServiceTable<MealItem> mealTable;
+        // Parse Queries To Retrieve Entire Table
+        // TODO: Possibly Optimize Or Use Job To Cleanup Data
+        private ParseQuery<ParseObject> reminderTable;
+        private ParseQuery<ParseObject> mealTable;
+        private ParseQuery<ParseObject> passwordTable; 
 
         // Adapter To Sync Reminders With The List
         private ReminderAdapter reminderAdapter;
@@ -38,7 +36,11 @@ namespace AndroidApp.Screens
         private TextView dateTextView;
 
         // Meal Item
-        private MealItem mealItem;
+        private ParseObject mealItem;
+
+        // Passwords
+        private ParseObject passwordIM;
+        private ParseObject passwordScribe;
 
         // Meal Text Views
         private TextView breakfastTextView;
@@ -97,7 +99,7 @@ namespace AndroidApp.Screens
                 {
                     // Create Intent To Dial Phone
                     var callIntent = new Intent(Intent.ActionCall);
-                    callIntent.SetData(Android.Net.Uri.Parse("tel:8168309808")); // TODO: Change Number
+                    callIntent.SetData(Android.Net.Uri.Parse("tel:5732028274")); 
                     StartActivity(callIntent);
                 });
 
@@ -106,23 +108,17 @@ namespace AndroidApp.Screens
                 callDialog.Show();
             };
 
-            // Connect To Azure Mobile Service
+            // Retrieve Data From Parse Database
             try
             {
-                // Initialize
-                CurrentPlatform.Init();
-
-                // Create Mobile Service Client Instance
-                client = new MobileServiceClient(Constants.APPLICATION_URL, Constants.APPLICATION_KEY);
-
                 // Retrieve Tables
-                reminderTable = client.GetTable<ReminderItem>();
-                mealTable = client.GetTable<MealItem>();
-
+                reminderTable = ParseObject.GetQuery("Reminder");
+                mealTable = ParseObject.GetQuery("Meal");
+             
                 // Load Data From The Mobile Service
                 await RefreshRemindersFromTableAsync();
                 await RefreshMealsFromTableAsync(DateTime.Today);
-
+                await GetPasswords();
             }
             catch (Exception e)
             {
@@ -135,6 +131,7 @@ namespace AndroidApp.Screens
         {
             await RefreshRemindersFromTableAsync();
             await RefreshMealsFromTableAsync(DateTime.Today);
+            await GetPasswords();
         }
 
         async Task RefreshRemindersFromTableAsync()
@@ -142,15 +139,19 @@ namespace AndroidApp.Screens
             try
             {
                 // Get Today's Reminders
-                var list = await reminderTable.Where(x => x.Date.Day == DateTime.Today.Day).ToListAsync();
-
+                var query = reminderTable;
+                var list = await query.FindAsync();
+              
                 // Clear Reminder Adapter
                 reminderAdapter.Clear();
 
                 // Add Reminders
-                foreach (ReminderItem current in list)
-                    reminderAdapter.Add(current);
-
+                foreach (var current in list)
+                {
+                    var date = current.Get<DateTime>("Date");
+                    if (date == DateTime.Today)
+                        reminderAdapter.Add(current);
+                }
             }
             catch (Exception e)
             {
@@ -162,19 +163,21 @@ namespace AndroidApp.Screens
         {
             try
             {
-                // Retrieve MealItem For The Day
-                var list = await mealTable.Where(x => x.Date.Day == date.Day).ToListAsync();
-                var meals = list.FirstOrDefault();
+                // Retrieves Today's Meals
+                var query = mealTable;
+                var list = await query.FindAsync();
 
-                if (meals != null)
+                foreach (var current in list)
                 {
+                    var currentDate = current.Get<DateTime>("Date");
 
-                    mealItem = meals;
-
-                    // Update UI With Meal Text
-                    breakfastTextView.Text = mealItem.Breakfast;
-                    lunchTextView.Text = mealItem.Lunch;
-                    dinnerTextView.Text = mealItem.Dinner;
+                    if (date == currentDate)
+                    {
+                        mealItem = current;
+                        breakfastTextView.Text = mealItem.Get<string>("Breakfast");
+                        lunchTextView.Text = mealItem.Get<string>("Lunch");
+                        dinnerTextView.Text = mealItem.Get<string>("Dinner");
+                    }                      
                 }
             }
             catch (Exception e)
@@ -192,9 +195,6 @@ namespace AndroidApp.Screens
 
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
-            // TODO: Remove Debugging Toast
-            Toast.MakeText(this, "Menu Pressed: " + item.TitleFormatted, ToastLength.Short).Show();
-
             switch (item.ItemId)
             {
                 case Resource.Id.menu_RefreshReminders:
@@ -206,15 +206,24 @@ namespace AndroidApp.Screens
                     return true;
                 case Resource.Id.menu_EditScribeData:
                     Console.WriteLine("Show Scribe Password Dialog");
-                    CreateAndShowPasswordDialog(Constants.EDIT_SCRIBE_DATA, "scribe");
+                    CreateAndShowPasswordDialog(Constants.EDIT_SCRIBE_DATA, passwordScribe.Get<string>("Password"));
                     return true;
                 case Resource.Id.menu_EditIMData:
                     Console.WriteLine("Show IM Password Dialog");
-                    CreateAndShowPasswordDialog(Constants.EDIT_IM_DATA, "im");
+                    CreateAndShowPasswordDialog(Constants.EDIT_IM_DATA, passwordIM.Get<string>("Password"));
                     return true;
             }
 
             return base.OnOptionsItemSelected(item);
+        }
+
+        async Task GetPasswords()
+        {
+            // Get Scribe & IM Passwords
+            passwordTable = ParseObject.GetQuery("Passwords");
+
+            passwordScribe = await passwordTable.GetAsync("V76ZU0tKFY");
+            passwordIM = await passwordTable.GetAsync("Mo5inlpENL");
         }
 
         /** Password Dialog **/

@@ -5,16 +5,10 @@
     android:layout_height="fill_parent"
     android:minWidth="25px"
     android:minHeight="25px">
-<!-- <ListView
+    <FrameLayout
         android:minWidth="25px"
         android:minHeight="25px"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/listViewIMStandings" /> -->
-    <Button
-        android:text="Work In Progress"
-        android:layout_width="match_parent"
-        android:layout_height="124.5dp"
-        android:id="@+id/buttonWIP"
-        android:textSize="25dp" />
+        android:id="@+id/content" />
 </LinearLayout>

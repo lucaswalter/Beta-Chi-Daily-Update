@@ -10,21 +10,22 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using AndroidApp.Core;
+using Parse;
 
 namespace AndroidApp.Adapters
 {
-    public class IMReminderAdapter : BaseAdapter<ReminderItem>
+    public class IMReminderAdapter : BaseAdapter<ParseObject>
     {
 
         private Activity context;
-        private List<ReminderItem> reminders = new List<ReminderItem>();
+        private List<ParseObject> reminders = new List<ParseObject>();
 
         public IMReminderAdapter(Activity context)
         {
             this.context = context;
         }
 
-        public void Add(ReminderItem item)
+        public void Add(ParseObject item)
         {
             reminders.Add(item);
             NotifyDataSetChanged();
@@ -36,13 +37,13 @@ namespace AndroidApp.Adapters
             NotifyDataSetChanged();
         }
 
-        public void Remove(ReminderItem item)
+        public void Remove(ParseObject item)
         {
             reminders.Remove(item);
             NotifyDataSetChanged();
         }
 
-        public override ReminderItem this[int position]
+        public override ParseObject this[int position]
         {
             get { return reminders[position]; }
         }
@@ -64,7 +65,7 @@ namespace AndroidApp.Adapters
             if (view == null)
                 view = context.LayoutInflater.Inflate(Android.Resource.Layout.SimpleListItem2, null);
 
-            view.FindViewById<TextView>(Android.Resource.Id.Text1).Text = reminders[position].Text;
+            view.FindViewById<TextView>(Android.Resource.Id.Text1).Text = reminders[position].Get<string>("Text");
 
             return view;
         }

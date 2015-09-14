@@ -12,6 +12,7 @@ using Android.Views;
 using Android.Widget;
 using AndroidApp.Adapters;
 using AndroidApp.Core;
+using Parse;
 
 namespace AndroidApp.Fragments
 {
@@ -54,10 +55,10 @@ namespace AndroidApp.Fragments
         {
             var dialog = (AlertDialog)sender;
 
-            ReminderItem reminder = new ReminderItem();
+            ParseObject reminder = new ParseObject("Reminder");
 
-            reminder.Date = date;
-            reminder.Text = ReminderEditText.Text;
+            reminder["Date"] = date;
+            reminder["Text"] = ReminderEditText.Text;
 
             reminderAdapter.Add(reminder);
 

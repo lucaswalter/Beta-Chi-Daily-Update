@@ -13,19 +13,17 @@ using Android.Widget;
 using AndroidApp.Adapters;
 using AndroidApp.Core;
 using AndroidApp.Fragments;
-using Microsoft.WindowsAzure.MobileServices;
+using Parse;
 
 namespace AndroidApp.Screens
 {
     [Activity(Theme = "@style/Theme.BetaChi")]
     public class EditDataScribeActivity : Activity
     {
-        // Mobile Service Client Reference
-        private MobileServiceClient client;
-
-        // Mobile Service Tables Used To Access Data
-        private IMobileServiceTable<ReminderItem> reminderTable;
-        private IMobileServiceTable<MealItem> mealTable; 
+        // Parse Queries To Retrieve Entire Table
+        // TODO: Possibly Optimize Or Use Job To Cleanup Data
+        private ParseQuery<ParseObject> reminderTable;
+        private ParseQuery<ParseObject> mealTable;
 
         // Adapter To Sync Reminders With The List
         private ReminderAdapter reminderAdapter;
@@ -44,7 +42,7 @@ namespace AndroidApp.Screens
         private Button setMealButton;
 
         // Meal Property
-        private MealItem mealItem;
+        private ParseObject mealItem;
 
         // Save Button
         private Button saveButton;
@@ -94,8 +92,8 @@ namespace AndroidApp.Screens
                 // Save Reminders
                 for (int i = 0; i < reminderAdapter.Count; i++)
                 {
-                    if (reminderAdapter[i].Id == null)
-                        AddReminderItem(reminderAdapter[i]);
+                    var reminder = reminderAdapter[i];
+                    AddReminderItem(reminder);
                 }
 
                 // Save Meal Item
@@ -103,25 +101,18 @@ namespace AndroidApp.Screens
 
             };
 
-            // Connect To Azure Mobile Service
+            // Connect To Parse Backend
             try
             {
-                // Initialize
-                CurrentPlatform.Init();
-
-                // Create Mobile Service Client Instance
-                client = new MobileServiceClient(Constants.APPLICATION_URL, Constants.APPLICATION_KEY);
-
                 // Retrieve Tables
-                reminderTable = client.GetTable<ReminderItem>();
-                mealTable = client.GetTable<MealItem>();
+                reminderTable = ParseObject.GetQuery("Reminder");
+                mealTable = ParseObject.GetQuery("Meal");
 
-                // Load The Reminders From The Mobile Service
+                // Load The Reminders From Parse
                 await RefreshRemindersFromTableAsync(DateTime.Today);
 
-                // Load Meals From The Mobil Service
+                // Load Meals From Parse
                 await RefreshMealsFromTableAsync(DateTime.Today);
-
             }
             catch (Exception e)
             {
@@ -171,13 +162,18 @@ namespace AndroidApp.Screens
         {
             try
             {
-                var list = await reminderTable.Where(x => x.Date.Day == date.Day).ToListAsync();
+                var query = reminderTable;
+                var list = await query.FindAsync();
 
                 reminderAdapter.Clear();
 
-                foreach (ReminderItem current in list)
-                    reminderAdapter.Add(current);
-
+                // Add Reminders
+                foreach (var current in list)
+                {
+                    var currentDate = current.Get<DateTime>("Date");
+                    if (currentDate == date)
+                        reminderAdapter.Add(current);
+                }
             }
             catch (Exception e)
             {
@@ -189,25 +185,27 @@ namespace AndroidApp.Screens
         {
             try
             {
-                // Retrieve MealItem For The Day
-                var list = await mealTable.Where(x => x.Date.Day == date.Day).ToListAsync();
-                var meals = list.FirstOrDefault();
+                // Retrieves Today's Meals
+                var query = mealTable;
+                var list = await query.FindAsync();
 
-                if (meals != null)
+                foreach (var current in list)
                 {
-                    // Set Meal Item
-                    mealItem = meals;
+                    var currentDate = current.Get<DateTime>("Date");
+                    if (date == currentDate)
+                        mealItem = current;
                 }
-                else
-                {
-                    var newMealItem = new MealItem();
-                    
-                    newMealItem.Breakfast = Constants.NO_MEAL_SET;
-                    newMealItem.Lunch = Constants.NO_MEAL_SET;
-                    newMealItem.Dinner = Constants.NO_MEAL_SET;
-                    newMealItem.Date = DateTime.Today;
 
-                    newMealItem.IsFormalDinner = false;
+                if (mealItem == null)
+                {
+                    var newMealItem = new ParseObject("Meal");
+
+                    newMealItem["Breakfast"] = Constants.NO_MEAL_SET;
+                    newMealItem["Lunch"] = Constants.NO_MEAL_SET;
+                    newMealItem["Dinner"] = Constants.NO_MEAL_SET;
+                    newMealItem["Date"] = DateTime.Today;
+
+                    newMealItem["IsFormalDinner"] = false;
 
                     AddMealItem(newMealItem);
 
@@ -221,11 +219,11 @@ namespace AndroidApp.Screens
             }
         }
 
-        public async void AddReminderItem(ReminderItem item)
+        public async void AddReminderItem(ParseObject item)
         {
             try
             {
-                await reminderTable.InsertAsync(item);
+                await item.SaveAsync();
             }
             catch (Exception e)
             {
@@ -233,11 +231,11 @@ namespace AndroidApp.Screens
             }
         }
 
-        public async void RemoveReminderItem(ReminderItem item)
+        public async void RemoveReminderItem(ParseObject item)
         {
             try
             {
-                await reminderTable.DeleteAsync(item);
+                await item.DeleteAsync();
             }
             catch (Exception e)
             {
@@ -249,11 +247,11 @@ namespace AndroidApp.Screens
 
         // TODO: Incomplete & Needs To Tell If Data Is Different
         // TODO: Need To Incoporate Adapter Smoothly
-        public async void UpdateReminderItem(ReminderItem item)
+        public async void UpdateReminderItem(ParseObject item)
         {
             try
             {
-                await reminderTable.UpdateAsync(item);
+                await item.SaveAsync();
             }
             catch (Exception e)
             {
@@ -261,11 +259,11 @@ namespace AndroidApp.Screens
             }
         }
 
-        public async void AddMealItem(MealItem item)
+        public async void AddMealItem(ParseObject item)
         {
             try
             {
-                await mealTable.InsertAsync(item);
+                await item.SaveAsync();
             }
             catch (Exception e)
             {
@@ -273,11 +271,11 @@ namespace AndroidApp.Screens
             }
         }
 
-        public async void UpdateMealItem(MealItem item)
+        public async void UpdateMealItem(ParseObject item)
         {
             try
             {
-                await mealTable.UpdateAsync(item);
+                await item.SaveAsync();
             }
             catch (Exception e)
             {
