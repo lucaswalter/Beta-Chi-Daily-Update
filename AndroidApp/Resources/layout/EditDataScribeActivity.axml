@@ -17,12 +17,12 @@
         android:minWidth="25px"
         android:minHeight="25px"
         android:layout_width="match_parent"
-        android:layout_height="410.3dp"
+        android:layout_height="359.3dp"
         android:layout_marginBottom="8.5dp" />
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="149.9dp"
+        android:layout_height="200dp"
         android:layout_marginBottom="5dp">
         <Button
             android:id="@+id/buttonAddReminder"

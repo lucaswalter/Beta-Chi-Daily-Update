@@ -12,7 +12,7 @@ using Android.Views;
 using Android.Widget;
 using AndroidApp.Adapters;
 using AndroidApp.Core;
-using Microsoft.WindowsAzure.MobileServices;
+using Parse;
 
 
 namespace AndroidApp.Fragments
@@ -25,7 +25,7 @@ namespace AndroidApp.Fragments
         private EditText dinnerEditText;
 
         // Public Meal Item
-        public MealItem MealItem;
+        public ParseObject MealItem;
 
         public override Dialog OnCreateDialog(Bundle savedInstanceState)
         {
@@ -46,9 +46,9 @@ namespace AndroidApp.Fragments
             dinnerEditText = dialogView.FindViewById<EditText>(Resource.Id.editTextDinner);
 
             // Set Text To Current Meal Values
-            breakfastEditText.Text = MealItem.Breakfast;
-            lunchEditText.Text = MealItem.Lunch;
-            dinnerEditText.Text = MealItem.Dinner;
+            breakfastEditText.Hint = MealItem.Get<string>("Breakfast");
+            lunchEditText.Hint = MealItem.Get<string>("Lunch");
+            dinnerEditText.Hint = MealItem.Get<string>("Dinner");
 
             // Set Positive & Negative Buttons
             builder.SetView(dialogView);
@@ -65,12 +65,17 @@ namespace AndroidApp.Fragments
         {
             var dialog = (AlertDialog)sender;
 
-            MealItem.Breakfast = breakfastEditText.Text;
-            MealItem.Lunch = lunchEditText.Text;
-            MealItem.Dinner = dinnerEditText.Text;
+            if (breakfastEditText.Text != String.Empty)
+                MealItem["Breakfast"] = breakfastEditText.Text;
+
+            if (lunchEditText.Text != String.Empty)
+                MealItem["Lunch"] = lunchEditText.Text;
+
+            if (dinnerEditText.Text != String.Empty)
+                MealItem["Dinner"] = dinnerEditText.Text;
 
             // TODO: Implement IsFormalDinner With Checkbox
-            MealItem.IsFormalDinner = false;
+            MealItem["IsFormalDinner"] = false;
 
             dialog.Dismiss();
         }

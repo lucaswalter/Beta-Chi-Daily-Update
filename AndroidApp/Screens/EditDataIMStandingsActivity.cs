@@ -7,19 +7,15 @@ using Android.Widget;
 using AndroidApp.Adapters;
 using AndroidApp.Core;
 using AndroidApp.Fragments;
-using Microsoft.WindowsAzure.MobileServices;
+using Parse;
 
 namespace AndroidApp.Screens
 {
     [Activity(Theme = "@style/Theme.BetaChi")]
     public class EditDataIMStandingsActivity : Activity
     {
-
-        // Mobile Service Client Reference
-        private MobileServiceClient client;
-
         // Mobile Service Tables Used To Access Data
-        private IMobileServiceTable<TeamItem> teamTable;
+        private ParseQuery<ParseObject> teamTable;
 
         // Adapter To Sync Teams With The List
         private TeamAdapter teamAdapter;
@@ -57,27 +53,17 @@ namespace AndroidApp.Screens
             {
                 for (int i = 0; i < teamAdapter.Count; i++)
                 {
-                    if (teamAdapter[i].Points == -1)
-                    {
-                        teamAdapter[i].Points = 0;
-                        AddTeamItem(teamAdapter[i]);                      
-                    }                     
+                    AddTeamItem(teamAdapter[i]);
                 }
 
                 RefreshTeams();
             };
 
-            // Connect To Azure Mobile Service
+            // Connect Parse Backend
             try
             {
-                // Initialize
-                CurrentPlatform.Init();
-
-                // Create Mobile Service Client Instance
-                client = new MobileServiceClient(Constants.APPLICATION_URL, Constants.APPLICATION_KEY);
-
                 // Retrieve Tables
-                teamTable = client.GetTable<TeamItem>();
+                teamTable = ParseObject.GetQuery("Team");
 
                 // Load Data From The Mobile Service
                 await RefreshTeamsFromTableAsync();
@@ -129,13 +115,14 @@ namespace AndroidApp.Screens
             try
             {
                 // Get Today's Reminders
-                var list = await teamTable.OrderBy(x => x.Points).ToListAsync();
+                var query = teamTable;
+                var list = await query.FindAsync();
 
                 // Clear Reminder Adapter
                 teamAdapter.Clear();
 
                 // Add Reminders
-                foreach (TeamItem current in list)
+                foreach (ParseObject current in list)
                     teamAdapter.Add(current);
 
             }
@@ -150,11 +137,11 @@ namespace AndroidApp.Screens
             await RefreshTeamsFromTableAsync();
         }
 
-        public async void AddTeamItem(TeamItem item)
+        public async void AddTeamItem(ParseObject item)
         {
             try
             {
-                await teamTable.InsertAsync(item);
+                await item.SaveAsync();
             }
             catch (Exception e)
             {
@@ -162,11 +149,11 @@ namespace AndroidApp.Screens
             }
         }
 
-        public async void UpdateTeamItem(TeamItem item)
+        public async void UpdateTeamItem(ParseObject item)
         {
             try
             {
-                await teamTable.UpdateAsync(item);
+                await item.SaveAsync();
             }
             catch (Exception e)
             {
@@ -174,11 +161,11 @@ namespace AndroidApp.Screens
             }
         }
 
-        public async void RemoveTeamItem(TeamItem item)
+        public async void RemoveTeamItem(ParseObject item)
         {
             try
             {
-                await teamTable.DeleteAsync(item);
+                await item.DeleteAsync();
             }
             catch (Exception e)
             {
@@ -201,12 +188,13 @@ namespace AndroidApp.Screens
 
         /** Edit Team Points Dialog **/
 
-        void CreateAndShowEditTeamPointsDialog(TeamItem team)
+        void CreateAndShowEditTeamPointsDialog(ParseObject team)
         {
             var transaction = FragmentManager.BeginTransaction();
             var editTeamPointsDialog = new EditTeamPointsDialogFragment();
 
             // Horrible Practice
+            // TODO: Switch To Team Adapter
             editTeamPointsDialog.Team = team;
             editTeamPointsDialog.Show(transaction, "editTeamPointsDialog");
         }
