@@ -15,7 +15,7 @@
     <item name="android:colorPrimaryDark">#388238</item>
     <item name="android:colorAccent">#388238</item>
   </style>
-
+  
   <style name="Theme.Splash" parent="android:Theme">
     <item name="android:windowBackground">@drawable/splash</item>
     <item name="android:windowNoTitle">true</item>

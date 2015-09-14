@@ -11,7 +11,7 @@ namespace AndroidApp.Screens
         {
             base.OnCreate(bundle);
 
-            StartActivity(typeof (MainActivity));
+            StartActivity(typeof (AuthenticationActivity));
         }
     }
 }
