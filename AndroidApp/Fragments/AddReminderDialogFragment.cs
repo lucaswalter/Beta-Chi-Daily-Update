@@ -12,7 +12,7 @@ using Android.Views;
 using Android.Widget;
 using AndroidApp.Adapters;
 using AndroidApp.Core;
-using Microsoft.WindowsAzure.MobileServices;
+using Parse;
 
 
 namespace AndroidApp.Fragments
@@ -21,7 +21,7 @@ namespace AndroidApp.Fragments
     {
 
         // Probably Really Bad Practice
-        public IMobileServiceTable<ReminderItem> reminderTable;
+        public ParseQuery<ParseObject> reminderTable;
 
         // Create Layout Properties
         private EditText ReminderEditText;
@@ -60,10 +60,10 @@ namespace AndroidApp.Fragments
         {
             var dialog = (AlertDialog)sender;
 
-            ReminderItem reminder = new ReminderItem();
+            ParseObject reminder = new ParseObject("Reminder");
 
-            reminder.Date = date;
-            reminder.Text = ReminderEditText.Text;
+            reminder["Date"]= date;
+            reminder["Text"] = ReminderEditText.Text;
             reminderAdapter.Add(reminder); 
             
             dialog.Dismiss();
